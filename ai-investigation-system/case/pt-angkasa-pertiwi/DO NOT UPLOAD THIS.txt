@@ -1,0 +1,2 @@
+Kecurangan PPN: Klaim PPN Masukan Fiktif — PT Angkasa Pertiwi
+Deskripsi: Antara Maret–September 2025, PT Angkasa Pertiwi diduga mengajukan klaim PPN masukan yang berlebihan dengan menggunakan faktur dari beberapa pemasok fiktif. Pencocokan e-Faktur terhadap data pengiriman menunjukkan banyak faktur tanpa nomor surat jalan atau nomor resi, sementara catatan persediaan tidak berubah sesuai nilai faktur. Estimasi potensi kerugian pajak awal: Rp 3.200.000.000. Rekomendasi awal: verifikasi fisik pemasok, cek reconciliation persediaan-pembelian, audit transaksi triwulan.

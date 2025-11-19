@@ -1,0 +1,15 @@
+services:
+  ai-fraud-client:
+    build: .
+    container_name: ai-fraud-client
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    # Optional: Add resource limits for testing
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.5'
+    #       memory: 512M

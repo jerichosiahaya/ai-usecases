@@ -1,0 +1,8 @@
+Kasus Suap Proyek Energi – PT Listrik Mandiri Nusantara
+
+Deskripsi:
+Antara Februari hingga Agustus 2025, pejabat proyek di PT Listrik Mandiri Nusantara diduga menerima suap dalam bentuk transfer tidak langsung melalui vendor konsultan fiktif untuk memenangkan kontrak pembangunan gardu listrik senilai Rp 250 miliar. Analisis rekening menunjukkan pola transaksi berulang dari vendor “Energi Konsulindo” ke rekening pribadi pejabat pengadaan. Bukti chat dan invoice palsu menunjukkan adanya markup harga hingga 35%.
+Kategori: Financial & Cyber Crimes
+Sub-Kategori: Bribery & Corruption
+Estimasi Kerugian: Rp 87.000.000.000
+Rekomendasi: Audit vendor dan kontrak proyek, periksa aliran dana antar rekening, lakukan forensik digital terhadap komunikasi internal proyek.

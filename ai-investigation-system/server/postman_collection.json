@@ -1,0 +1,940 @@
+{
+  "info": {
+    "name": "Fraud Case Management API",
+    "description": "API endpoints for managing fraud cases with Azure Cosmos DB",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Cases",
+      "item": [
+        {
+          "name": "Create Case",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"High-Value Transfer\",\n  \"description\": \"Suspicious transfer of large funds detected\",\n  \"status\": \"pending\",\n  \"files\": [\n    \"transaction_report.pdf\",\n    \"account_statement.xlsx\"\n  ],\n  \"insights\": null,\n  \"recommendations\": null\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/cases",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cases"
+              ]
+            },
+            "description": "Create a new fraud case with required name and description fields"
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"High-Value Transfer\",\n  \"description\": \"Suspicious transfer of large funds detected\",\n  \"status\": \"pending\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Case created successfully\",\n  \"data\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"name\": \"High-Value Transfer\",\n    \"description\": \"Suspicious transfer of large funds detected\",\n    \"status\": \"pending\",\n    \"files\": [\n      \"transaction_report.pdf\",\n      \"account_statement.xlsx\"\n    ],\n    \"insights\": null,\n    \"recommendations\": null,\n    \"created_at\": \"2024-11-04T12:30:45.123456\",\n    \"updated_at\": \"2024-11-04T12:30:45.123456\",\n    \"type\": \"case\"\n  }\n}"
+            },
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"name and description are required\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Cases",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/cases",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cases"
+              ]
+            },
+            "description": "Retrieve all fraud cases from the database"
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Cases retrieved successfully\",\n  \"data\": [\n    {\n      \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"name\": \"High-Value Transfer\",\n      \"description\": \"Suspicious transfer of large funds\",\n      \"status\": \"pending\",\n      \"files\": [],\n      \"created_at\": \"2024-11-04T12:30:45.123456\",\n      \"updated_at\": \"2024-11-04T12:30:45.123456\"\n    },\n    {\n      \"id\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n      \"name\": \"Unauthorized Charges\",\n      \"description\": \"Multiple unauthorized transactions detected\",\n      \"status\": \"analyzing\",\n      \"files\": [],\n      \"created_at\": \"2024-11-03T10:15:30.654321\",\n      \"updated_at\": \"2024-11-04T09:45:20.987654\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "500 Internal Server Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Failed to retrieve cases: Connection error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Case by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cases",
+                "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+              ]
+            },
+            "description": "Retrieve a specific case by its ID"
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Case retrieved successfully\",\n  \"data\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"name\": \"High-Value Transfer\",\n    \"description\": \"Suspicious transfer of large funds\",\n    \"status\": \"pending\",\n    \"files\": [\n      \"transaction_report.pdf\"\n    ],\n    \"insights\": null,\n    \"recommendations\": null,\n    \"created_at\": \"2024-11-04T12:30:45.123456\",\n    \"updated_at\": \"2024-11-04T12:30:45.123456\",\n    \"type\": \"case\"\n  }\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases/nonexistent-id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases",
+                    "nonexistent-id"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Case nonexistent-id not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Case",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\",\n  \"insights\": \"Fraud pattern detected. Account compromised on 2024-11-03\",\n  \"recommendations\": [\n    \"Block account immediately\",\n    \"Contact customer for verification\",\n    \"Reverse unauthorized transactions\",\n    \"Initiate fraud investigation\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cases",
+                "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+              ]
+            },
+            "description": "Update an existing case with new information, status, or recommendations"
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"completed\",\n  \"insights\": \"Fraud pattern detected\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Case updated successfully\",\n  \"data\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"name\": \"High-Value Transfer\",\n    \"description\": \"Suspicious transfer of large funds\",\n    \"status\": \"completed\",\n    \"files\": [],\n    \"insights\": \"Fraud pattern detected. Account compromised on 2024-11-03\",\n    \"recommendations\": [\n      \"Block account immediately\",\n      \"Contact customer for verification\"\n    ],\n    \"created_at\": \"2024-11-04T12:30:45.123456\",\n    \"updated_at\": \"2024-11-04T14:45:30.654321\",\n    \"type\": \"case\"\n  }\n}"
+            },
+            {
+              "name": "500 Internal Server Error",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases/nonexistent-id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases",
+                    "nonexistent-id"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Failed to update case: Case not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Case",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cases",
+                "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+              ]
+            },
+            "description": "Delete a case from the database"
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Case deleted successfully\",\n  \"data\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n  }\n}"
+            },
+            {
+              "name": "500 Internal Server Error",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases/nonexistent-id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases",
+                    "nonexistent-id"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Failed to delete case: Item not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Start Analysis",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/analysis",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cases",
+                "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "analysis"
+              ]
+            },
+            "description": "Start automated analysis for a case"
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/analysis",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                    "analysis"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Analysis started successfully\",\n  \"data\": {\n    \"case_id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"status\": \"analyzing\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add Note",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Suspicious pattern detected in transaction history. Need to investigate vendor relationships.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/notes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cases",
+                "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "notes"
+              ]
+            },
+            "description": "Add an investigation note to a case"
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"Suspicious pattern detected\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/notes",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                    "notes"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Note added successfully\",\n  \"data\": {\n    \"id\": \"note-1730000000000\",\n    \"content\": \"Suspicious pattern detected in transaction history\",\n    \"created_at\": \"2024-11-04T15:30:45.123456\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Note",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/notes/note-1730000000000",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cases",
+                "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "notes",
+                "note-1730000000000"
+              ]
+            },
+            "description": "Delete a note from a case"
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/notes/note-1730000000000",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                    "notes",
+                    "note-1730000000000"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Note deleted successfully\",\n  \"data\": {\n    \"id\": \"note-1730000000000\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Chat with Case Analyst",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"case_id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"text\": \"Apa yang terjadi dengan case ini? Analisis pola transaksi yang mencurigakan.\"\n    }\n  ],\n  \"session_id\": \"session-investigation-001\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/chat",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cases",
+                "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "chat"
+              ]
+            },
+            "description": "Chat with AI case analyst for investigation insights"
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"text\": \"Apa yang mencurigakan?\"\n    }\n  ]\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/chat",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                    "chat"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Chat response received successfully\",\n  \"data\": {\n    \"response\": \"Berdasarkan analisis case ini, beberapa hal yang mencurigakan terdeteksi:\\n\\n1. **Pola Transaksi Anomali**: Peningkatan volume transaksi di luar jam kerja normal\\n2. **Vendor Baru**: Aktivitas dengan vendor yang sebelumnya tidak pernah bermitra\\n3. **Nilai Transaksi Tidak Konsisten**: Jumlah transfer jauh di atas rata-rata historis\\n\\nRekomendasi Investigasi:\\n- Verifikasi identitas vendor baru\\n- Periksa otorisasi untuk transaksi besar\\n- Hubungi klien untuk konfirmasi\",\n    \"source_references\": [\n      {\n        \"document_id\": \"doc-001\",\n        \"content_snippet\": \"Multiple transactions detected on 2024-11-03\",\n        \"file_name\": \"transaction_report.pdf\",\n        \"file_url\": \"https://storage.blob.core.windows.net/...\"\n      }\n    ],\n    \"needs_visualization\": true\n  }\n}"
+            },
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": []\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/cases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/chat",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "cases",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                    "chat"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"messages array is required and must not be empty\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Upload",
+      "item": [
+        {
+          "name": "Upload File to Case",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "path/to/your/file.pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/upload/file/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "upload",
+                "file",
+                "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+              ]
+            },
+            "description": "Upload a file to blob storage for a specific case"
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": "document.pdf"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/upload/file/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "upload",
+                    "file",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"File uploaded successfully\",\n  \"data\": {\n    \"blob_name\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890/550e8400-e29b-41d4-a716-446655440000.pdf\",\n    \"original_filename\": \"document.pdf\",\n    \"case_id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"size\": 102400,\n    \"content_type\": \"application/pdf\",\n    \"uploaded_at\": \"2024-11-04T14:30:45.123456\",\n    \"url\": \"https://yourstorage.blob.core.windows.net/ai-fraud/a1b2c3d4-e5f6-7890-abcd-ef1234567890/550e8400-e29b-41d4-a716-446655440000.pdf\"\n  }\n}"
+            },
+            {
+              "name": "400 Bad Request - No File",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/upload/file/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "upload",
+                    "file",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"No file provided\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List Files for Case",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/upload/files/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "upload",
+                "files",
+                "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+              ]
+            },
+            "description": "Retrieve all files associated with a specific case"
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/upload/files/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "upload",
+                    "files",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Files retrieved successfully\",\n  \"data\": [\n    {\n      \"blob_name\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890/550e8400-e29b-41d4-a716-446655440000.pdf\",\n      \"size\": 102400,\n      \"created_at\": \"2024-11-04T14:30:45.123456\",\n      \"url\": \"https://yourstorage.blob.core.windows.net/ai-fraud/a1b2c3d4-e5f6-7890-abcd-ef1234567890/550e8400-e29b-41d4-a716-446655440000.pdf\"\n    },\n    {\n      \"blob_name\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890/660f8501-f30c-42e5-b827-557766551111.xlsx\",\n      \"size\": 245600,\n      \"created_at\": \"2024-11-04T14:35:20.654321\",\n      \"url\": \"https://yourstorage.blob.core.windows.net/ai-fraud/a1b2c3d4-e5f6-7890-abcd-ef1234567890/660f8501-f30c-42e5-b827-557766551111.xlsx\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete File",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/upload/file/a1b2c3d4-e5f6-7890-abcd-ef1234567890/550e8400-e29b-41d4-a716-446655440000.pdf",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "upload",
+                "file",
+                "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "550e8400-e29b-41d4-a716-446655440000.pdf"
+              ]
+            },
+            "description": "Delete a file from blob storage"
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/upload/file/a1b2c3d4-e5f6-7890-abcd-ef1234567890/550e8400-e29b-41d4-a716-446655440000.pdf",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "upload",
+                    "file",
+                    "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                    "550e8400-e29b-41d4-a716-446655440000.pdf"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"File deleted successfully\",\n  \"data\": {\n    \"blob_name\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890/550e8400-e29b-41d4-a716-446655440000.pdf\"\n  }\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    }
+  ]
+}

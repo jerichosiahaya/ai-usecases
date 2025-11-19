@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  ai-fraud-worker:
+    build: .
+    container_name: ai-fraud-worker
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/__pycache__
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    # Optional: Add resource limits for testing
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.5'
+    #       memory: 1G

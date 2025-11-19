@@ -1,0 +1,15 @@
+semantic-kernel==1.37.0
+pandas==2.2.3
+pyodbc==5.2.0
+python-dotenv==1.1.0
+requests==2.32.4
+Flask==3.0.0
+Flask-CORS==4.0.0
+pydantic==2.11.5
+pydantic-settings==2.9.1
+pydantic_core==2.33.2
+loguru==0.7.3
+azure-cosmos==4.6.1
+azure-storage-blob==12.19.0
+werkzeug==3.0.1
+azure-servicebus==7.13.0
