@@ -12,12 +12,12 @@ export const navMenu: NavMenu[] = [
       {
         title: 'Jobs',
         icon: 'i-lucide-book-open',
-        link: '/email',
+        link: '/jobs',
       },
       {
         title: 'Candidates',
         icon: 'i-lucide-users',
-        link: '/tasks',
+        link: '/candidates',
       },
     ],
   }
