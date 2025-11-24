@@ -9,8 +9,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
-  ChevronLeft,
-  ChevronRight,
   Send,
   MoveRight,
   Download,
@@ -26,27 +24,17 @@ import {
   Activity,
   ExternalLink,
   Briefcase,
+  CreditCard,
+  Users,
+  GraduationCap,
+  IdCard,
 } from 'lucide-vue-next'
 
 const route = useRoute()
 const router = useRouter()
 const candidates = (candidatesData as { data: Candidate[] }).data
 const candidateId = route.params.id as string
-const currentIndex = ref(candidates.findIndex(c => c.id === candidateId))
-
-// Ensure we have a valid index
-if (currentIndex.value === -1 && candidates.length > 0) {
-  currentIndex.value = 0
-}
-
-const candidate = computed(() => candidates[currentIndex.value])
-
-const goToCandidate = (index: number) => {
-  if (index >= 0 && index < candidates.length && candidates[index]) {
-    currentIndex.value = index
-    router.push(`/candidates/${candidates[index].id}`)
-  }
-}
+const candidate = computed(() => candidates.find(c => c.id === candidateId))
 
 // Mock extended data for the UI
 const extendedCandidate = computed(() => {
@@ -80,6 +68,12 @@ const extendedCandidate = computed(() => {
     education: [
       { school: 'National Institute of Design', period: '2015-2019' },
       { school: 'National Institute of Fashion Technology', period: '2012-2015' }
+    ],
+    documents: [
+      { type: 'KTP', name: 'ktp_scan.jpg', icon: IdCard },
+      { type: 'Kartu Keluarga', name: 'kk_scan.pdf', icon: Users },
+      { type: 'Ijazah', name: 'ijazah_s1.pdf', icon: GraduationCap },
+      { type: 'Buku Tabungan', name: 'buku_tabungan_bca.jpg', icon: CreditCard }
     ]
   }
 })
@@ -93,33 +87,6 @@ const downloadCV = () => {
 
 <template>
   <div v-if="extendedCandidate" class="min-h-screen bg-slate-50/50">
-    <!-- Top Navigation Bar -->
-    <div class="border-b bg-white px-6 py-3 flex items-center justify-end sticky top-0 z-10">
-      <div class="flex items-center gap-4">
-        <span class="text-sm text-muted-foreground">{{ currentIndex + 1 }} of {{ candidates.length }}</span>
-        <div class="flex items-center gap-1">
-          <Button
-            variant="outline"
-            size="icon"
-            class="h-8 w-8"
-            :disabled="currentIndex === 0"
-            @click="goToCandidate(currentIndex - 1)"
-          >
-            <ChevronLeft class="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            class="h-8 w-8"
-            :disabled="currentIndex === candidates.length - 1"
-            @click="goToCandidate(currentIndex + 1)"
-          >
-            <ChevronRight class="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
-    </div>
-
     <div class="max-w-7xl mx-auto p-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
@@ -139,9 +106,11 @@ const downloadCV = () => {
             </div>
             
             <div class="flex-1 space-y-2">
-              <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ extendedCandidate.name }}</h1>
-                <span class="text-lg text-muted-foreground">for {{ extendedCandidate.role }}</span>
+              <div class="flex justify-between items-start">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                  <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ extendedCandidate.name }}</h1>
+                  <span class="text-lg text-muted-foreground">for {{ extendedCandidate.role }}</span>
+                </div>
               </div>
               
               <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -207,8 +176,8 @@ const downloadCV = () => {
           <!-- AI Interview Summary -->
           <div class="space-y-3">
             <h3 class="text-sm font-medium text-muted-foreground">AI Interview Summary</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              {{ extendedCandidate.notes || 'Lorem ipsum dolor sit amet consectetur. Nulla risus nisl magna platea in convallis. Vitae elementum pellentesque elit augue massa. Lectus sit nisl vitae a. Massa felis aliquot amet habitasse. Scelerisque ut proin nescitur non ornare. Ut amet mauris nulla cursus cum mauris ac tempor. In sed condimentum nullam sed in. Nibh dui mattis ornare bibendum nullam risus ut pharetra. Sed ultrices tempus amet egestas hac arcu. Ut a convallis pellentesque sem ipsum bibendum. Arcu nulla dictum sit enim at vulputate. Congue odio risus amet egestas nec diam consequat venenatis. This will contain both info and a summary of recommended actionable for the candidate.' }}
+            <p class="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+              {{ (extendedCandidate.notes || '') + '\n\nLorem ipsum dolor sit amet consectetur. Nulla risus nisl magna platea in convallis. Vitae elementum pellentesque elit augue massa. Lectus sit nisl vitae a. Massa felis aliquot amet habitasse. Scelerisque ut proin nescitur non ornare. Ut amet mauris nulla cursus cum mauris ac tempor. In sed condimentum nullam sed in. Nibh dui mattis ornare bibendum nullam risus ut pharetra. Sed ultrices tempus amet egestas hac arcu. Ut a convallis pellentesque sem ipsum bibendum. Arcu nulla dictum sit enim at vulputate. Congue odio risus amet egestas nec diam consequat venenatis. This will contain both info and a summary of recommended actionable for the candidate.\n\nPraesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Quisque velit nisi, pretium ut lacinia in, elementum id enim.\n\nDonec sollicitudin molestie malesuada. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.' }}
             </p>
           </div>
 
@@ -386,6 +355,29 @@ const downloadCV = () => {
                 <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
                   <ExternalLink class="h-6 w-6 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <!-- Legal Documents -->
+          <Card>
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground">Legal Documents</CardTitle>
+            </CardHeader>
+            <CardContent class="space-y-3">
+              <div v-for="doc in extendedCandidate.documents" :key="doc.type" class="border rounded-lg p-3 flex items-center justify-between bg-slate-50">
+                <div class="flex items-center gap-3 overflow-hidden">
+                  <div class="h-8 w-8 bg-white rounded border flex items-center justify-center shrink-0">
+                    <component :is="doc.icon" class="h-4 w-4 text-blue-500" />
+                  </div>
+                  <div class="flex flex-col overflow-hidden">
+                    <span class="text-sm font-medium truncate">{{ doc.name }}</span>
+                    <span class="text-xs text-muted-foreground">{{ doc.type }}</span>
+                  </div>
+                </div>
+                <Button variant="ghost" size="icon" class="h-8 w-8">
+                  <ExternalLink class="h-4 w-4 text-muted-foreground" />
+                </Button>
               </div>
             </CardContent>
           </Card>
