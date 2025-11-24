@@ -19,8 +19,7 @@ const props = defineProps<DataTableRowActionsProps>()
 const router = useRouter()
 
 const viewDetails = () => {
-  // router.push(`/jobs/${props.row.original.id}`)
-  console.log('View job:', props.row.original.id)
+  router.push(`/jobs/${props.row.original.id}`)
 }
 
 const editJob = () => {

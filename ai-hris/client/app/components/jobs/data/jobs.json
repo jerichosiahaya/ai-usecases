@@ -8,7 +8,26 @@
       "type": "Full-time",
       "status": "Open",
       "postedDate": "2023-10-25",
-      "applicants": 45
+      "applicants": 45,
+      "description": "We are looking for a Senior Product Designer to join our team. You will be responsible for designing user-centric interfaces and experiences for our core products. You will work closely with product managers and engineers to deliver high-quality designs.",
+      "requirements": [
+        "5+ years of experience in product design",
+        "Strong portfolio showcasing UI/UX skills",
+        "Proficiency in Figma and prototyping tools",
+        "Experience with design systems",
+        "Excellent communication and collaboration skills"
+      ],
+      "salary": {
+        "min": 120000,
+        "max": 160000,
+        "currency": "USD"
+      },
+      "skills": ["Product Design", "Figma", "UI/UX", "Prototyping", "Design Systems"],
+      "benefits": ["Health Insurance", "Remote Work", "Unlimited PTO", "401k Matching"],
+      "hiringTeam": {
+        "hiringManager": { "name": "Sarah Miller" },
+        "recruiter": { "name": "James Chen" }
+      }
     },
     {
       "id": "JOB-5678",
@@ -18,7 +37,26 @@
       "type": "Full-time",
       "status": "Open",
       "postedDate": "2023-11-01",
-      "applicants": 32
+      "applicants": 32,
+      "description": "We are seeking a skilled Frontend Developer to build and maintain our web applications. You will work with modern technologies like Vue.js and TypeScript to create responsive and performant user interfaces.",
+      "requirements": [
+        "3+ years of experience with Vue.js or React",
+        "Strong understanding of HTML, CSS, and JavaScript",
+        "Experience with TypeScript",
+        "Familiarity with state management libraries (Pinia/Vuex)",
+        "Knowledge of web performance optimization"
+      ],
+      "salary": {
+        "min": 100000,
+        "max": 140000,
+        "currency": "USD"
+      },
+      "skills": ["Vue.js", "TypeScript", "HTML/CSS", "Frontend Architecture"],
+      "benefits": ["Health Insurance", "Gym Membership", "Learning Budget"],
+      "hiringTeam": {
+        "hiringManager": { "name": "Alex Johnson" },
+        "recruiter": { "name": "Emily Davis" }
+      }
     },
     {
       "id": "JOB-9012",
@@ -28,7 +66,20 @@
       "type": "Full-time",
       "status": "Closed",
       "postedDate": "2023-09-15",
-      "applicants": 120
+      "applicants": 120,
+      "description": "We are looking for a Marketing Manager to lead our marketing efforts. You will be responsible for developing and executing marketing strategies to drive growth and brand awareness.",
+      "requirements": [
+        "4+ years of experience in marketing",
+        "Proven track record of successful campaigns",
+        "Experience with digital marketing channels",
+        "Strong analytical skills",
+        "Excellent leadership and team management skills"
+      ],
+      "salary": {
+        "min": 60000,
+        "max": 80000,
+        "currency": "GBP"
+      }
     },
     {
       "id": "JOB-3456",
@@ -38,7 +89,20 @@
       "type": "Contract",
       "status": "Open",
       "postedDate": "2023-11-10",
-      "applicants": 18
+      "applicants": 18,
+      "description": "We are hiring a Data Scientist to analyze large datasets and extract actionable insights. You will build machine learning models and work with stakeholders to solve business problems.",
+      "requirements": [
+        "Master's or PhD in Computer Science, Statistics, or related field",
+        "Experience with Python and data science libraries (pandas, scikit-learn)",
+        "Knowledge of machine learning algorithms",
+        "Experience with SQL and database management",
+        "Strong problem-solving skills"
+      ],
+      "salary": {
+        "min": 130000,
+        "max": 180000,
+        "currency": "USD"
+      }
     },
     {
       "id": "JOB-7890",
@@ -48,7 +112,20 @@
       "type": "Part-time",
       "status": "Draft",
       "postedDate": "2023-11-20",
-      "applicants": 0
+      "applicants": 0,
+      "description": "We are looking for an HR Specialist to support our HR department. You will assist with recruitment, onboarding, and employee relations.",
+      "requirements": [
+        "2+ years of experience in HR",
+        "Knowledge of labor laws and regulations",
+        "Excellent interpersonal and communication skills",
+        "Organizational and time management skills",
+        "Proficiency in HR software"
+      ],
+      "salary": {
+        "min": 25000,
+        "max": 35000,
+        "currency": "EUR"
+      }
     }
   ]
 }
