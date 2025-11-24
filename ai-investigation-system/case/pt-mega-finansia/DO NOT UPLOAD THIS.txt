@@ -1,0 +1,2 @@
+Peretasan Sistem Core Banking PT Mega Finansia
+Deskripsi: Tim IT mendeteksi akses tidak sah melalui API eksternal yang digunakan untuk menyedot data rekening nasabah. Akses dilakukan lewat exploit pada library lama. 12.000 data nasabah bocor ke dark web.

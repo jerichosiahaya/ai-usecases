@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  hris:
+    build: .
+    container_name: hris
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/__pycache__
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=True
+    restart: unless-stopped
+
+volumes:
+  app_data:
+    driver: local

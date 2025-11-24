@@ -1,0 +1,11 @@
+12/03/2025 09:10 — Rina:
+Selamat pagi tim. Saya baru cek laporan PPN Februari, ada selisih lumayan besar antara penjualan dan faktur pajak. Tolong verifikasi semua vendor besar hari ini, terutama Agri Sentosa dan Food Supply.
+
+12/03/2025 09:12 — Bayu:
+Siap Bu. Tapi barusan saya liat, ada faktur masuk dari Agri Sentosa yang barangnya belum tercatat di gudang. Mungkin pengiriman belum update?
+
+12/03/2025 09:15 — Dedi:
+Saya udah bandingin e-Faktur. NPWP Agri Sentosa ga valid di DJP. Kayaknya itu vendor bermasalah.
+
+12/03/2025 09:18 — Rina:
+Oke noted, jangan proses PPN-nya dulu. Saya mau cek sama tim purchasing dulu.

@@ -1,0 +1,5 @@
+[17/05/2025 22:48:13] Incoming Transfer - Rp 7,200,000,000
+Source Account : PT Karya Mandala Pertiwi (021-8842112)
+Destination    : Yayasan Citra Mandala (987-7711331)
+Reference Note : Corporate Partnership Program / Development Grant
+Authorization  : Auto-cleared (priority account)

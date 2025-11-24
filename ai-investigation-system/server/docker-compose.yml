@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  ai-investigation:
+    build: .
+    container_name: ai-investigation-server
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/__pycache__
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FLASK_ENV=development
+    restart: unless-stopped
+    # Optional: Add resource limits for testing
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.5'
+    #       memory: 1G

@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "name": "Alice Johnson",
+      "email": "alice.johnson@email.com",
+      "phone": "+1-555-0101",
+      "position": "frontend-developer",
+      "status": "shortlisted",
+      "appliedDate": "2025-11-15",
+      "experience": 4,
+      "skills": ["React", "Vue.js", "TypeScript", "Tailwind CSS"],
+      "rating": 4.5,
+      "notes": "Strong frontend skills, great portfolio. Ready for interview.",
+      "cv_url": "https://example.com/cv/alice-johnson.pdf"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "name": "Bob Smith",
+      "email": "bob.smith@email.com",
+      "phone": "+1-555-0102",
+      "position": "backend-developer",
+      "status": "reviewing",
+      "appliedDate": "2025-11-14",
+      "experience": 6,
+      "skills": ["Node.js", "Python", "PostgreSQL", "AWS"],
+      "rating": 4.2,
+      "notes": "Good experience with cloud infrastructure.",
+      "cv_url": "https://example.com/cv/bob-smith.pdf"
+    }
+  ]
+}
