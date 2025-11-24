@@ -1,0 +1,54 @@
+{
+  "data": [
+    {
+      "id": "JOB-1234",
+      "title": "Senior Product Designer",
+      "department": "Design",
+      "location": "Remote",
+      "type": "Full-time",
+      "status": "Open",
+      "postedDate": "2023-10-25",
+      "applicants": 45
+    },
+    {
+      "id": "JOB-5678",
+      "title": "Frontend Developer",
+      "department": "Engineering",
+      "location": "New York, NY",
+      "type": "Full-time",
+      "status": "Open",
+      "postedDate": "2023-11-01",
+      "applicants": 32
+    },
+    {
+      "id": "JOB-9012",
+      "title": "Marketing Manager",
+      "department": "Marketing",
+      "location": "London, UK",
+      "type": "Full-time",
+      "status": "Closed",
+      "postedDate": "2023-09-15",
+      "applicants": 120
+    },
+    {
+      "id": "JOB-3456",
+      "title": "Data Scientist",
+      "department": "Data",
+      "location": "San Francisco, CA",
+      "type": "Contract",
+      "status": "Open",
+      "postedDate": "2023-11-10",
+      "applicants": 18
+    },
+    {
+      "id": "JOB-7890",
+      "title": "HR Specialist",
+      "department": "Human Resources",
+      "location": "Berlin, Germany",
+      "type": "Part-time",
+      "status": "Draft",
+      "postedDate": "2023-11-20",
+      "applicants": 0
+    }
+  ]
+}
