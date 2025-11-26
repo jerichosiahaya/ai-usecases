@@ -27,6 +27,21 @@ class ExtractedContent(BaseModel):
     tables: Optional[List[Dict[str, Any]]] = None
     bounding_boxes: Optional[List[Dict[str, Any]]] = Field(None, alias="boundingBoxes")
 
+class Note(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    author: str
+    role: str
+    message: str
+
+class Address(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    detail: str
+    city: str
+    country: str
+    zip: Optional[int] = None
+
 class Document(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
     
@@ -49,17 +64,20 @@ class Candidate(BaseModel):
     phone: Optional[str] = None
     gender: Optional[str] = None
     date_of_birth: Optional[str] = Field(None, alias="dateOfBirth")
+    address: Optional[Address] = None
     position: Optional[str] = None
     status: Optional[str] = None
     applied_date: Optional[str] = Field(None, alias="appliedDate")
     experience: Optional[int] = None
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
-    notes: Optional[str] = None
+    notes: Optional[List[Note]] = None
+    resume: Optional[List[Document]] = None
+    legal_documents: Optional[List[Document]] = Field(None, alias="legal_documents")
     cv_url: Optional[str] = Field(None, alias="cvUrl")
     education: Optional[List[Education]] = None
     work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
-    documents: Optional[List[Document]] = None
+    documents: Optional[List[Document]] = None  # Kept for backward compatibility
     embeddings: Optional[List[float]] = None
 
 class CandidateResponse(BaseModel):
@@ -75,14 +93,17 @@ class CandidateResponse(BaseModel):
     phone: Optional[str] = None
     gender: Optional[str] = None
     date_of_birth: Optional[str] = Field(None, alias="dateOfBirth")
+    address: Optional[Address] = None
     position: Optional[str] = None
     status: Optional[str] = None
     applied_date: Optional[str] = Field(None, alias="appliedDate")
     experience: Optional[int] = None
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
-    notes: Optional[str] = None
+    notes: Optional[List[Note]] = None
+    resume: Optional[List[Document]] = None
+    legal_documents: Optional[List[Document]] = Field(None, alias="legal_documents")
     cv_url: Optional[str] = Field(None, alias="cvUrl")
     education: Optional[List[Education]] = None
     work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
-    documents: Optional[List[Document]] = None
+    documents: Optional[List[Document]] = None  # Kept for backward compatibility

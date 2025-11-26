@@ -156,20 +156,20 @@ const formatDate = (dateString: string) => {
             <div class="flex-1 space-y-2">
               <div class="flex justify-between items-start">
                 <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                  <h1 class="text-3xl font-bold tracking-tight text-foreground">{{ extendedCandidate.name }}</h1>
-                  <span class="text-lg text-muted-foreground">for {{ extendedCandidate.role }}</span>
+                  <h1 class="text-3xl font-bold tracking-tight text-foreground">{{ candidate?.name }}</h1>
+                  <span class="text-lg text-muted-foreground">for {{ candidate?.position }}</span>
                 </div>
               </div>
               
               <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
                 <div class="flex items-center gap-1.5">
                   <MapPin class="h-4 w-4" />
-                  {{ extendedCandidate.location }}
+                  {{ candidate?.address?.city }}, {{ candidate?.address?.country }}
                 </div>
 
                 <div class="flex items-center gap-1.5">
                   <Calendar class="h-4 w-4" />
-                  Applied {{ Math.floor((new Date().getTime() - new Date(extendedCandidate.applied_date).getTime()) / (1000 * 3600 * 24)) }} days ago
+                  Applied {{ Math.floor((Date.now() - new Date(candidate?.applied_date ?? Date.now()).getTime()) / (1000 * 3600 * 24)) }} days ago
                 </div>
 
               </div>
@@ -366,22 +366,22 @@ const formatDate = (dateString: string) => {
               <CardContent class="space-y-4">
                 <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
                   <span class="text-muted-foreground">Name</span>
-                  <span class="font-medium text-right">{{ extendedCandidate.name }}</span>
+                  <span class="font-medium text-right">{{ candidate?.name }}</span>
                 </div>
                 <Separator />
                 <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
                   <span class="text-muted-foreground">Location</span>
-                  <span class="font-medium text-right">{{ extendedCandidate.location }}</span>
+                  <span class="font-medium text-right">{{ candidate?.address?.city }}, {{ candidate?.address?.country }}</span>
                 </div>
                 <Separator />
                 <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
                   <span class="text-muted-foreground">Birthday</span>
-                  <span class="font-medium text-right">{{ extendedCandidate.birthday }}</span>
+                  <span class="font-medium text-right">{{ candidate?.date_of_birth }}</span>
                 </div>
                 <Separator />
                 <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
                   <span class="text-muted-foreground">Email</span>
-                  <span class="font-medium text-right truncate text-blue-600">{{ extendedCandidate.email }}</span>
+                  <span class="font-medium text-right truncate text-blue-600">{{ candidate?.email }}</span>
                 </div>
               </CardContent>
             </Card>
@@ -549,17 +549,17 @@ const formatDate = (dateString: string) => {
                 <CardTitle class="text-sm font-medium text-muted-foreground">Internal Notes</CardTitle>
               </CardHeader>
               <CardContent class="space-y-4">
-                <div v-for="(note, i) in extendedCandidate.notes" :key="i" class="flex gap-3">
+                <div v-for="(note, i) in candidate?.notes" :key="i" class="flex gap-3">
                   <Avatar class="h-8 w-8 border">
                     <AvatarFallback class="text-xs">{{ note.author.charAt(0) }}</AvatarFallback>
                   </Avatar>
                   <div class="flex-1 space-y-1">
                     <div class="flex items-center justify-between">
                       <span class="text-sm font-medium">{{ note.author }}</span>
-                      <span class="text-xs text-muted-foreground">{{ note.date }}</span>
+                      <!-- <span class="text-xs text-muted-foreground">{{ note. }}</span> -->
                     </div>
                     <p class="text-xs text-muted-foreground">{{ note.role }}</p>
-                    <p class="text-sm text-foreground bg-muted/50 p-2 rounded-md mt-1">{{ note.content }}</p>
+                    <p class="text-sm text-foreground bg-muted/50 p-2 rounded-md mt-1">{{ note.message }}</p>
                   </div>
                 </div>
                 
