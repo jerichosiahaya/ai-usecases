@@ -388,13 +388,44 @@ const formatDate = (dateString: string) => {
 
             <!-- Experience -->
             <Card>
-              <CardHeader class="">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Experience</CardTitle>
+              <CardHeader class="pb-3">
+                <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                  <Briefcase class="h-4 w-4" />
+                  Experience
+                </CardTitle>
               </CardHeader>
-              <CardContent class="space-y-4">
-                <div v-for="(exp, i) in candidate?.work_experiences" :key="i" class="space-y-1">
-                  <div class="font-medium text-sm">{{ exp.position }}, {{ exp.company }}</div>
-                    <div class="text-xs text-muted-foreground">{{ formatDate(exp.start_date) }} - {{ exp.end_date ? formatDate(exp.end_date) : 'Present' }}</div>
+              <CardContent class="space-y-3">
+                <div v-for="(exp, i) in candidate?.work_experiences" :key="i" class="border rounded-lg p-4 bg-linear-to-br from-purple-50/50 to-transparent dark:from-purple-950/20 hover:shadow-sm transition-all">
+                  <div class="space-y-3">
+                    <!-- Top row: Position and Duration -->
+                    <div class="flex items-start justify-between gap-3">
+                      <div class="flex-1">
+                        <div class="font-semibold text-sm text-foreground">{{ exp.position }}</div>
+                      </div>
+                      <Badge class="bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/40 dark:text-purple-300 dark:border-purple-900/60 shrink-0 text-xs">
+                        {{ (() => {
+                          const totalMonths = Math.ceil((new Date(exp.end_date || new Date()).getTime() - new Date(exp.start_date).getTime()) / (1000 * 60 * 60 * 24 * 30.44))
+                          const years = Math.floor(totalMonths / 12)
+                          const months = totalMonths % 12
+                          return years > 0 ? `${years} year${years > 1 ? 's' : ''} ${months} month${months !== 1 ? 's' : ''}` : `${months} month${months !== 1 ? 's' : ''}`
+                        })() }}
+                      </Badge>
+                    </div>
+                    
+                    <!-- Company -->
+                    <div>
+                      <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Company</div>
+                      <div class="text-sm text-foreground font-medium mt-1">{{ exp.company }}</div>
+                    </div>
+                    
+                    <!-- Duration -->
+                    <div class="pt-2 border-t border-border">
+                      <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Clock class="h-3.5 w-3.5" />
+                        <span>{{ formatDate(exp.start_date) }} - {{ exp.end_date ? formatDate(exp.end_date) : 'Present' }}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
