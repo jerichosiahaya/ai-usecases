@@ -30,6 +30,8 @@ import {
   Edit,
   AlertCircle,
   CheckCircle2,
+  Banknote,
+  Shield,
 } from 'lucide-vue-next'
 
 const route = useRoute()
@@ -93,10 +95,27 @@ const extendedCandidate = computed(() => {
 
 const requiredDocuments = ['KTP', 'Kartu Keluarga', 'Ijazah', 'Buku Tabungan', 'NPWP', 'SKCK']
 
+const getDocumentIcon = (docType: string) => {
+  const iconMap: Record<string, any> = {
+    'KTP': IdCard,
+    'KARTU_KELUARGA': Users,
+    'Kartu Keluarga': Users,
+    'IJAZAH': GraduationCap,
+    'Ijazah': GraduationCap,
+    'BUKU_TABUNGAN': CreditCard,
+    'Buku Tabungan': CreditCard,
+    'NPWP': FileText,
+    'SKCK': Shield,
+    'RESUME': FileText,
+    'Resume': FileText,
+  }
+  return iconMap[docType] || FileText
+}
+
 const documentCompletion = computed(() => {
-  if (!extendedCandidate.value) return { progress: 0, missing: [] }
+  if (!candidate.value) return { progress: 0, missing: [] }
   
-  const uploadedTypes = extendedCandidate.value.documents.map(d => d.type)
+  const uploadedTypes = candidate.value.legal_documents?.map(d => d.type) || []
   const missing = requiredDocuments.filter(doc => !uploadedTypes.includes(doc))
   const progress = Math.round(((requiredDocuments.length - missing.length) / requiredDocuments.length) * 100)
   
@@ -302,7 +321,7 @@ const formatDate = (dateString: string) => {
               <div class="space-y-2">
                 <div class="flex justify-between text-sm">
                   <span class="font-medium">{{ documentCompletion.progress }}% Complete</span>
-                  <span class="text-muted-foreground">{{ extendedCandidate.documents.length }}/{{ requiredDocuments.length }}</span>
+                  <span class="text-muted-foreground">{{ candidate?.legal_documents?.length }}/{{ requiredDocuments.length }}</span>
                 </div>
                 <div class="h-2 bg-muted rounded-full overflow-hidden">
                   <div class="h-full bg-blue-600 rounded-full transition-all duration-500" :style="{ width: `${documentCompletion.progress}%` }"></div>
@@ -524,10 +543,10 @@ const formatDate = (dateString: string) => {
                 <CardTitle class="text-sm font-medium text-muted-foreground">Legal Documents</CardTitle>
               </CardHeader>
               <CardContent class="space-y-3">
-                <div v-for="doc in extendedCandidate.documents" :key="doc.type" class="border rounded-lg p-3 flex items-center justify-between bg-muted/50">
+                <div v-for="doc in candidate?.legal_documents" :key="doc.type" class="border rounded-lg p-3 flex items-center justify-between bg-muted/50">
                   <div class="flex items-center gap-3 overflow-hidden">
                     <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
-                      <component :is="doc.icon" class="h-4 w-4 text-blue-500" />
+                      <component :is="getDocumentIcon(doc.type)" class="h-4 w-4 text-blue-500" />
                     </div>
                     <div class="flex flex-col overflow-hidden">
                       <span class="text-sm font-medium truncate">{{ doc.name }}</span>
