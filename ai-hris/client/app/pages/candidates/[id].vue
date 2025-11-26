@@ -108,6 +108,11 @@ const downloadCV = () => {
     window.open(candidate.value.cv_url, '_blank')
   }
 }
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
+}
 </script>
 
 <template>
@@ -383,26 +388,58 @@ const downloadCV = () => {
 
             <!-- Experience -->
             <Card>
-              <CardHeader class="pb-3">
+              <CardHeader class="">
                 <CardTitle class="text-sm font-medium text-muted-foreground">Experience</CardTitle>
               </CardHeader>
               <CardContent class="space-y-4">
-                <div v-for="(exp, i) in extendedCandidate.work_experiences" :key="i" class="space-y-1">
+                <div v-for="(exp, i) in candidate?.work_experiences" :key="i" class="space-y-1">
                   <div class="font-medium text-sm">{{ exp.position }}, {{ exp.company }}</div>
-                  <div class="text-xs text-muted-foreground">{{ exp.start_date }} - {{ exp.end_date || 'Present' }}</div>
+                    <div class="text-xs text-muted-foreground">{{ formatDate(exp.start_date) }} - {{ exp.end_date ? formatDate(exp.end_date) : 'Present' }}</div>
                 </div>
               </CardContent>
             </Card>
 
             <!-- Education -->
             <Card>
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Education</CardTitle>
+              <CardHeader class="">
+                <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                  <GraduationCap class="h-4 w-4" />
+                  Education
+                </CardTitle>
               </CardHeader>
-              <CardContent class="space-y-4">
-                <div v-for="(edu, i) in extendedCandidate.education" :key="i" class="space-y-1">
-                  <div class="font-medium text-sm">{{ edu.school }}</div>
-                  <div class="text-xs text-muted-foreground">{{ edu.period }}</div>
+              <CardContent class="space-y-3">
+                <div v-for="(edu, i) in candidate?.education" :key="i" class="border rounded-lg p-4 bg-linear-to-br from-blue-50/50 to-transparent dark:from-blue-950/20 hover:shadow-sm transition-all">
+                  <div class="space-y-3">
+                    <!-- Top row: Degree and Graduation Year -->
+                    <div class="flex items-start justify-between gap-3">
+                      <div class="flex-1">
+                        <div class="font-semibold text-sm text-foreground">{{ edu.degree }}</div>
+                      </div>
+                      <Badge class="bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-900/60 shrink-0">
+                        {{ edu.graduation_year }}
+                      </Badge>
+                    </div>
+                    
+                    <!-- Institution -->
+                    <div>
+                      <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Institution</div>
+                      <div class="text-sm text-foreground font-medium mt-1">{{ edu.institution }}</div>
+                    </div>
+                    
+                    <!-- Field of Study -->
+                    <div>
+                      <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Field of Study</div>
+                      <div class="text-sm text-foreground mt-1">{{ edu.field_of_study }}</div>
+                    </div>
+                    
+                    <!-- GPA -->
+                    <div class="pt-2 border-t border-border">
+                      <div class="flex items-center justify-between">
+                        <span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">GPA</span>
+                        <div class="bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300 px-2.5 py-1 rounded font-bold text-sm">{{ edu.gpa }}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
