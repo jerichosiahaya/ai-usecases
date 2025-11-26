@@ -32,9 +32,9 @@ const kartuKeluargaStructuredSchema = z.object({
 })
 
 const extractedContentSchema = z.object({
-  bounding_boxes: z.array(boundingBoxSchema),
-  content: z.string(),
-  structured_data: z.record(z.any()).optional(),
+  bounding_boxes: z.array(boundingBoxSchema).optional(),
+  content: z.string().optional(),
+  structured_data: kartuKeluargaStructuredSchema.optional(),
 })
 
 const legalDocumentSchema = z.object({
@@ -119,3 +119,5 @@ export type Candidate = z.infer<typeof candidateSchema>
 export type KartuKeluargaStructured = z.infer<typeof kartuKeluargaStructuredSchema>
 export type FamilyMemberDetail = z.infer<typeof familyMemberDetailSchema>
 export type BoundingBox = z.infer<typeof boundingBoxSchema>
+export type LegalDocument = z.infer<typeof legalDocumentSchema>
+export type ExtractedContent = z.infer<typeof extractedContentSchema>
