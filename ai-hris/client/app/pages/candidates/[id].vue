@@ -2,7 +2,6 @@
 import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { Candidate } from '@/components/candidates/data/schema'
-import candidatesData from '@/components/candidates/data/candidates.json'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -35,13 +34,13 @@ import {
 
 const route = useRoute()
 const router = useRouter()
-const candidates = (candidatesData as { data: Candidate[] }).data
 const candidateId = route.params.id as string
-const candidate = computed(() => candidates.find(c => c.id === candidateId))
+
+const { data: candidate, pending: loading, error } = await useFetch<Candidate>(`/api/candidates/${candidateId}`)
 
 const activeTab = ref('info')
 
-// Mock extended data for the UI
+// Extended data for the UI
 const extendedCandidate = computed(() => {
   if (!candidate.value) return null
   
@@ -112,8 +111,26 @@ const downloadCV = () => {
 </script>
 
 <template>
-  <div v-if="extendedCandidate" class="min-h-screen bg-muted/40">
-    <div class="max-w-7xl mx-auto p-6">
+  <div class="min-h-screen bg-muted/40">
+    <!-- Loading State -->
+    <div v-if="loading" class="flex items-center justify-center py-12">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+    </div>
+
+    <!-- Error State -->
+    <div v-else-if="error" class="max-w-7xl mx-auto p-6">
+      <Card class="bg-red-50 border-red-200">
+        <CardContent class="pt-6">
+          <div class="flex items-center gap-2 text-red-700">
+            <AlertCircle class="h-5 w-5" />
+            <span>Failed to load candidate details. Please try again.</span>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+
+    <!-- Content -->
+    <div v-else-if="extendedCandidate" class="max-w-7xl mx-auto p-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         <!-- Left Column (Main Content) -->
@@ -144,14 +161,12 @@ const downloadCV = () => {
                   <MapPin class="h-4 w-4" />
                   {{ extendedCandidate.location }}
                 </div>
-                <div class="flex items-center gap-1.5">
-                  <Clock class="h-4 w-4" />
-                  {{ extendedCandidate.daysInGoodfit }} days in Goodfit
-                </div>
+
                 <div class="flex items-center gap-1.5">
                   <Calendar class="h-4 w-4" />
-                  Applied {{ Math.floor((new Date().getTime() - new Date(extendedCandidate.appliedDate).getTime()) / (1000 * 3600 * 24)) }} days ago
+                  Applied {{ Math.floor((new Date().getTime() - new Date(extendedCandidate.applied_date).getTime()) / (1000 * 3600 * 24)) }} days ago
                 </div>
+
               </div>
             </div>
           </div>
@@ -177,12 +192,6 @@ const downloadCV = () => {
             <Button variant="outline" size="icon" class="text-amber-500 border-amber-200 hover:bg-amber-50">
               <AlertTriangle class="h-4 w-4" />
             </Button>
-          </div>
-
-          <!-- Info Banner -->
-          <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-lg p-3 flex items-center justify-between text-blue-700 dark:text-blue-300 text-sm">
-            <span class="font-medium">{{ extendedCandidate.name }} is interviewing for 2 more roles</span>
-            <ChevronRight class="h-4 w-4 opacity-60" />
           </div>
 
           <!-- Signals -->
@@ -378,9 +387,9 @@ const downloadCV = () => {
                 <CardTitle class="text-sm font-medium text-muted-foreground">Experience</CardTitle>
               </CardHeader>
               <CardContent class="space-y-4">
-                <div v-for="(exp, i) in extendedCandidate.experience" :key="i" class="space-y-1">
-                  <div class="font-medium text-sm">{{ exp.role }}, {{ exp.company }}</div>
-                  <div class="text-xs text-muted-foreground">{{ exp.period }}</div>
+                <div v-for="(exp, i) in extendedCandidate.work_experiences" :key="i" class="space-y-1">
+                  <div class="font-medium text-sm">{{ exp.position }}, {{ exp.company }}</div>
+                  <div class="text-xs text-muted-foreground">{{ exp.start_date }} - {{ exp.end_date || 'Present' }}</div>
                 </div>
               </CardContent>
             </Card>
