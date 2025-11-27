@@ -80,3 +80,53 @@ class CandidateService:
         except Exception as e:
             logger.error(f"Error in get_candidates_by_position use case: {e}")
             raise
+
+    async def update_candidate(self, candidate_id: str, candidate_data: dict) -> Optional[CandidateResponse]:
+        """
+        Use case: Update a candidate.
+        
+        Args:
+            candidate_id: The candidate ID to update
+            candidate_data: The new candidate data (partial or full)
+            
+        Returns:
+            CandidateResponse object if updated, None otherwise
+        """
+        try:
+            # Get existing candidate (Model)
+            existing_candidate = self.candidate_repo.get_by_id(candidate_id, id_field="candidateId")
+            if not existing_candidate:
+                return None
+            
+            # Get existing raw candidate (Dict) to preserve extra fields and casing
+            existing_candidate_raw = self.candidate_repo.get_raw_by_id(candidate_id, id_field="candidateId")
+
+            # Merge existing data with new data
+            # We use model_dump() to get the current state as a dict (snake_case keys)
+            current_data = existing_candidate.model_dump()
+            
+            # Update with new data
+            # We assume candidate_data keys match the model fields (snake_case)
+            current_data.update(candidate_data)
+            
+            # Create new Candidate object to validate
+            updated_candidate = Candidate(**current_data)
+            
+            # Prepare data for saving
+            # Use by_alias=True to get camelCase keys (matching DB schema)
+            updated_data_camel = updated_candidate.model_dump(by_alias=True)
+            
+            # Merge into raw data to preserve extra fields
+            if existing_candidate_raw:
+                existing_candidate_raw.update(updated_data_camel)
+                item_to_save = existing_candidate_raw
+            else:
+                item_to_save = updated_data_camel
+            
+            # Save to DB using raw update to preserve structure
+            self.candidate_repo.update_item(item=item_to_save)
+            
+            return CandidateResponse(**updated_candidate.model_dump())
+        except Exception as e:
+            logger.error(f"Error in update_candidate use case: {e}")
+            raise

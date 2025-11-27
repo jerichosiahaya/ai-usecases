@@ -325,3 +325,46 @@ class CosmosDBRepository:
         except Exception as e:
             logger.error(f"Error executing custom query: {e}")
             raise
+
+    def get_raw_by_id(self, item_id: str, id_field: str = "id") -> Optional[Dict[str, Any]]:
+        """
+        Retrieve a raw item (dict) from CosmosDB by ID.
+        
+        Args:
+            item_id: The item ID to search for
+            id_field: The field name to search in (default: "id")
+            
+        Returns:
+            Dictionary representing the item if found, None otherwise
+        """
+        try:
+            query = f"SELECT * FROM c WHERE c.{id_field} = @item_id"
+            items = list(self.container.query_items(
+                query=query,
+                parameters=[{"name": "@item_id", "value": item_id}],
+                enable_cross_partition_query=True
+            ))
+            
+            if items and len(items) > 0:
+                return items[0]
+            return None
+        except Exception as e:
+            logger.error(f"Error retrieving raw item by ID: {e}")
+            raise
+
+    def update_item(self, item: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Update a raw item in CosmosDB.
+        
+        Args:
+            item: The dictionary containing the item data
+            
+        Returns:
+            The response from CosmosDB
+        """
+        try:
+            response = self.container.replace_item(item=item, body=item)
+            return response
+        except Exception as e:
+            logger.error(f"Error updating raw item: {e}")
+            raise

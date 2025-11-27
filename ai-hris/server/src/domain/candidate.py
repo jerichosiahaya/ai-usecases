@@ -107,7 +107,7 @@ class Candidate(BaseModel):
     position: Optional[str] = None
     status: Optional[str] = None
     applied_date: Optional[str] = Field(None, alias="appliedDate")
-    experience: Optional[int] = None
+    experience: Optional[float] = None
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
     notes: Optional[List[Note]] = None
@@ -138,7 +138,7 @@ class CandidateResponse(BaseModel):
     position: Optional[str] = None
     status: Optional[str] = None
     applied_date: Optional[str] = Field(None, alias="appliedDate")
-    experience: Optional[int] = None
+    experience: Optional[float] = None
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
     notes: Optional[List[Note]] = None

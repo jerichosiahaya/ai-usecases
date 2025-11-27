@@ -173,25 +173,49 @@ def insert_candidate():
         app.logger.exception("Error in insert_candidate route")
         return internal_server_error(str(e))
 
-@app.route('/api/v1/hr/candidate/<candidate_id>', methods=['GET'])
-def get_candidate(candidate_id):
-    try:
-        if not candidate_id:
-            return bad_request_error("candidate_id is required")
+@app.route('/api/v1/hr/candidate/<candidate_id>', methods=['GET', 'PUT'])
+def handle_candidate(candidate_id):
+    if request.method == 'GET':
+        try:
+            if not candidate_id:
+                return bad_request_error("candidate_id is required")
 
-        result = asyncio.run(candidate_service.get_candidate(candidate_id))
-        
-        if not result:
-            return bad_request_error(f"Candidate with ID {candidate_id} not found")
+            result = asyncio.run(candidate_service.get_candidate(candidate_id))
+            
+            if not result:
+                return bad_request_error(f"Candidate with ID {candidate_id} not found")
 
-        return ok(
-            message="Candidate retrieved successfully",
-            data=result.model_dump()
-        )
+            return ok(
+                message="Candidate retrieved successfully",
+                data=result.model_dump()
+            )
 
-    except Exception as e:
-        app.logger.exception("Error in get_candidate route")
-        return internal_server_error(str(e))
+        except Exception as e:
+            app.logger.exception("Error in get_candidate route")
+            return internal_server_error(str(e))
+            
+    elif request.method == 'PUT':
+        try:
+            if not candidate_id:
+                return bad_request_error("candidate_id is required")
+                
+            data = request.get_json()
+            if not data:
+                return bad_request_error("Request body is required")
+            
+            result = asyncio.run(candidate_service.update_candidate(candidate_id, data))
+            
+            if not result:
+                return bad_request_error(f"Candidate with ID {candidate_id} not found or update failed")
+
+            return ok(
+                message="Candidate updated successfully",
+                data=result.model_dump()
+            )
+
+        except Exception as e:
+            app.logger.exception("Error in update_candidate route")
+            return internal_server_error(str(e))
 
 @app.route('/api/v1/hr/candidates', methods=['GET'])
 def list_candidates():

@@ -2,6 +2,7 @@ export default defineEventHandler(async (event): Promise<any> => {
   const config = useRuntimeConfig()
   const apiUrl = config.public.apiUrl || 'http://localhost:8000'
   const id = getRouterParam(event, 'id')
+  const method = event.method
 
   if (!id) {
     throw createError({
@@ -11,14 +12,22 @@ export default defineEventHandler(async (event): Promise<any> => {
   }
 
   try {
-    const response: any = await $fetch<any>(`${apiUrl}/api/v1/hr/candidate/${id}`)
+    const fetchOptions: any = {
+      method: method
+    }
+
+    if (method !== 'GET' && method !== 'HEAD') {
+      fetchOptions.body = await readBody(event)
+    }
+
+    const response: any = await $fetch<any>(`${apiUrl}/api/v1/hr/candidate/${id}`, fetchOptions)
     // Extract the data object from the response wrapper
     return response?.data || response
   } catch (error) {
-    console.error('Error fetching candidate:', error)
+    console.error(`Error ${method} candidate:`, error)
     throw createError({
       statusCode: 500,
-      statusMessage: 'Failed to fetch candidate',
+      statusMessage: 'Failed to process candidate request',
     })
   }
 })

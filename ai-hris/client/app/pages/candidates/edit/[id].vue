@@ -213,11 +213,38 @@ const handleFileUpload = async (event: Event) => {
   }
 }
 
-const saveCandidate = () => {
-  // Here you would typically make an API call to save the data
-  console.log('Saving candidate:', form.value)
-  
-  // For now, just navigate back
+const saveCandidate = async () => {
+  const payload = {
+    name: form.value.name,
+    email: form.value.email,
+    phone: form.value.phone,
+    gender: form.value.gender,
+    date_of_birth: form.value.date_of_birth,
+    address: {
+      detail: form.value.address_detail,
+      city: form.value.address_city,
+      country: form.value.address_country,
+      zip: form.value.address_zip
+    },
+    position: form.value.position,
+    experience: form.value.experience,
+    skills: form.value.skills,
+    legal_documents: form.value.legal_documents,
+    family_members: form.value.family_members
+  }
+
+  const { data, error } = await useFetch(`/api/candidates/${candidateId}`, {
+    method: 'PUT',
+    body: payload
+  })
+
+  if (error.value) {
+    console.error('Error saving candidate:', error.value)
+    // You might want to show a toast notification here
+    return
+  }
+
+  // Navigate back on success
   router.push(`/candidates/${candidateId}`)
 }
 </script>
