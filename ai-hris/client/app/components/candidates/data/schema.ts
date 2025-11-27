@@ -63,11 +63,6 @@ const interviewScoreSchema = z.object({
   value: z.number(),
 })
 
-const interviewScoreSchema = z.object({
-  label: z.string(),
-  value: z.number(),
-})
-
 const interviewSchema = z.object({
   summary: z.string().optional(),
   score_details: z.array(interviewScoreSchema).optional(),
@@ -79,6 +74,7 @@ export const candidateSchema = z.object({
   id: z.string(),
   candidate_id: z.string(),
   name: z.string(),
+  photo_url: z.string().optional(),
   email: z.string().optional(),
   phone: z.string().optional(),
   position: z.string().optional(),

@@ -179,11 +179,11 @@ const getSignalColor = (signal: string, index?: number) => {
           <div class="flex flex-col sm:flex-row gap-6 items-start">
             <div class="relative">
               <Avatar class="h-24 w-24 border-4 border-background shadow-sm">
-                <AvatarImage :src="`https://api.dicebear.com/7.x/avataaars/svg?seed=${extendedCandidate.name}`" />
-                <AvatarFallback>{{ extendedCandidate.name.charAt(0) }}</AvatarFallback>
+                <AvatarImage :src="candidate?.photo_url ?? `https://api.dicebear.com/7.x/avataaars/svg?seed=${candidate?.name}`" :alt="candidate?.name" class="object-cover" />
+                <AvatarFallback>{{ candidate?.name?.charAt(0) }}</AvatarFallback>
               </Avatar>
-              <Badge v-if="candidate?.interview?.score?.[0]" class="absolute -bottom-2 -right-2 bg-green-100 text-green-700 hover:bg-green-100 border-green-200 px-2 py-0.5 text-sm font-bold shadow-sm">
-                {{ candidate.interview.score[0].value }}/10
+              <Badge v-if="candidate?.rating" class="absolute -bottom-2 -right-2 bg-green-100 text-green-700 hover:bg-green-100 border-green-200 px-2 py-0.5 text-sm font-bold shadow-sm">
+                {{ candidate.rating }}/5
               </Badge>
             </div>
             
@@ -191,7 +191,7 @@ const getSignalColor = (signal: string, index?: number) => {
               <div class="flex justify-between items-start">
                 <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                   <h1 class="text-3xl font-bold tracking-tight text-foreground">{{ candidate?.name }}</h1>
-                  <span class="text-lg text-muted-foreground">for {{ candidate?.position }}</span>
+                  <span class="text-lg text-muted-foreground">for <span class="inline-block font-semibold">{{ candidate?.position }}</span></span>
                 </div>
               </div>
               
@@ -235,7 +235,7 @@ const getSignalColor = (signal: string, index?: number) => {
 
           <!-- Signals -->
           <div class="space-y-3">
-            <h3 class="text-sm font-medium text-muted-foreground">Signals</h3>
+            <h3 class="text-sm font-semibold text-muted-foreground">Signals</h3>
             <div class="flex flex-wrap gap-3">
               <Badge 
                 v-for="(signal, index) in candidate?.interview?.signals" 
@@ -251,7 +251,7 @@ const getSignalColor = (signal: string, index?: number) => {
 
           <!-- AI Interview Summary -->
           <div class="space-y-3">
-            <h3 class="text-sm font-medium text-muted-foreground">AI Interview Summary</h3>
+            <h3 class="text-sm font-semibold text-muted-foreground">AI Interview Summary</h3>
             <p class="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
               {{ candidate?.interview?.summary || 'No summary available.' }}
             </p>
@@ -259,7 +259,7 @@ const getSignalColor = (signal: string, index?: number) => {
 
           <!-- Score Cards -->
           <div class="space-y-3">
-            <h3 class="text-sm font-medium text-muted-foreground">Score</h3>
+            <h3 class="text-sm font-semibold text-muted-foreground">Score</h3>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Card v-for="(score, index) in candidate?.interview?.score_details" :key="index" class="bg-green-50/50 dark:bg-green-900/10 border-green-100 dark:border-green-900/20">
                 <CardContent class="p-4 flex items-center gap-4">

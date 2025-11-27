@@ -82,6 +82,7 @@ class Candidate(BaseModel):
     id: str
     candidate_id: str = Field(..., alias="candidateId")
     name: str
+    photo_url: Optional[str] = Field(None, alias="photoUrl")
     email: Optional[str] = None
     phone: Optional[str] = None
     gender: Optional[str] = None
@@ -111,6 +112,7 @@ class CandidateResponse(BaseModel):
     id: str
     candidate_id: str = Field(..., alias="candidateId")
     name: str
+    photo_url: Optional[str] = Field(None, alias="photoUrl")
     email: Optional[str] = None
     phone: Optional[str] = None
     gender: Optional[str] = None
