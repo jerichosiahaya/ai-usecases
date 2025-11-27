@@ -73,6 +73,22 @@ class Interview(BaseModel):
     signals: Optional[list[str]] = None
 
 
+class BriefData(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    occupation: Optional[str] = None
+    contact: Optional[str] = None
+
+
+class FamilyMember(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    name: str
+    relationship: str
+    date_of_birth: Optional[str] = Field(None, alias="dateOfBirth")
+    brief_data: Optional[BriefData] = Field(None, alias="briefData")
+
+
 class Candidate(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,  # Allow both snake_case and camelCase
@@ -99,6 +115,7 @@ class Candidate(BaseModel):
     legal_documents: Optional[List[LegalDocument]] = Field(None, alias="legalDocuments")
     education: Optional[List[Education]] = None
     work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
+    family_members: Optional[List[FamilyMember]] = Field(None, alias="familyMembers")
     embeddings: Optional[List[float]] = None
     interview: Optional[Interview] = None
 
@@ -129,5 +146,6 @@ class CandidateResponse(BaseModel):
     legal_documents: Optional[List[LegalDocument]] = Field(None, alias="legalDocuments")
     education: Optional[List[Education]] = None
     work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
+    family_members: Optional[List[FamilyMember]] = Field(None, alias="familyMembers")
     embeddings: Optional[List[float]] = None
     interview: Optional[Interview] = None

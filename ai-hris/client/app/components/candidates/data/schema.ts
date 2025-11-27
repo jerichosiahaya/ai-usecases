@@ -70,6 +70,18 @@ const interviewSchema = z.object({
   signals: z.array(z.string()).optional(),
 })
 
+const briefDataSchema = z.object({
+  occupation: z.string().optional(),
+  contact: z.string().optional(),
+})
+
+const familyMemberSchema = z.object({
+  name: z.string(),
+  relationship: z.string(),
+  date_of_birth: z.string().optional(),
+  brief_data: briefDataSchema.optional(),
+})
+
 export const candidateSchema = z.object({
   id: z.string(),
   candidate_id: z.string(),
@@ -113,6 +125,7 @@ export const candidateSchema = z.object({
     is_current: z.boolean().optional(),
     description: z.string().optional(),
   })).optional(),
+  family_members: z.array(familyMemberSchema).optional(),
   legal_documents: z.array(z.object({
     type: z.string(),
     name: z.string(),
@@ -136,3 +149,4 @@ export type ExtractedContent = z.infer<typeof extractedContentSchema>
 export type Interview = z.infer<typeof interviewSchema>
 export type InterviewScore = z.infer<typeof interviewScoreSchema>
 export type AiInterviewScore = z.infer<typeof interviewScoreSchema>
+export type FamilyMember = z.infer<typeof familyMemberSchema>
