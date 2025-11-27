@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { Candidate } from '@/components/candidates/data/schema'
+import type { Candidate, KartuKeluargaStructured, LegalDocument } from '@/components/candidates/data/schema'
+import KartuKeluargaModal from '@/components/candidates/KartuKeluargaModal.vue'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -131,6 +132,19 @@ const downloadCV = () => {
 const formatDate = (dateString: string) => {
   const date = new Date(dateString)
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
+}
+
+const isKKModalOpen = ref(false)
+const selectedKKData = ref<LegalDocument | undefined>(undefined)
+
+const handleDocumentClick = (doc: any) => {
+  console.log('Document clicked:', doc)
+  if (doc.type === 'Kartu Keluarga' && doc.extracted_content) {
+    selectedKKData.value = doc
+    isKKModalOpen.value = true
+  } else if (doc.url) {
+    window.open(doc.url, '_blank')
+  }
 }
 </script>
 
@@ -543,7 +557,12 @@ const formatDate = (dateString: string) => {
                 <CardTitle class="text-sm font-medium text-muted-foreground">Legal Documents</CardTitle>
               </CardHeader>
               <CardContent class="space-y-3">
-                <div v-for="doc in candidate?.legal_documents" :key="doc.type" class="border rounded-lg p-3 flex items-center justify-between bg-muted/50">
+                <div 
+                  v-for="doc in candidate?.legal_documents" 
+                  :key="doc.type" 
+                  class="border rounded-lg p-3 flex items-center justify-between bg-muted/50 cursor-pointer hover:bg-muted/80 transition-colors"
+                  @click="handleDocumentClick(doc)"
+                >
                   <div class="flex items-center gap-3 overflow-hidden">
                     <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
                       <component :is="getDocumentIcon(doc.type)" class="h-4 w-4 text-blue-500" />
@@ -553,7 +572,7 @@ const formatDate = (dateString: string) => {
                       <span class="text-xs text-muted-foreground">{{ doc.type }}</span>
                     </div>
                   </div>
-                  <Button variant="ghost" size="icon" class="h-8 w-8">
+                  <Button variant="ghost" size="icon" class="h-8 w-8" @click.stop="handleDocumentClick(doc)">
                     <ExternalLink class="h-4 w-4 text-muted-foreground" />
                   </Button>
                 </div>
@@ -615,5 +634,11 @@ const formatDate = (dateString: string) => {
         </div>
       </div>
     </div>
+
+    <!-- Modals -->
+    <KartuKeluargaModal 
+      v-model:open="isKKModalOpen" 
+      :data="selectedKKData" 
+    />
   </div>
 </template>

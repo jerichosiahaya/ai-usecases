@@ -82,8 +82,6 @@ export const candidateSchema = z.object({
       bounding_boxes: z.array(z.any()).optional(),
     }).optional(),
   })).optional(),
-  legal_documents: z.array(legalDocumentSchema).optional(),
-  cv_url: z.string().optional(),
   gender: z.string().optional(),
   date_of_birth: z.string().optional(),
   address: addressSchema.optional(),
@@ -102,14 +100,14 @@ export const candidateSchema = z.object({
     is_current: z.boolean().optional(),
     description: z.string().optional(),
   })).optional(),
-  documents: z.array(z.object({
+  legal_documents: z.array(z.object({
     type: z.string(),
     name: z.string(),
     url: z.string(),
     last_updated: z.string(),
     extracted_content: z.object({
-      text: z.string(),
-      tables: z.array(z.any()).optional(),
+      content: z.string(),
+      structured_data: z.any().optional(),
       bounding_boxes: z.array(z.any()).optional(),
     }).optional(),
   })).optional(),

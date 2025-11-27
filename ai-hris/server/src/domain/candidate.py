@@ -29,10 +29,10 @@ class BoundingBoxDetail(BaseModel):
 
 class ExtractedContent(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
-    
-    text: Optional[str] = None
-    tables: Optional[List[Dict[str, Any]]] = None
+
     bounding_boxes: Optional[List[Dict[str, Any]]] = Field(None, alias="boundingBoxes")
+    content: Optional[str] = None
+    structured_data: Optional[Dict[str, Any]] = Field(None, alias="structuredData")
 
 class Note(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
@@ -49,7 +49,7 @@ class Address(BaseModel):
     country: str
     zip: Optional[int] = None
 
-class Document(BaseModel):
+class LegalDocument(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
     
     type: str  # RESUME, KTP, KARTU_KELUARGA, IJAZAH, etc.
@@ -57,10 +57,6 @@ class Document(BaseModel):
     url: str
     last_updated: str = Field(..., alias="lastUpdated")
     extracted_content: Optional[ExtractedContent] = Field(None, alias="extractedContent")
-    # Fields from document_analyzer.py
-    content: Optional[str] = None
-    structured_data: Optional[Dict[str, Any]] = Field(None, alias="structuredData")
-    bounding_boxes_detailed: Optional[List[BoundingBoxDetail]] = Field(None, alias="boundingBoxesDetailed")
 
 class Candidate(BaseModel):
     model_config = ConfigDict(
@@ -83,12 +79,10 @@ class Candidate(BaseModel):
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
     notes: Optional[List[Note]] = None
-    resume: Optional[List[Document]] = None
-    legal_documents: Optional[List[Document]] = Field(None, alias="legal_documents")
-    cv_url: Optional[str] = Field(None, alias="cvUrl")
+    resume: Optional[List[LegalDocument]] = None
+    legal_documents: Optional[List[LegalDocument]] = Field(None, alias="legalDocuments")
     education: Optional[List[Education]] = None
     work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
-    documents: Optional[List[Document]] = None  # Kept for backward compatibility
     embeddings: Optional[List[float]] = None
 
 class CandidateResponse(BaseModel):
@@ -112,9 +106,8 @@ class CandidateResponse(BaseModel):
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
     notes: Optional[List[Note]] = None
-    resume: Optional[List[Document]] = None
-    legal_documents: Optional[List[Document]] = Field(None, alias="legal_documents")
-    cv_url: Optional[str] = Field(None, alias="cvUrl")
+    resume: Optional[List[LegalDocument]] = None
+    legal_documents: Optional[List[LegalDocument]] = Field(None, alias="legalDocuments")
     education: Optional[List[Education]] = None
     work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
-    documents: Optional[List[Document]] = None  # Kept for backward compatibility
+    embeddings: Optional[List[float]] = None
