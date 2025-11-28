@@ -12,6 +12,7 @@ import { ArrowLeft, Save, Upload, FileText, Trash2, Loader2, Plus } from 'lucide
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import KartuKeluargaModal from '@/components/candidates/KartuKeluargaModal.vue'
+import KartuKeluargaContent from '@/components/candidates/KartuKeluargaContent.vue'
 import {
   Dialog,
   DialogContent,
@@ -20,6 +21,15 @@ import {
   DialogTitle,
   DialogFooter,
 } from '@/components/ui/dialog'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import { Separator } from '@/components/ui/separator'
 
 const route = useRoute()
 const router = useRouter()
@@ -64,6 +74,20 @@ const selectedDocument = ref<LegalDocument | undefined>(undefined)
 const showSuccessNotification = ref(false)
 const isSaving = ref(false)
 
+// Helper to format date
+const formatDate = (dateString: string) => {
+  if (!dateString) return '-'
+  try {
+    return new Date(dateString).toLocaleDateString('id-ID', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  } catch (e) {
+    return dateString
+  }
+}
+
 // Upload State
 const isUploadModalOpen = ref(false)
 const uploadProgress = ref(0)
@@ -71,27 +95,33 @@ const isAnalyzing = ref(false)
 const tempUploadedFile = ref<File | null>(null)
 const tempExtractedData = ref<any>(null)
 
-const simulateAnalysis = () => {
-  return new Promise((resolve) => {
-    let progress = 0
-    const interval = setInterval(() => {
-      progress += 10
-      uploadProgress.value = progress
-      if (progress >= 100) {
-        clearInterval(interval)
-        resolve({
-          data: {
-            structured_data: {
-              address: "123 Mock Street",
-              city: "Mock City",
-              postal_code: "12345"
-            },
-            raw_text: "This is some mock extracted content from the document."
-          }
-        })
-      }
-    }, 200)
-  })
+const previewDocument = computed(() => {
+  if (!tempExtractedData.value?.data) return null
+  const d = tempExtractedData.value.data
+  return {
+    type: d.document_type,
+    name: d.name,
+    url: d.url,
+    last_updated: d.last_updated,
+    extracted_content: d.document_data
+  } as LegalDocument
+})
+
+const uploadDocument = async (file: File) => {
+  const formData = new FormData()
+  formData.append('document', file)
+  formData.append('candidate_id', candidateId)
+
+  try {
+    const response = await $fetch('/api/candidates/upload', {
+      method: 'POST',
+      body: formData,
+    })
+    return response
+  } catch (error) {
+    console.error('Upload failed:', error)
+    throw new Error('Upload failed')
+  }
 }
 
 const confirmUpload = () => {
@@ -102,18 +132,18 @@ const confirmUpload = () => {
 
     // Create new document entry
     const newDoc: LegalDocument = {
-      type: 'KARTU_KELUARGA', 
-      name: file.name,
-      url: '', 
-      last_updated: new Date().toISOString(),
-      extracted_content: result.data
+      type: result.data.document_type, 
+      name: result.data.name || file.name,
+      url: result.data.url, 
+      last_updated: result.data.last_updated || new Date().toISOString(),
+      extracted_content: result.data.document_data
     }
 
     form.value.legal_documents.push(newDoc)
 
     // Auto-fill address if available and empty
-    if (result.data?.structured_data) {
-      const sd = result.data.structured_data
+    if (result.data?.document_data?.structured_data) {
+      const sd = result.data.document_data.structured_data
       if (!form.value.address_detail && sd.address) form.value.address_detail = sd.address
       if (!form.value.address_city && sd.city) form.value.address_city = sd.city
       if (!form.value.address_zip && sd.postal_code) form.value.address_zip = parseInt(sd.postal_code.replace(/\D/g, '')) || undefined
@@ -232,13 +262,20 @@ const handleFileUpload = async (event: Event) => {
   tempUploadedFile.value = file
   isUploadModalOpen.value = true
   isAnalyzing.value = true
-  uploadProgress.value = 0
+  uploadProgress.value = 20
   
-  // Simulate upload/analysis
-  const result: any = await simulateAnalysis()
-  
-  tempExtractedData.value = result
-  isAnalyzing.value = false
+  try {
+    // Upload/analysis
+    const result = await uploadDocument(file)
+    uploadProgress.value = 100
+    tempExtractedData.value = result
+  } catch (error) {
+    console.error('Upload failed:', error)
+    // Handle error (maybe show a toast or message)
+    isUploadModalOpen.value = false
+  } finally {
+    isAnalyzing.value = false
+  }
   
   // Reset input so same file can be selected again if needed
   if (fileInput.value) fileInput.value.value = ''
@@ -484,15 +521,37 @@ const saveCandidate = async () => {
       </Card>
 
       <KartuKeluargaModal 
-        v-if="selectedDocument"
+        v-if="selectedDocument && (selectedDocument.type === 'KK' || selectedDocument.type === 'KARTU_KELUARGA')"
         :open="isModalOpen" 
         :data="selectedDocument"
         @update:open="isModalOpen = $event"
       />
+      
+      <!-- Fallback for other document types -->
+      <Dialog 
+        v-else-if="selectedDocument"
+        :open="isModalOpen" 
+        @update:open="isModalOpen = $event"
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{{ selectedDocument.name }}</DialogTitle>
+            <DialogDescription>
+              Document Type: {{ selectedDocument.type }}
+            </DialogDescription>
+          </DialogHeader>
+          <div class="py-4">
+            <p class="text-sm text-muted-foreground mb-2">Raw Content:</p>
+            <div class="bg-muted p-4 rounded-md max-h-[300px] overflow-auto">
+              <pre class="text-xs whitespace-pre-wrap">{{ selectedDocument.extracted_content?.content || 'No content extracted' }}</pre>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <!-- Upload Analysis Modal -->
       <Dialog :open="isUploadModalOpen" @update:open="isUploadModalOpen = $event">
-        <DialogContent class="sm:max-w-[500px]">
+        <DialogContent class="w-[95vw] max-w-none! h-[95vh] flex flex-col p-6">
           <DialogHeader>
             <DialogTitle>Document Analysis</DialogTitle>
             <DialogDescription>
@@ -500,14 +559,19 @@ const saveCandidate = async () => {
             </DialogDescription>
           </DialogHeader>
           
-          <div class="py-6">
-            <div v-if="isAnalyzing" class="space-y-4">
-              <Progress :model-value="uploadProgress" class="w-full" />
+          <div class="flex-1 overflow-hidden py-4">
+            <div v-if="isAnalyzing" class="space-y-4 flex flex-col items-center justify-center h-full">
+              <Progress :model-value="uploadProgress" class="w-full max-w-md" />
               <p class="text-sm text-center text-muted-foreground">Processing... {{ uploadProgress }}%</p>
             </div>
             
+            <KartuKeluargaContent 
+              v-else-if="previewDocument && (previewDocument.type === 'KK' || previewDocument.type === 'KARTU_KELUARGA')" 
+              :data="previewDocument" 
+            />
+
             <div v-else class="space-y-4">
-              <div class="rounded-md bg-muted p-4 max-h-[300px] overflow-y-auto">
+              <div class="rounded-md bg-muted p-4 max-h-[500px] overflow-y-auto">
                 <pre class="text-xs whitespace-pre-wrap">{{ JSON.stringify(tempExtractedData?.data, null, 2) }}</pre>
               </div>
             </div>
