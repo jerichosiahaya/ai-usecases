@@ -567,7 +567,7 @@ const saveCandidate = async () => {
             
             <KartuKeluargaContent 
               v-else-if="previewDocument && (previewDocument.type === 'KK' || previewDocument.type === 'KARTU_KELUARGA')" 
-              :data="previewDocument" 
+              :data="previewDocument"
             />
 
             <div v-else class="space-y-4">

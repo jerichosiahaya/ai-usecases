@@ -26,4 +26,13 @@ class DocumentIntelligenceRepository:
         result: AnalyzeResult = poller.result()
         
         return result
+    
+    def analyze_layout(self, document_path: str) -> AnalyzeResult:
+        with open(document_path, "rb") as f:
+            poller = self.document_intelligence_client.begin_analyze_document(
+                "prebuilt-layout", AnalyzeDocumentRequest(bytes_source=f.read())
+            )
+        result: AnalyzeResult = poller.result()
+        
+        return result
 

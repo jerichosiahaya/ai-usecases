@@ -387,6 +387,44 @@ def document_upload():
     except Exception as e:
         app.logger.exception("Error in document_upload route")
         return internal_server_error(str(e))
+    
+@app.route('/api/v1/document/analyze/offering-signature', methods=['POST'])
+def analyze_document_offering_signature():
+    try:
+        if 'document' not in request.files:
+            return bad_request_error("No document file provided")
+        
+        file = request.files['document']
+        
+        if file.filename == '':
+            return bad_request_error("No file selected")
+        
+        allowed_extensions = {'.pdf'}
+        file_ext = os.path.splitext(file.filename)[1].lower()
+        
+        if file_ext not in allowed_extensions:
+            return bad_request_error(f"File type not allowed. Allowed types: {', '.join(allowed_extensions)}")
+        
+        # Save temporary file
+        temp_dir = "assets"
+        os.makedirs(temp_dir, exist_ok=True)
+        temp_path = os.path.join(temp_dir, file.filename)
+        file.save(temp_path)
+        
+        try:
+            result = asyncio.run(document_analyzer.analyze_document_layout(document_path=temp_path))
+            return ok(
+                message="Document analyzed successfully",
+                data=result.model_dump()
+            )
+        finally:
+            # Clean up temporary file
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+    
+    except Exception as e:
+        app.logger.exception("Error in analyze_document route")
+        return internal_server_error(str(e))
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8000))

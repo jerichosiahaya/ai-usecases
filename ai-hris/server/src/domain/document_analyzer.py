@@ -33,3 +33,7 @@ class KartuKeluarga(KernelBaseModel):
     province: str
     postal_code: str
     family_members: list[FamilyMemberDetail]
+
+class OfferingSignatureResponse(KernelBaseModel):
+    exists: bool
+    signed_content: str | None = None

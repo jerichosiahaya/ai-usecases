@@ -95,7 +95,7 @@ const extendedCandidate = computed(() => {
     ],
     documents: [
       { type: 'KTP', name: 'ktp_scan.jpg', icon: IdCard },
-      { type: 'Kartu Keluarga', name: 'kk_scan.pdf', icon: Users },
+      { type: 'KK', name: 'kk_scan.pdf', icon: Users },
       { type: 'Ijazah', name: 'ijazah_s1.pdf', icon: GraduationCap },
       { type: 'Buku Tabungan', name: 'buku_tabungan_bca.jpg', icon: CreditCard }
     ],
@@ -107,21 +107,21 @@ const extendedCandidate = computed(() => {
   }
 })
 
-const requiredDocuments = ['KTP', 'Kartu Keluarga', 'Ijazah', 'Buku Tabungan', 'NPWP', 'SKCK']
+const requiredDocuments = ['KTP', 'KK', 'Ijazah', 'Buku Tabungan', 'NPWP', 'Signed Offer Letter']
 
 const getDocumentIcon = (docType: string) => {
   const iconMap: Record<string, any> = {
     'KTP': IdCard,
     'KARTU_KELUARGA': Users,
-    'Kartu Keluarga': Users,
+    'KK': Users,
     'IJAZAH': GraduationCap,
     'Ijazah': GraduationCap,
     'BUKU_TABUNGAN': CreditCard,
     'Buku Tabungan': CreditCard,
     'NPWP': FileText,
-    'SKCK': Shield,
     'RESUME': FileText,
     'Resume': FileText,
+    'Signed Offer Letter': FileText,
   }
   return iconMap[docType] || FileText
 }
@@ -166,7 +166,7 @@ const selectedKKData = ref<LegalDocument | undefined>(undefined)
 
 const handleDocumentClick = (doc: any) => {
   console.log('Document clicked:', doc)
-  if (doc.type === 'Kartu Keluarga' && doc.extracted_content) {
+  if (doc.type === 'KK' && doc.extracted_content) {
     selectedKKData.value = doc
     isKKModalOpen.value = true
   } else if (doc.url) {

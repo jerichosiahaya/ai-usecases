@@ -1,7 +1,7 @@
 from loguru import logger
 from typing import Optional, List
 from src.repository.database import CosmosDB, CosmosDBRepository
-from src.domain.candidate import Candidate, CandidateResponse
+from src.domain.candidate import Candidate, CandidateResponse, LegalDocument
 
 class CandidateService:
     def __init__(self, cosmosdb: CosmosDB):
@@ -85,6 +85,9 @@ class CandidateService:
         """
         Use case: Update a candidate.
         
+        If legal_documents are provided and a document type already exists, 
+        it will be replaced instead of adding duplicates.
+        
         Args:
             candidate_id: The candidate ID to update
             candidate_data: The new candidate data (partial or full)
@@ -105,9 +108,46 @@ class CandidateService:
             # We use model_dump() to get the current state as a dict (snake_case keys)
             current_data = existing_candidate.model_dump()
             
-            # Update with new data
-            # We assume candidate_data keys match the model fields (snake_case)
-            current_data.update(candidate_data)
+            # Handle legal_documents specially: replace by type instead of appending
+            if "legal_documents" in candidate_data and candidate_data["legal_documents"]:
+                new_legal_docs = candidate_data["legal_documents"]
+                existing_legal_docs = current_data.get("legal_documents", [])
+                
+                # Convert new docs to dicts for consistent handling
+                new_legal_docs_dicts = [
+                    doc.model_dump() if isinstance(doc, LegalDocument) else doc 
+                    for doc in new_legal_docs
+                ]
+                
+                # Convert existing docs to dicts
+                existing_legal_docs_dicts = [
+                    doc.model_dump() if isinstance(doc, LegalDocument) else doc 
+                    for doc in existing_legal_docs
+                ]
+                
+                # Get types of new documents
+                new_types = {doc["type"] for doc in new_legal_docs_dicts}
+                
+                # Filter existing docs to exclude those with types being replaced
+                filtered_existing = [
+                    doc for doc in existing_legal_docs_dicts 
+                    if doc.get("type") not in new_types
+                ]
+                
+                # Combine: filtered existing + new documents
+                merged_legal_docs = filtered_existing + new_legal_docs_dicts
+                
+                # Remove legal_documents from candidate_data
+                candidate_data.pop("legal_documents")
+                
+                # Update with new data (excluding legal_documents)
+                current_data.update(candidate_data)
+                
+                # Now set the merged legal_documents
+                current_data["legal_documents"] = merged_legal_docs
+            else:
+                # Update with new data if legal_documents not provided
+                current_data.update(candidate_data)
             
             # Create new Candidate object to validate
             updated_candidate = Candidate(**current_data)

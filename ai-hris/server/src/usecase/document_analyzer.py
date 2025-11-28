@@ -1,7 +1,7 @@
 from src.repository.document_intelligence import DocumentIntelligenceRepository
 from loguru import logger
 from src.llm.llm_sk import LLMService
-from src.domain.document_analyzer import KartuKeluargaResponse, KartuKeluargaBoundingBox
+from src.domain.document_analyzer import KartuKeluargaResponse, KartuKeluargaBoundingBox, OfferingSignatureResponse
 from src.domain.document_classification import ClassificationResult
 import numpy as np
 
@@ -101,4 +101,24 @@ class DocumentAnalyzer:
                 }
         except Exception as e:
             logger.error(f"Error in upload_document use case: {e}")
+            raise
+
+    async def analyze_document_layout(self, document_path: str) -> dict:
+        try:
+            is_signed = False
+            content = ""
+            result = self.doc_intel_repo.analyze_layout(document_path=document_path)
+
+            if result.styles[0]:
+                is_signed = result.styles[0].is_handwritten
+                content = result.content
+
+            response = OfferingSignatureResponse(
+                exists=is_signed,
+                signed_content=content
+            )
+            
+            return response
+        except Exception as e:
+            logger.error(f"Error in analyze_document_layout use case: {e}")
             raise
