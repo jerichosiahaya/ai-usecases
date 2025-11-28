@@ -16,6 +16,7 @@ from pydantic import ValidationError
 from src.repository.database import CosmosDB
 from src.usecase.candidate_service import CandidateService
 from src.repository.document_intelligence import DocumentIntelligenceRepository
+from src.repository.blob_storage import BlobStorageRepository
 from src.usecase.document_analyzer import DocumentAnalyzer
 
 app = Flask(__name__)
@@ -34,6 +35,7 @@ llm = LLMService(
 )
 
 document_intelligence = DocumentIntelligenceRepository(config=config)
+blob_storage = BlobStorageRepository(connection_string=config.AZURE_STORAGE_CONNECTION_STRING)
 
 cv_scoring = CVScoring(llm_service=llm)
 cv_extractor = CVExtractor(llm_service=llm)
@@ -309,6 +311,81 @@ def analyze_document():
     
     except Exception as e:
         app.logger.exception("Error in analyze_document route")
+        return internal_server_error(str(e))
+    
+@app.route('/api/v1/document/classify', methods=['POST'])
+def classify_document():
+    try:
+        data = request.get_json()
+        document_text = data.get('document_text')
+
+        if not document_text:
+            return bad_request_error("document_text is required")
+
+        result = asyncio.run(document_analyzer.classify_legal_document(document_content=document_text))
+
+        return ok(
+            message="Document classified successfully",
+            data=result
+        )
+
+    except Exception as e:
+        app.logger.exception("Error in classify_document route")
+        return internal_server_error(str(e))
+    
+@app.route('/api/v1/hr/document/upload', methods=['POST'])
+def document_upload():
+    try:
+        candidate_id = request.form.get('candidate_id')
+        
+        if not candidate_id:
+            return bad_request_error("candidate_id is required")
+        
+        if 'document' not in request.files:
+            return bad_request_error("No document file provided")
+        
+        file = request.files['document']
+        
+        if file.filename == '':
+            return bad_request_error("No file selected")
+        
+        allowed_extensions = {'.pdf', '.png', '.jpg', '.jpeg', '.bmp', '.tiff'}
+        file_ext = os.path.splitext(file.filename)[1].lower()
+        
+        if file_ext not in allowed_extensions:
+            return bad_request_error(f"File type not allowed. Allowed types: {', '.join(allowed_extensions)}")
+        
+        # Save temporary file
+        temp_dir = "assets"
+        os.makedirs(temp_dir, exist_ok=True)
+        temp_path = os.path.join(temp_dir, file.filename)
+        file.save(temp_path)
+        
+        try:
+            # Analyze document
+            result = asyncio.run(document_analyzer.upload_document(document_path=temp_path, candidate_id=candidate_id))
+            
+            # Upload to blob storage
+            file.seek(0)  # Reset file pointer
+            blob_info = blob_storage.upload_file(file=file, candidate_id=candidate_id, original_filename=file.filename)
+            
+            # Add blob info to response
+            if isinstance(result, dict):
+                result['url'] = blob_info.get('url', '')
+                result['name'] = blob_info.get('blob_name', '')
+                result['last_updated'] = blob_info.get('uploaded_at', '')
+            
+            return ok(
+                message="Document uploaded successfully",
+                data=result.model_dump() if hasattr(result, 'model_dump') else result
+            )
+        finally:
+            # Clean up temporary file
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+            
+    except Exception as e:
+        app.logger.exception("Error in document_upload route")
         return internal_server_error(str(e))
 
 if __name__ == '__main__':

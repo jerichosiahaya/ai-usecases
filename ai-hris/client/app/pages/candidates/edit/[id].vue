@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ArrowLeft, Save, Upload, FileText, Trash2, Loader2, Plus } from 'lucide-vue-next'
 import { Badge } from '@/components/ui/badge'
+import { Progress } from '@/components/ui/progress'
 import KartuKeluargaModal from '@/components/candidates/KartuKeluargaModal.vue'
 import {
   Dialog,
@@ -62,6 +63,66 @@ const isFamilyModalOpen = ref(false)
 const selectedDocument = ref<LegalDocument | undefined>(undefined)
 const showSuccessNotification = ref(false)
 const isSaving = ref(false)
+
+// Upload State
+const isUploadModalOpen = ref(false)
+const uploadProgress = ref(0)
+const isAnalyzing = ref(false)
+const tempUploadedFile = ref<File | null>(null)
+const tempExtractedData = ref<any>(null)
+
+const simulateAnalysis = () => {
+  return new Promise((resolve) => {
+    let progress = 0
+    const interval = setInterval(() => {
+      progress += 10
+      uploadProgress.value = progress
+      if (progress >= 100) {
+        clearInterval(interval)
+        resolve({
+          data: {
+            structured_data: {
+              address: "123 Mock Street",
+              city: "Mock City",
+              postal_code: "12345"
+            },
+            raw_text: "This is some mock extracted content from the document."
+          }
+        })
+      }
+    }, 200)
+  })
+}
+
+const confirmUpload = () => {
+    if (!tempUploadedFile.value || !tempExtractedData.value) return
+
+    const result = tempExtractedData.value
+    const file = tempUploadedFile.value
+
+    // Create new document entry
+    const newDoc: LegalDocument = {
+      type: 'KARTU_KELUARGA', 
+      name: file.name,
+      url: '', 
+      last_updated: new Date().toISOString(),
+      extracted_content: result.data
+    }
+
+    form.value.legal_documents.push(newDoc)
+
+    // Auto-fill address if available and empty
+    if (result.data?.structured_data) {
+      const sd = result.data.structured_data
+      if (!form.value.address_detail && sd.address) form.value.address_detail = sd.address
+      if (!form.value.address_city && sd.city) form.value.address_city = sd.city
+      if (!form.value.address_zip && sd.postal_code) form.value.address_zip = parseInt(sd.postal_code.replace(/\D/g, '')) || undefined
+    }
+    
+    isUploadModalOpen.value = false
+    tempUploadedFile.value = null
+    tempExtractedData.value = null
+}
 
 const calculateTotalExperience = (experiences: any[]) => {
   if (!experiences || experiences.length === 0) return 0
@@ -168,51 +229,19 @@ const handleFileUpload = async (event: Event) => {
   const file = target.files[0]
   if (!file) return
 
-  isUploading.value = true
-
-  try {
-    const formData = new FormData()
-    formData.append('document', file)
-
-    const { data, error } = await useFetch('/api/document/analyze', {
-      method: 'POST',
-      body: formData
-    })
-
-    if (error.value) {
-      console.error('Error analyzing document:', error.value)
-      // You might want to show a toast notification here
-      return
-    }
-
-    const result = data.value as any // Type this properly if possible
-
-    // Create new document entry
-    const newDoc: LegalDocument = {
-      type: 'KARTU_KELUARGA', // Assuming KK for now based on endpoint usage
-      name: file.name,
-      url: '', // No URL yet
-      last_updated: new Date().toISOString(),
-      extracted_content: result.data
-    }
-
-    form.value.legal_documents.push(newDoc)
-
-    // Auto-fill address if available and empty
-    if (result.data?.structured_data) {
-      const sd = result.data.structured_data
-      if (!form.value.address_detail && sd.address) form.value.address_detail = sd.address
-      if (!form.value.address_city && sd.city) form.value.address_city = sd.city
-      if (!form.value.address_zip && sd.postal_code) form.value.address_zip = parseInt(sd.postal_code.replace(/\D/g, '')) || undefined
-      // Province/District could be mapped if we had fields for them
-    }
-
-  } catch (e) {
-    console.error('Upload failed:', e)
-  } finally {
-    isUploading.value = false
-    if (fileInput.value) fileInput.value.value = ''
-  }
+  tempUploadedFile.value = file
+  isUploadModalOpen.value = true
+  isAnalyzing.value = true
+  uploadProgress.value = 0
+  
+  // Simulate upload/analysis
+  const result: any = await simulateAnalysis()
+  
+  tempExtractedData.value = result
+  isAnalyzing.value = false
+  
+  // Reset input so same file can be selected again if needed
+  if (fileInput.value) fileInput.value.value = ''
 }
 
 const saveCandidate = async () => {
@@ -460,6 +489,36 @@ const saveCandidate = async () => {
         :data="selectedDocument"
         @update:open="isModalOpen = $event"
       />
+
+      <!-- Upload Analysis Modal -->
+      <Dialog :open="isUploadModalOpen" @update:open="isUploadModalOpen = $event">
+        <DialogContent class="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Document Analysis</DialogTitle>
+            <DialogDescription>
+              {{ isAnalyzing ? 'Analyzing document content...' : 'Review extracted information' }}
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div class="py-6">
+            <div v-if="isAnalyzing" class="space-y-4">
+              <Progress :model-value="uploadProgress" class="w-full" />
+              <p class="text-sm text-center text-muted-foreground">Processing... {{ uploadProgress }}%</p>
+            </div>
+            
+            <div v-else class="space-y-4">
+              <div class="rounded-md bg-muted p-4 max-h-[300px] overflow-y-auto">
+                <pre class="text-xs whitespace-pre-wrap">{{ JSON.stringify(tempExtractedData?.data, null, 2) }}</pre>
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter v-if="!isAnalyzing">
+            <Button variant="outline" @click="isUploadModalOpen = false">Cancel</Button>
+            <Button @click="confirmUpload">Confirm & Add</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <Card>
         <CardHeader>

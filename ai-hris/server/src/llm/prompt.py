@@ -173,6 +173,7 @@ def _get_kartu_keluarga_document_analysis():
         - **name**: Full name of the family member.
         - **nik**: National Identification Number (NIK).
         - **gender**: Gender of the family member.
+        - **relationship**: Relationship to the head of the family.
         - **birth_date**: Date of birth in ISO 8601 format (`YYYY-MM-DD`).
         - **religion**: Religion of the family member.
         - **education**: Educational background.
@@ -185,5 +186,37 @@ def _get_kartu_keluarga_document_analysis():
     - If a field is not explicitly mentioned in the document, return `null` for that attribute.
     - Use `null` for missing fields and ensure the output is a valid JSON object.
     - For the `family_members` field, return an array of objects, each representing a family member with their respective details.
+
+    """
+
+def _get_legal_documents_classification_prompt():
+    return f"""
+    You are an expert document classifier specialized in identifying and categorizing various types of legal documents. Your task is to analyze the provided document content and classify it into one of the predefined legal document categories.
+
+    # Legal Document Categories:
+    1. **KTP**: Indonesian National Identity
+    2. **KK**: Family Card
+    3. **NPWP**: Tax Identification Number
+    4. **Ijazah**: Academic Diploma
+    5. **Buku Tabungan**: Bank Book
+
+    # Guidelines:
+    - Carefully analyze the content of the document to determine its category.
+    - If the document does not match any of the predefined categories, classify it as "Unknown".
+    - Return only the category name as a single string without any additional text or explanations.
+    - Add a confidence score between 0 and 1 indicating the certainty of your classification.
+
+    # Example Output:
+    {{
+        "category": <str> // One of the predefined categories or "Unknown"
+        "confidence_score": <float> // A confidence score between 0 and 1 indicating the certainty of the classification
+    }}
+
+    Remember:
+    - Be objective and consistent in your classifications.
+    - Base your classifications solely on the evidence provided in the document content.
+    - Ensure the output is a valid JSON object.
+    - Return only the JSON object without any additional text.
+    - Add confidence score between 0 and 1 indicating the certainty of your classification.
 
     """

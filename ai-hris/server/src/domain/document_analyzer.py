@@ -14,6 +14,7 @@ class FamilyMemberDetail(KernelBaseModel):
     name: str
     nik: str
     gender: str
+    relationship: str
     birth_date: str
     religion: str
     education: str

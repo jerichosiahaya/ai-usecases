@@ -2,6 +2,7 @@ from src.repository.document_intelligence import DocumentIntelligenceRepository
 from loguru import logger
 from src.llm.llm_sk import LLMService
 from src.domain.document_analyzer import KartuKeluargaResponse, KartuKeluargaBoundingBox
+from src.domain.document_classification import ClassificationResult
 import numpy as np
 
 class DocumentAnalyzer:
@@ -57,4 +58,47 @@ class DocumentAnalyzer:
             return response
         except Exception as e:
             logger.error(f"Error in analyze_document use case: {e}")
+            raise
+
+    async def classify_legal_document(self, document_content: str) -> ClassificationResult:
+        try:
+            classification_result = await self.llm_service.legal_document_classification(document_text=document_content)
+            return classification_result
+        except Exception as e:
+            logger.error(f"Error in classify_legal_document use case: {e}")
+            raise
+
+    async def upload_document(self, document_path: str, candidate_id: str = None) -> dict:
+        try:
+            document_content = self.doc_intel_repo.analyze_read(document_path=document_path)
+
+            document_type = await self.classify_legal_document(document_content=document_content.content)
+
+            doc_type = document_type.get('category', None)
+            
+            if doc_type and doc_type == 'KK':
+                # bounding_boxes = self._extract_bounding_boxes(document_content)
+                
+                kartu_keluarga_structured = await self.llm_service.kartu_keluarga_extractor(document_content.content)
+
+                kk_res = KartuKeluargaResponse(
+                    content=document_content.content,
+                    structured_data=kartu_keluarga_structured,
+                    bounding_boxes=[]
+                )
+
+                response = {
+                    'document_type': 'KK',
+                    'document_data': kk_res
+                }
+
+                return response
+            else:
+                # For other document types, return classification result
+                return {
+                    'content': document_content.content,
+                    'document_type': document_type.model_dump() if hasattr(document_type, 'model_dump') else document_type
+                }
+        except Exception as e:
+            logger.error(f"Error in upload_document use case: {e}")
             raise
