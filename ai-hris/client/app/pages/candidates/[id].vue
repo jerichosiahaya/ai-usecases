@@ -122,6 +122,7 @@ const getDocumentIcon = (docType: string) => {
     'RESUME': FileText,
     'Resume': FileText,
     'Signed Offer Letter': FileText,
+    'OFFERING_LETTER': FileText,
   }
   return iconMap[docType] || FileText
 }

@@ -109,7 +109,7 @@ class DocumentAnalyzer:
             content = ""
             result = self.doc_intel_repo.analyze_layout(document_path=document_path)
 
-            if result.styles[0]:
+            if result.styles and len(result.styles) > 0:
                 is_signed = result.styles[0].is_handwritten
                 content = result.content
 
@@ -117,7 +117,7 @@ class DocumentAnalyzer:
                 exists=is_signed,
                 signed_content=content
             )
-            
+
             return response
         except Exception as e:
             logger.error(f"Error in analyze_document_layout use case: {e}")

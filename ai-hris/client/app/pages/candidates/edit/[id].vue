@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { Candidate, LegalDocument, FamilyMember } from '@/components/candidates/data/schema'
+import type { Candidate, LegalDocument, FamilyMember, ResumeDocument, OfferingLetter } from '@/components/candidates/data/schema'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -53,6 +53,8 @@ const form = ref({
   experience: 0,
   skills: [] as string[],
   legal_documents: [] as LegalDocument[],
+  resume: undefined as ResumeDocument | undefined,
+  offering_letter: undefined as OfferingLetter | undefined,
   family_members: [] as FamilyMember[]
 })
 
@@ -95,7 +97,10 @@ const isAnalyzing = ref(false)
 const tempUploadedFile = ref<File | null>(null)
 const tempExtractedData = ref<any>(null)
 const offeringLetterInput = ref<HTMLInputElement | null>(null)
-const currentUploadType = ref<'document' | 'offering_letter'>('document')
+const resumeInput = ref<HTMLInputElement | null>(null)
+const currentUploadType = ref<'document' | 'offering_letter' | 'resume'>('document')
+const isOfferingLetterModalOpen = ref(false)
+const offeringLetterAnalysis = ref<any>(null)
 
 const previewDocument = computed(() => {
   if (!tempExtractedData.value?.data) return null
@@ -109,10 +114,12 @@ const previewDocument = computed(() => {
   } as LegalDocument
 })
 
+const hasResume = computed(() => {
+  return form.value.resume !== undefined && form.value.resume !== null && Object.keys(form.value.resume).length > 0
+})
+
 const hasOfferingLetter = computed(() => {
-  return form.value.legal_documents.some(doc => 
-    doc.type === 'OFFERING_LETTER' || doc.type?.toUpperCase().includes('OFFERING')
-  )
+  return form.value.offering_letter !== undefined && form.value.offering_letter !== null && Object.keys(form.value.offering_letter).length > 0
 })
 
 const uploadDocument = async (file: File) => {
@@ -132,37 +139,70 @@ const uploadDocument = async (file: File) => {
   }
 }
 
+const analyzeOfferingLetter = async (file: File) => {
+  const formData = new FormData()
+  formData.append('document', file)
+
+  try {
+    const response = await $fetch('/api/v1/document/analyze/offering-signature', {
+      method: 'POST',
+      body: formData,
+    })
+    return response
+  } catch (error) {
+    console.error('Offering letter analysis failed:', error)
+    throw new Error('Offering letter analysis failed')
+  }
+}
+
 const confirmUpload = () => {
     if (!tempUploadedFile.value || !tempExtractedData.value) return
 
     const result = tempExtractedData.value
     const file = tempUploadedFile.value
 
-    // Determine document type based on upload type
-    let docType = result.data?.document_type || result.document_type || 'OTHER'
-    
-    // If uploading as offering letter, use that type
-    if (currentUploadType.value === 'offering_letter') {
-      docType = 'OFFERING_LETTER'
-    }
+    if (currentUploadType.value === 'resume') {
+      // Handle resume upload
+      const newResume: ResumeDocument = {
+        type: 'RESUME',
+        name: result.data?.name || file.name,
+        url: result.data?.url || '',
+        last_updated: result.data?.last_updated || new Date().toISOString(),
+        extracted_content: result.data?.document_data || result
+      }
+      form.value.resume = newResume
+    } else if (currentUploadType.value === 'offering_letter') {
+      // Handle offering letter upload
+      const newOfferingLetter: OfferingLetter = {
+        type: 'OFFERING_LETTER',
+        name: result.data?.name || file.name,
+        url: result.data?.url || '',
+        last_updated: result.data?.last_updated || new Date().toISOString(),
+        extracted_content: result.data?.document_data || result
+      }
+      form.value.offering_letter = newOfferingLetter
+    } else {
+      // Handle legal documents
+      let docType = result.data?.document_type || result.document_type || 'OTHER'
 
-    // Create new document entry
-    const newDoc: LegalDocument = {
-      type: docType, 
-      name: result.data?.name || file.name,
-      url: result.data?.url || '', 
-      last_updated: result.data?.last_updated || new Date().toISOString(),
-      extracted_content: result.data?.document_data || result
-    }
+      // Create new document entry
+      const newDoc: LegalDocument = {
+        type: docType, 
+        name: result.data?.name || file.name,
+        url: result.data?.url || '', 
+        last_updated: result.data?.last_updated || new Date().toISOString(),
+        extracted_content: result.data?.document_data || result
+      }
 
-    form.value.legal_documents.push(newDoc)
+      form.value.legal_documents.push(newDoc)
 
-    // Auto-fill address if available and empty (only for KK documents)
-    if (docType === 'KK' && result.data?.document_data?.structured_data) {
-      const sd = result.data.document_data.structured_data
-      if (!form.value.address_detail && sd.address) form.value.address_detail = sd.address
-      if (!form.value.address_city && sd.city) form.value.address_city = sd.city
-      if (!form.value.address_zip && sd.postal_code) form.value.address_zip = parseInt(sd.postal_code.replace(/\D/g, '')) || undefined
+      // Auto-fill address if available and empty (only for KK documents)
+      if (docType === 'KK' && result.data?.document_data?.structured_data) {
+        const sd = result.data.document_data.structured_data
+        if (!form.value.address_detail && sd.address) form.value.address_detail = sd.address
+        if (!form.value.address_city && sd.city) form.value.address_city = sd.city
+        if (!form.value.address_zip && sd.postal_code) form.value.address_zip = parseInt(sd.postal_code.replace(/\D/g, '')) || undefined
+      }
     }
     
     isUploadModalOpen.value = false
@@ -213,8 +253,11 @@ if (error.value || !candidate.value) {
     experience: c.work_experiences ? calculateTotalExperience(c.work_experiences) : (c.experience || 0),
     skills: c.skills || [],
     legal_documents: c.legal_documents || [],
+    resume: c.resume,
+    offering_letter: c.offering_letter,
     family_members: c.family_members || []
   }
+  console.log('Loaded candidate data:', form.value)
 }
 
 const goBack = () => {
@@ -272,6 +315,10 @@ const triggerOfferingLetterUpload = () => {
   offeringLetterInput.value?.click()
 }
 
+const triggerResumeUpload = () => {
+  resumeInput.value?.click()
+}
+
 const handleFileUpload = async (event: Event) => {
   const target = event.target as HTMLInputElement
   if (!target.files || target.files.length === 0) return
@@ -311,6 +358,38 @@ const handleOfferingLetterUpload = async (event: Event) => {
 
   currentUploadType.value = 'offering_letter'
   tempUploadedFile.value = file
+  isUploading.value = true
+  isAnalyzing.value = true
+  uploadProgress.value = 20
+  
+  try {
+    // Analyze offering letter with special API
+    const result = await analyzeOfferingLetter(file)
+    uploadProgress.value = 100
+    offeringLetterAnalysis.value = result
+    isOfferingLetterModalOpen.value = true
+  } catch (error) {
+    console.error('Offering letter analysis failed:', error)
+    // Handle error (maybe show a toast or message)
+    isOfferingLetterModalOpen.value = false
+  } finally {
+    isUploading.value = false
+    isAnalyzing.value = false
+  }
+  
+  // Reset input so same file can be selected again if needed
+  if (offeringLetterInput.value) offeringLetterInput.value.value = ''
+}
+
+const handleResumeUpload = async (event: Event) => {
+  const target = event.target as HTMLInputElement
+  if (!target.files || target.files.length === 0) return
+
+  const file = target.files[0]
+  if (!file) return
+
+  currentUploadType.value = 'resume'
+  tempUploadedFile.value = file
   isUploadModalOpen.value = true
   isAnalyzing.value = true
   uploadProgress.value = 20
@@ -329,7 +408,37 @@ const handleOfferingLetterUpload = async (event: Event) => {
   }
   
   // Reset input so same file can be selected again if needed
-  if (offeringLetterInput.value) offeringLetterInput.value.value = ''
+  if (resumeInput.value) resumeInput.value.value = ''
+}
+
+const confirmOfferingLetter = () => {
+  if (!tempUploadedFile.value || !offeringLetterAnalysis.value) return
+
+  const file = tempUploadedFile.value
+  const analysis = offeringLetterAnalysis.value
+
+  // Create offering letter entry
+  const newOfferingLetter: OfferingLetter = {
+    type: 'OFFERING_LETTER',
+    name: file.name,
+    url: '',
+    last_updated: new Date().toISOString(),
+    extracted_content: {
+      content: analysis.data?.signed_content || '',
+      bounding_boxes: [],
+      structured_data: {
+        exists: analysis.data?.exists || false,
+        signed_content: analysis.data?.signed_content || ''
+      }
+    }
+  }
+  
+  form.value.offering_letter = newOfferingLetter
+  
+  // Close modals and reset state
+  isOfferingLetterModalOpen.value = false
+  tempUploadedFile.value = null
+  offeringLetterAnalysis.value = null
 }
 
 const saveCandidate = async () => {
@@ -351,6 +460,8 @@ const saveCandidate = async () => {
     experience: form.value.experience,
     skills: form.value.skills,
     legal_documents: form.value.legal_documents,
+    resume: form.value.resume,
+    offering_letter: form.value.offering_letter,
     family_members: form.value.family_members
   }
 
@@ -531,13 +642,13 @@ const saveCandidate = async () => {
         </DialogContent>
       </Dialog>
 
-      <Card>
+      <Card v-if="form.legal_documents.length > 0">
         <CardHeader>
-          <CardTitle>Documents</CardTitle>
-          <CardDescription>Manage legal documents (e.g. Kartu Keluarga, Signed Offering Letter).</CardDescription>
+          <CardTitle>Legal Documents</CardTitle>
+          <CardDescription>Manage legal documents (e.g. Kartu Keluarga, ID cards).</CardDescription>
         </CardHeader>
         <CardContent class="space-y-4">
-          <div v-if="form.legal_documents.length > 0" class="space-y-2">
+          <div class="space-y-2">
             <div 
               v-for="(doc, index) in form.legal_documents" 
               :key="index" 
@@ -547,12 +658,7 @@ const saveCandidate = async () => {
               <div class="flex items-center gap-3 flex-1">
                 <FileText class="h-5 w-5 text-muted-foreground" />
                 <div class="flex-1">
-                  <div class="flex items-center gap-2">
-                    <p class="text-sm font-medium">{{ doc.name }}</p>
-                    <Badge v-if="doc.type === 'OFFERING_LETTER' || doc.type?.toUpperCase().includes('OFFERING')" variant="default">
-                      Offering Letter
-                    </Badge>
-                  </div>
+                  <p class="text-sm font-medium">{{ doc.name }}</p>
                   <p class="text-xs text-muted-foreground">{{ doc.type }} • {{ new Date(doc.last_updated).toLocaleDateString() }}</p>
                 </div>
               </div>
@@ -561,22 +667,82 @@ const saveCandidate = async () => {
               </Button>
             </div>
           </div>
+
+          <div class="flex justify-end">
+            <input type="file" ref="fileInput" class="hidden" accept=".pdf,.png,.jpg,.jpeg" @change="handleFileUpload" />
+            <Button variant="outline" @click="triggerFileUpload" :disabled="isUploading">
+              <Loader2 v-if="isUploading" class="mr-2 h-4 w-4 animate-spin" />
+              <Upload v-else class="mr-2 h-4 w-4" />
+              {{ isUploading ? 'Analyzing...' : 'Upload Legal Document' }}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Resume</CardTitle>
+          <CardDescription>Upload or manage candidate's resume/CV.</CardDescription>
+        </CardHeader>
+        <CardContent class="space-y-4">
+          <div v-if="hasResume" class="flex items-center justify-between p-3 border rounded-md bg-muted/50 hover:bg-muted cursor-pointer transition-colors" @click="selectedDocument = form.resume; isModalOpen = true">
+            <div class="flex items-center gap-3 flex-1">
+              <FileText class="h-5 w-5 text-muted-foreground" />
+              <div class="flex-1">
+                <p class="text-sm font-medium">{{ form.resume.name }}</p>
+                <p class="text-xs text-muted-foreground">RESUME • {{ new Date(form.resume.last_updated).toLocaleDateString() }}</p>
+              </div>
+            </div>
+            <Button variant="ghost" size="icon" @click.stop="form.resume = undefined" class="text-destructive hover:text-destructive hover:bg-destructive/10">
+              <Trash2 class="h-4 w-4" />
+            </Button>
+          </div>
           <div v-else class="text-sm text-muted-foreground text-center py-4 border border-dashed rounded-md">
-            No documents uploaded yet.
+            No resume uploaded yet.
           </div>
 
-          <div class="flex gap-2 justify-end">
-            <input type="file" ref="fileInput" class="hidden" accept=".pdf,.png,.jpg,.jpeg" @change="handleFileUpload" />
+          <div class="flex justify-end">
+            <input type="file" ref="resumeInput" class="hidden" accept=".pdf" @change="handleResumeUpload" />
+            <Button variant="outline" @click="triggerResumeUpload" :disabled="isUploading">
+              <Loader2 v-if="isUploading" class="mr-2 h-4 w-4 animate-spin" />
+              <Upload v-else class="mr-2 h-4 w-4" />
+              {{ isUploading ? 'Analyzing...' : 'Upload Resume' }}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Signed Offering Letter</CardTitle>
+          <CardDescription>Upload or manage the signed offer letter document.</CardDescription>
+        </CardHeader>
+        <CardContent class="space-y-4">
+          <div v-if="hasOfferingLetter" class="flex items-center justify-between p-3 border rounded-md bg-green-50 hover:bg-green-100 cursor-pointer transition-colors" @click="selectedDocument = form.offering_letter; isModalOpen = true">
+            <div class="flex items-center gap-3 flex-1">
+              <FileText class="h-5 w-5 text-green-600" />
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <p class="text-sm font-medium">{{ form.offering_letter.name }}</p>
+                  <Badge variant="default" class="bg-green-600">Signed</Badge>
+                </div>
+                <p class="text-xs text-muted-foreground">OFFERING_LETTER • {{ new Date(form.offering_letter.last_updated).toLocaleDateString() }}</p>
+              </div>
+            </div>
+            <Button variant="ghost" size="icon" @click.stop="form.offering_letter = undefined" class="text-destructive hover:text-destructive hover:bg-destructive/10">
+              <Trash2 class="h-4 w-4" />
+            </Button>
+          </div>
+          <div v-else class="text-sm text-muted-foreground text-center py-4 border border-dashed rounded-md">
+            No offering letter uploaded yet.
+          </div>
+
+          <div class="flex justify-end">
             <input type="file" ref="offeringLetterInput" class="hidden" accept=".pdf" @change="handleOfferingLetterUpload" />
             <Button variant="outline" @click="triggerOfferingLetterUpload" :disabled="isUploading">
               <Loader2 v-if="isUploading" class="mr-2 h-4 w-4 animate-spin" />
               <Upload v-else class="mr-2 h-4 w-4" />
               {{ isUploading ? 'Analyzing...' : 'Upload Offering Letter' }}
-            </Button>
-            <Button variant="outline" @click="triggerFileUpload" :disabled="isUploading">
-              <Loader2 v-if="isUploading" class="mr-2 h-4 w-4 animate-spin" />
-              <Upload v-else class="mr-2 h-4 w-4" />
-              {{ isUploading ? 'Analyzing...' : 'Upload Document' }}
             </Button>
           </div>
         </CardContent>
@@ -642,6 +808,61 @@ const saveCandidate = async () => {
           <DialogFooter v-if="!isAnalyzing">
             <Button variant="outline" @click="isUploadModalOpen = false">Cancel</Button>
             <Button @click="confirmUpload">Confirm & Add</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <!-- Offering Letter Analysis Modal -->
+      <Dialog :open="isOfferingLetterModalOpen" @update:open="isOfferingLetterModalOpen = $event">
+        <DialogContent class="w-[95vw] max-w-2xl flex flex-col p-6 max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Offering Letter Preview</DialogTitle>
+            <DialogDescription>
+              Review the offering letter and signature details
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div v-if="isAnalyzing" class="space-y-4 flex flex-col items-center justify-center py-12">
+            <Progress :model-value="uploadProgress" class="w-full max-w-md" />
+            <p class="text-sm text-center text-muted-foreground">Analyzing document... {{ uploadProgress }}%</p>
+          </div>
+
+          <div v-else-if="offeringLetterAnalysis" class="space-y-6 py-4">
+            <!-- Signature Status -->
+            <div class="flex items-center gap-3 p-4 border rounded-lg" :class="offeringLetterAnalysis.data?.exists ? 'bg-green-50 border-green-200' : 'bg-yellow-50 border-yellow-200'">
+              <div>
+                <Badge :class="offeringLetterAnalysis.data?.exists ? 'bg-green-600' : 'bg-yellow-600'">
+                  {{ offeringLetterAnalysis.data?.exists ? 'Signed' : 'Not Signed' }}
+                </Badge>
+              </div>
+              <div>
+                <p class="font-medium text-sm">Signature Status</p>
+                <p class="text-xs text-muted-foreground">
+                  {{ offeringLetterAnalysis.data?.exists ? 'This document has been signed.' : 'This document has not been signed yet.' }}
+                </p>
+              </div>
+            </div>
+
+            <!-- Document Content Preview -->
+            <div class="space-y-2">
+              <Label class="text-base font-semibold">Document Content</Label>
+              <div class="bg-muted p-4 rounded-lg max-h-[300px] overflow-y-auto border">
+                <pre class="text-xs whitespace-pre-wrap text-muted-foreground">{{ offeringLetterAnalysis.data?.signed_content }}</pre>
+              </div>
+            </div>
+
+            <!-- File Name -->
+            <div class="space-y-2">
+              <Label class="text-sm font-medium">File Name</Label>
+              <p class="text-sm text-muted-foreground">{{ tempUploadedFile?.name }}</p>
+            </div>
+          </div>
+
+          <DialogFooter v-if="!isAnalyzing">
+            <Button variant="outline" @click="isOfferingLetterModalOpen = false">Cancel</Button>
+            <Button @click="confirmOfferingLetter" :disabled="!offeringLetterAnalysis?.data?.exists">
+              Confirm & Add Offering Letter
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -45,6 +45,26 @@ const legalDocumentSchema = z.object({
   extracted_content: extractedContentSchema.optional(),
 })
 
+const resumeDocumentSchema = z.object({
+  type: z.string().default('RESUME'),
+  name: z.string(),
+  url: z.string(),
+  last_updated: z.string(),
+  extracted_content: z.object({
+    content: z.string(),
+    tables: z.array(z.any()).optional(),
+    bounding_boxes: z.array(z.any()).optional(),
+  }).optional(),
+})
+
+const offeringLetterSchema = z.object({
+  type: z.string().default('OFFERING_LETTER'),
+  name: z.string(),
+  url: z.string(),
+  last_updated: z.string(),
+  extracted_content: extractedContentSchema.optional(),
+})
+
 const noteSchema = z.object({
   author: z.string(),
   role: z.string(),
@@ -115,19 +135,9 @@ export const candidateSchema = z.object({
     description: z.string().optional(),
   })).optional(),
   family_members: z.array(familyMemberSchema).optional(),
-  legal_documents: z.array(z.object({
-    type: z.string(),
-    name: z.string(),
-    url: z.string(),
-    last_updated: z.string(),
-    extracted_content: z.object({
-      content: z.string(),
-      structured_data: z.any().optional(),
-      bounding_boxes: z.array(z.any()).optional(),
-    }).optional(),
-  })).optional(),
-  resume: z.object({}).optional(),
-  offering_letter: z.object({}).optional(),
+  legal_documents: z.array(legalDocumentSchema).optional(),
+  resume: resumeDocumentSchema.optional(),
+  offering_letter: offeringLetterSchema.optional(),
   interview: interviewSchema.optional(),
 })
 
@@ -136,6 +146,8 @@ export type KartuKeluargaStructured = z.infer<typeof kartuKeluargaStructuredSche
 export type FamilyMemberDetail = z.infer<typeof familyMemberDetailSchema>
 export type BoundingBox = z.infer<typeof boundingBoxSchema>
 export type LegalDocument = z.infer<typeof legalDocumentSchema>
+export type ResumeDocument = z.infer<typeof resumeDocumentSchema>
+export type OfferingLetter = z.infer<typeof offeringLetterSchema>
 export type ExtractedContent = z.infer<typeof extractedContentSchema>
 export type Interview = z.infer<typeof interviewSchema>
 export type InterviewScore = z.infer<typeof interviewScoreSchema>
