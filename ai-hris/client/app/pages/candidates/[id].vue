@@ -50,6 +50,7 @@ import {
   CheckCircle2,
   Banknote,
   Shield,
+  Mail,
 } from 'lucide-vue-next'
 
 const route = useRoute()
@@ -323,6 +324,14 @@ const getSignalColor = (signal: string, index?: number) => {
               <Send class="h-4 w-4" />
               Send Mail
             </Button>
+            <Button 
+              v-if="candidate?.status === 'hired'"
+              class="bg-green-600 hover:bg-green-700 text-white gap-2"
+              @click="router.push(`/candidates/email-payroll/${candidateId}`)"
+            >
+              <Mail class="h-4 w-4" />
+              Email to Payroll
+            </Button>
             <Button variant="outline" class="gap-2" @click="router.push(`/candidates/edit/${candidateId}`)">
               <Edit class="h-4 w-4" />
               Edit Profile
@@ -334,9 +343,6 @@ const getSignalColor = (signal: string, index?: number) => {
             <Button variant="outline" class="gap-2" @click="downloadCV">
               <Download class="h-4 w-4" />
               Download Candidate Report
-            </Button>
-            <Button variant="outline" size="icon" class="text-amber-500 border-amber-200 hover:bg-amber-50">
-              <AlertTriangle class="h-4 w-4" />
             </Button>
           </div>
 
