@@ -7,7 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/componen
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
-import { ArrowLeft, Send, CheckCircle2 } from 'lucide-vue-next'
+import { Checkbox } from '@/components/ui/checkbox'
+import { ArrowLeft, Send, CheckCircle2, Paperclip } from 'lucide-vue-next'
 
 const route = useRoute()
 const router = useRouter()
@@ -18,6 +19,7 @@ const { data: candidate, pending: loading, error } = await useFetch<Candidate>(`
 const emailTo = ref('ssc-payroll@company.com')
 const emailSubject = computed(() => `New Employee: ${candidate.value?.name} - ${candidate.value?.position}`)
 const emailBody = ref('')
+const selectedDocuments = ref<string[]>([])
 
 // Initialize email body once candidate is loaded
 watch(candidate, (newVal) => {
@@ -36,6 +38,11 @@ Please proceed with the payroll setup.
 
 Regards,
 HR Team`
+
+    // Initialize selected documents with all available legal documents
+    if (newVal.legal_documents) {
+      selectedDocuments.value = newVal.legal_documents.map(doc => doc.name)
+    }
   }
 }, { immediate: true })
 
@@ -104,6 +111,33 @@ const goBack = () => {
               v-model="emailBody" 
               class="min-h-[300px] font-mono text-sm"
             />
+          </div>
+
+          <div class="space-y-2">
+            <Label>Attachments</Label>
+            <div class="border rounded-md p-4 space-y-3 bg-background">
+              <div v-if="!candidate?.legal_documents?.length" class="text-sm text-muted-foreground italic">
+                No legal documents available.
+              </div>
+              <div v-else v-for="doc in candidate.legal_documents" :key="doc.name" class="flex items-center space-x-2">
+                <Checkbox 
+                  :id="doc.name" 
+                  :checked="selectedDocuments.includes(doc.name)"
+                  @update:checked="(checked) => {
+                    if (checked) {
+                      selectedDocuments.push(doc.name)
+                    } else {
+                      selectedDocuments = selectedDocuments.filter(d => d !== doc.name)
+                    }
+                  }"
+                />
+                <Label :for="doc.name" class="flex items-center gap-2 cursor-pointer font-normal">
+                  <Paperclip class="h-4 w-4 text-muted-foreground" />
+                  <span>{{ doc.name }}</span>
+                  <span class="text-xs text-muted-foreground">({{ doc.type }})</span>
+                </Label>
+              </div>
+            </div>
           </div>
         </CardContent>
         <CardFooter class="flex justify-end gap-3">
