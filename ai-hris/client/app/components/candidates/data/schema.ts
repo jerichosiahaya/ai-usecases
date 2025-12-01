@@ -102,6 +102,26 @@ const familyMemberSchema = z.object({
   brief_data: briefDataSchema.optional(),
 })
 
+const salaryFactorSchema = z.object({
+  name: z.string(),
+  value: z.string(),
+})
+
+const marketRangeSchema = z.object({
+  min: z.number(),
+  max: z.number(),
+  currency: z.string(),
+})
+
+const salarySchema = z.object({
+  expectation: z.number(),
+  market_range: marketRangeSchema.optional(),
+  status: z.string(),
+  confidence: z.number(),
+  analysis: z.string(),
+  factors: z.array(salaryFactorSchema),
+})
+
 export const candidateSchema = z.object({
   id: z.string(),
   candidate_id: z.string(),
@@ -139,6 +159,7 @@ export const candidateSchema = z.object({
   resume: resumeDocumentSchema.optional(),
   offering_letter: offeringLetterSchema.optional(),
   interview: interviewSchema.optional(),
+  salary: salarySchema.optional(),
 })
 
 export type Candidate = z.infer<typeof candidateSchema>
@@ -153,3 +174,6 @@ export type Interview = z.infer<typeof interviewSchema>
 export type InterviewScore = z.infer<typeof interviewScoreSchema>
 export type AiInterviewScore = z.infer<typeof interviewScoreSchema>
 export type FamilyMember = z.infer<typeof familyMemberSchema>
+export type Salary = z.infer<typeof salarySchema>
+export type MarketRange = z.infer<typeof marketRangeSchema>
+export type SalaryFactor = z.infer<typeof salaryFactorSchema>

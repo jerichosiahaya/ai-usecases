@@ -89,6 +89,30 @@ class FamilyMember(BaseModel):
     brief_data: Optional[BriefData] = Field(None, alias="briefData")
 
 
+class SalaryFactor(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    name: str
+    value: str
+
+class MarketRange(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    min: int
+    max: int
+    currency: str
+
+class Salary(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    expectation: int
+    market_range: Optional[MarketRange] = Field(None, alias="marketRange")
+    status: str
+    confidence: int
+    analysis: str
+    factors: List[SalaryFactor]
+
+
 class Candidate(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,  # Allow both snake_case and camelCase
@@ -119,6 +143,7 @@ class Candidate(BaseModel):
     resume: Optional[Dict[str, Any]] = None
     offering_letter: Optional[Dict[str, Any]] = Field(None, alias="offeringLetter")
     interview: Optional[Interview] = None
+    salary: Optional[Salary] = None
 
 
 class CandidateResponse(BaseModel):
@@ -151,3 +176,4 @@ class CandidateResponse(BaseModel):
     resume: Optional[Dict[str, Any]] = None
     offering_letter: Optional[Dict[str, Any]] = Field(None, alias="offeringLetter")
     interview: Optional[Interview] = None
+    salary: Optional[Salary] = None

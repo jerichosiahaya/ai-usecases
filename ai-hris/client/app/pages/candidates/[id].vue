@@ -51,6 +51,7 @@ import {
   Banknote,
   Shield,
   Mail,
+  Sparkles,
 } from 'lucide-vue-next'
 
 const route = useRoute()
@@ -92,29 +93,31 @@ const currentStatusIndex = computed(() => {
   return index !== -1 ? index : 0
 })
 
-// Extended data for the UI - keeping only truly extended/mock data
-const extendedCandidate = computed(() => {
-  if (!candidate.value) return null
-  
-  return {
-    ...candidate.value,
-    experience: [
-      { role: 'Human Interface Designer', company: 'Apple, Inc.', period: '2024 - present' },
-      { role: 'Product Designer', company: 'Uber', period: '2019-2024' }
-    ],
-    documents: [
-      { type: 'KTP', name: 'ktp_scan.jpg', icon: IdCard },
-      { type: 'KK', name: 'kk_scan.pdf', icon: Users },
-      { type: 'Ijazah', name: 'ijazah_s1.pdf', icon: GraduationCap },
-      { type: 'Buku Tabungan', name: 'buku_tabungan_bca.jpg', icon: CreditCard }
-    ],
-    activities: [
-      { title: 'Moved to Interview Stage', date: '2 days ago', description: 'Candidate was moved from Screening to Interview stage.' },
-      { title: 'AI Interview Completed', date: '3 days ago', description: 'Candidate completed the AI interview with a score of 8.0/10.' },
-      { title: 'Application Received', date: '4 days ago', description: 'Candidate applied for Product Designer I position.' }
-    ]
+const activities = computed(() => [
+  { title: 'Moved to Interview Stage', date: '2 days ago', description: 'Candidate was moved from Screening to Interview stage.' },
+  { title: 'AI Interview Completed', date: '3 days ago', description: 'Candidate completed the AI interview with a score of 8.0/10.' },
+  { title: 'Application Received', date: '4 days ago', description: 'Candidate applied for Product Designer I position.' }
+])
+
+const formatCurrency = (value: number, currency: string = 'IDR') => {
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(value)
+}
+
+const formatMarketRange = (range?: { min: number, max: number, currency: string }) => {
+  if (!range) return '-'
+  return `${formatCurrency(range.min, range.currency)} - ${formatCurrency(range.max, range.currency)}`
+}
+
+const getFactorColor = (value: string) => {
+  const map: Record<string, string> = {
+    'High': 'text-green-600',
+    'Very High': 'text-orange-600',
+    'Moderate': 'text-blue-600',
+    'Low': 'text-red-600',
+    'Very Low': 'text-gray-600'
   }
-})
+  return map[value] || 'text-foreground'
+}
 
 const requiredDocuments = ['KTP', 'KK', 'Ijazah', 'Buku Tabungan', 'NPWP', 'Signed Offer Letter']
 
@@ -241,7 +244,7 @@ const getSignalColor = (signal: string, index?: number) => {
     </div>
 
     <!-- Content -->
-    <div v-else-if="extendedCandidate" class="max-w-7xl mx-auto p-6">
+    <div v-else-if="candidate" class="max-w-7xl mx-auto p-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         <!-- Left Column (Main Content) -->
@@ -404,6 +407,50 @@ const getSignalColor = (signal: string, index?: number) => {
                     class="h-2 rounded-full transition-all duration-500 bg-green-500"
                     :style="{ width: `${(score.value / 10) * 100}%` }"
                   />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <!-- Salary Analysis Card -->
+          <Card v-if="candidate?.salary">
+            <CardHeader class="pb-3">
+              <div class="flex items-center justify-between">
+                <CardTitle class="text-base font-medium flex items-center gap-2">
+                  <Banknote class="h-4 w-4 text-muted-foreground" />
+                  Salary & Market Analysis
+                </CardTitle>
+                <Badge variant="outline" class="bg-green-50 text-green-700 border-green-200">
+                  {{ candidate.salary.status }}
+                </Badge>
+              </div>
+            </CardHeader>
+            <CardContent class="space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-1">
+                  <span class="text-xs text-muted-foreground">Candidate Expectation</span>
+                  <div class="font-bold text-lg">{{ formatCurrency(candidate.salary.expectation) }}</div>
+                </div>
+                <div class="space-y-1">
+                  <span class="text-xs text-muted-foreground">Market Range</span>
+                  <div class="font-bold text-lg text-muted-foreground">{{ formatMarketRange(candidate.salary.market_range) }}</div>
+                </div>
+              </div>
+              
+              <div class="bg-muted/30 rounded-lg p-3 space-y-2">
+                <div class="flex items-center gap-2 text-sm font-medium">
+                  <Sparkles class="h-4 w-4 text-purple-500" />
+                  AI Analysis
+                </div>
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  {{ candidate.salary.analysis }}
+                </p>
+              </div>
+
+              <div class="grid grid-cols-3 gap-2 pt-2">
+                <div v-for="factor in candidate.salary.factors" :key="factor.name" class="text-center p-2 border rounded-md bg-background">
+                  <div class="text-xs text-muted-foreground mb-1">{{ factor.name }}</div>
+                  <div class="font-medium text-sm" :class="getFactorColor(factor.value)">{{ factor.value }}</div>
                 </div>
               </div>
             </CardContent>
@@ -608,7 +655,7 @@ const getSignalColor = (signal: string, index?: number) => {
                       <FileText class="h-4 w-4 text-red-500" />
                     </div>
                     <div class="flex flex-col overflow-hidden">
-                      <span class="text-sm font-medium truncate">resume_{{ extendedCandidate.name.toLowerCase().split(' ')[0] }}.pdf</span>
+                      <span class="text-sm font-medium truncate">resume_{{ candidate.name.toLowerCase().split(' ')[0] }}.pdf</span>
                       <span class="text-xs text-muted-foreground">PDF Document</span>
                     </div>
                   </div>
@@ -621,7 +668,7 @@ const getSignalColor = (signal: string, index?: number) => {
                 <div class="mt-3 border rounded-lg overflow-hidden bg-background h-32 flex items-center justify-center relative group cursor-pointer" @click="downloadCV">
                   <div class="absolute inset-0 bg-muted/30 flex flex-col items-center justify-center p-4">
                     <div class="w-full h-full bg-background shadow-sm p-2 text-[6px] text-muted-foreground overflow-hidden">
-                        <div class="font-bold text-foreground text-[8px] mb-1">{{ extendedCandidate.name }}</div>
+                        <div class="font-bold text-foreground text-[8px] mb-1">{{ candidate.name }}</div>
                         <div class="mb-1">PRODUCT DESIGNER</div>
                         <div class="space-y-1">
                           <div class="h-1 bg-muted w-full"></div>
@@ -730,7 +777,7 @@ const getSignalColor = (signal: string, index?: number) => {
               </CardHeader>
               <CardContent>
                 <div class="ml-2 border-l border-border space-y-8 my-2">
-                  <div v-for="(activity, i) in extendedCandidate.activities" :key="i" class="relative pl-6">
+                  <div v-for="(activity, i) in activities" :key="i" class="relative pl-6">
                     <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full bg-primary ring-4 ring-background"></span>
                     <div class="flex flex-col gap-1">
                       <div class="flex items-center justify-between">
