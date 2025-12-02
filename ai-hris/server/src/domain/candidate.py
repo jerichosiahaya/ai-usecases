@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, field_validator
 from typing import Optional, List, Any, Dict
 
 class Education(BaseModel):
@@ -116,16 +116,16 @@ class Salary(BaseModel):
 class SourceTargetDocument(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
     
-    type: str
-    name: str
-    value: str
+    type: Optional[str] = None
+    name: Optional[str] = None
+    value: Optional[str] = None
 
 class Discrepancy(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
     
     category: Optional[str] = None
-    field: str
-    severity: str  # 'low', 'medium', 'high'
+    field: Optional[str] = None
+    severity: Optional[str] = None  # 'low', 'medium', 'high'
     note: Optional[str] = None
     source: Optional[SourceTargetDocument] = None
     target: Optional[SourceTargetDocument] = None
@@ -144,6 +144,19 @@ class Candidate(BaseModel):
     id: str
     candidate_id: str = Field(..., alias="candidateId")
     name: str
+    
+    @field_validator('discrepancies', mode='before')
+    @classmethod
+    def normalize_discrepancies(cls, v):
+        """Normalize discrepancies to always be a list."""
+        if v is None:
+            return None
+        if isinstance(v, dict):
+            # Convert single dict to list containing that dict
+            return [v]
+        if isinstance(v, list):
+            return v
+        return v
     photo_url: Optional[str] = Field(None, alias="photoUrl")
     email: Optional[str] = None
     phone: Optional[str] = None
@@ -178,6 +191,19 @@ class CandidateResponse(BaseModel):
     id: str
     candidate_id: str = Field(..., alias="candidateId")
     name: str
+    
+    @field_validator('discrepancies', mode='before')
+    @classmethod
+    def normalize_discrepancies(cls, v):
+        """Normalize discrepancies to always be a list."""
+        if v is None:
+            return None
+        if isinstance(v, dict):
+            # Convert single dict to list containing that dict
+            return [v]
+        if isinstance(v, list):
+            return v
+        return v
     photo_url: Optional[str] = Field(None, alias="photoUrl")
     email: Optional[str] = None
     phone: Optional[str] = None

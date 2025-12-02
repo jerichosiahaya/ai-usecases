@@ -149,6 +149,11 @@ class LLMService:
         
     async def discrepancy_analysis(self, candidate_data: Candidate) -> str:
         try:
+
+            # pop discrepancies field from candidate_data if exists
+            if hasattr(candidate_data, 'discrepancies'):
+                del candidate_data.discrepancies
+
             settings = OpenAIChatPromptExecutionSettings()
             settings.response_format = ListDiscrepancyResponse
 

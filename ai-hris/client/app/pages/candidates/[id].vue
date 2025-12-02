@@ -138,7 +138,7 @@ const getSeverityIcon = (severity: string) => {
   return map[severity] || Info
 }
 
-const requiredDocuments = ['KTP', 'KK', 'Ijazah', 'Buku Tabungan', 'NPWP', 'Signed Offer Letter']
+const requiredDocuments = ['KTP', 'KK', 'Ijazah', 'Buku Tabungan', 'Signed Offer Letter']
 
 const getDocumentIcon = (docType: string) => {
   const iconMap: Record<string, any> = {

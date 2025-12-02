@@ -243,8 +243,22 @@ def _get_discrepancy_analysis_prompt():
         - **name**: The name of the target document.
         - **value**: The value from the target document (if applicable; use `null` if not applicable).
 
+    ### Example of discrepancy:
+    - A discrepancy in the "date_of_birth" field where the source document states "1990-01-01" and the target document states "1991-01-01" with a severity of "high".
+    - Mismatch in the address field.
+    - Mismatch in the full name field.
+    - Mismatch in the family member details.
+    - Unmatched in zip code.
+    - Etc.
+
     ### Guidelines:
-    - Analyze the provided documents thoroughly to identify any discrepancies.
+    - Analyze the provided documents thoroughly to identify direct conflicting discrepancies.
+    - Skip any discrepancies that are indirect or inferred.
+    - Skip any discrepancies that are based on different formats or representations (e.g., "01 Jan 1990" vs. "1990-01-01").
+    - Skip any discrepancies that are based on different translations or interpretations of names or terms.
+    - Do not include discrepancies that are based on assumptions or incomplete information.
+    - Ensure the output is a valid JSON array of objects.
+    - Be objective and consistent in your evaluations.
     - For each identified discrepancy, extract and structure the information according to the attributes listed above.
     - Use `null` for missing fields and ensure the output is a valid JSON array of objects.
 
