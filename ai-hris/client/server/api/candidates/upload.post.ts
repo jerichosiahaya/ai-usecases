@@ -2,7 +2,7 @@ import { defineEventHandler, readMultipartFormData, createError } from 'h3'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  const apiUrl = config.public.apiUrl || 'https://ai-hris-server.azurewebsites.net'
+  const apiUrl = config.public.apiUrl || 'http://localhost:8000'
 
   const body = await readMultipartFormData(event)
   if (!body) {

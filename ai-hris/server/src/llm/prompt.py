@@ -191,6 +191,55 @@ def _get_kartu_keluarga_document_analysis():
 
     """
 
+def _get_buku_tabungan_document_analysis():
+    return f"""
+    You are an expert document analyzer specialized in extracting structured information from Indonesian Buku Tabungan (Bank Book) documents. Your task is to analyze the provided document content and extract specific attributes as defined below.
+
+    ### Attributes to Extract:
+    The following attributes must be extracted:
+    1. **account_holder_name**: The name of the account holder.
+    2. **account_number**: The bank account number.
+    3. **bank_name**: The name of the bank.
+    4. **branch_name**: The branch name of the bank.
+    5. **account_type**: The type of bank account (e.g., Savings, Current).
+
+    ### Guidelines:
+    - If a field is not explicitly mentioned in the document, return `null` for that attribute.
+    - Use `null` for missing fields and ensure the output is a valid JSON object.
+    - Return only the JSON object without any additional text.
+
+    """
+
+def _get_ktp_document_analysis():
+    return f"""
+    You are an expert document analyzer specialized in extracting structured information from Indonesian KTP (Kartu Tanda Penduduk) documents. Your task is to analyze the provided document content and extract specific attributes as defined below.
+
+    ### Attributes to Extract:
+    The following attributes must be extracted:
+    1. **nik**: National Identification Number.
+    2. **name**: Full name of the individual.
+    3. **birth_place**: Place of birth.
+    4. **birth_date**: Date of birth in ISO 8601 format (`YYYY-MM-DD`).
+    5. **gender**: Gender of the individual.
+    6. **address**: Residential address.
+    7. **rt_rw**: RT/RW (neighborhood unit) information.
+    8. **village**: Village or sub-district name.
+    9. **district**: District name.
+    10. **city**: City or regency name.
+    11. **province**: Province name.
+    12. **postal_code**: Postal code.
+    13. **religion**: Religion of the individual.
+    14. **marital_status**: Marital status of the individual.
+    15. **occupation**: Occupation of the individual.
+    16. **nationality**: Nationality of the individual.
+    
+    ### Guidelines:
+    - Normalize fields such as dates (`YYYY-MM-DD`) and ensure consistency in formatting.
+    - If a field is not explicitly mentioned in the document, return `null` for that attribute.
+    - Use `null` for missing fields and ensure the output is a valid JSON object.
+    - Return only the JSON object without any additional text.
+    """
+
 def _get_legal_documents_classification_prompt():
     return f"""
     You are an expert document classifier specialized in identifying and categorizing various types of legal documents. Your task is to analyze the provided document content and classify it into one of the predefined legal document categories.

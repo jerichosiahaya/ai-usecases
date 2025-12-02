@@ -333,7 +333,7 @@ def classify_document():
         app.logger.exception("Error in classify_document route")
         return internal_server_error(str(e))
     
-@app.route('/api/v1/hr/document/upload', methods=['POST'])
+@app.route('/api/v1/document/upload', methods=['POST'])
 def document_upload():
     try:
         candidate_id = request.form.get('candidate_id')

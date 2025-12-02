@@ -1,9 +1,10 @@
 from src.repository.document_intelligence import DocumentIntelligenceRepository
 from loguru import logger
 from src.llm.llm_sk import LLMService
-from src.domain.document_analyzer import KartuKeluargaResponse, KartuKeluargaBoundingBox, OfferingSignatureResponse
+from src.domain.document_analyzer import KartuKeluargaResponse, KartuKeluargaBoundingBox, OfferingSignatureResponse, BukuTabungan, LegalDocumentResponse, KartuKeluarga
 from src.domain.document_classification import ClassificationResult
 import numpy as np
+from src.common.const import DocumentType
 
 class DocumentAnalyzer:
     def __init__(self, doc_intel_repo: DocumentIntelligenceRepository, llm_service: LLMService):
@@ -70,31 +71,42 @@ class DocumentAnalyzer:
 
     async def upload_document(self, document_path: str, candidate_id: str = None) -> dict:
         try:
+            # extract raw content
             document_content = self.doc_intel_repo.analyze_read(document_path=document_path)
 
+            # classify document type
             document_type = await self.classify_legal_document(document_content=document_content.content)
-
             doc_type = document_type.get('category', None)
             
-            if doc_type and doc_type == 'KK':
+            if doc_type and doc_type == DocumentType.KK.value:
                 # bounding_boxes = self._extract_bounding_boxes(document_content)
-                
-                kartu_keluarga_structured = await self.llm_service.kartu_keluarga_extractor(document_content.content)
-
-                kk_res = KartuKeluargaResponse(
-                    content=document_content.content,
+                kartu_keluarga_structured: KartuKeluarga = await self.llm_service.kartu_keluarga_extractor(document_content.content)
+                response = LegalDocumentResponse(
+                    raw_content=document_content.content,
                     structured_data=kartu_keluarga_structured,
+                    document_type=DocumentType.KK.value,
                     bounding_boxes=[]
                 )
-
-                response = {
-                    'document_type': 'KK',
-                    'document_data': kk_res
-                }
-
+                return response
+            elif doc_type and doc_type == DocumentType.BukuTabungan.value:
+                buku_tabungan_structured: BukuTabungan = await self.llm_service.buku_tabungan_extractor(document_content.content)
+                response = LegalDocumentResponse(
+                    raw_content=document_content.content,
+                    structured_data=buku_tabungan_structured,
+                    document_type=DocumentType.BukuTabungan.value,
+                    bounding_boxes=[]
+                )
+                return response
+            elif doc_type and doc_type == DocumentType.KTP.value:
+                ktp_structured = await self.llm_service.ktp_extractor(document_content.content)
+                response = LegalDocumentResponse(
+                    raw_content=document_content.content,
+                    structured_data=ktp_structured,
+                    document_type=DocumentType.KTP.value,
+                    bounding_boxes=[]
+                )
                 return response
             else:
-                # For other document types, return classification result
                 return {
                     'content': document_content.content,
                     'document_type': document_type.model_dump() if hasattr(document_type, 'model_dump') else document_type
