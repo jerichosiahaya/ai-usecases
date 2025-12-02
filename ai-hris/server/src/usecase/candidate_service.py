@@ -90,7 +90,7 @@ class CandidateService:
             if not existing_candidate:
                 return None
             
-            discrepancy_results = await self.llm_service.discrepancy_analysis(existing_candidate)
+            discrepancy_results = await self.llm_service.discrepancy_analysis(existing_candidate.model_copy(update=candidate_data))
             
             # Get existing raw candidate (Dict) to preserve extra fields and casing
             existing_candidate_raw = self.candidate_repo.get_raw_by_id(candidate_id, id_field="candidateId")

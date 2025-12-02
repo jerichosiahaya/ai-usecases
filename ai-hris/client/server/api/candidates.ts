@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event): Promise<any> => {
   const config = useRuntimeConfig()
-  const apiUrl = config.public.apiUrl || 'http://localhost:8000'
+  const apiUrl = config.public.apiUrl || 'https://ai-hris-server.azurewebsites.net'
 
   try {
     const response: any = await $fetch<any>(`${apiUrl}/api/v1/hr/candidates`)
