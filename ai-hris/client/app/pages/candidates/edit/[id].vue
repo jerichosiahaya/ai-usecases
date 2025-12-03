@@ -15,6 +15,8 @@ import KartuKeluargaModal from '@/components/candidates/KartuKeluargaModal.vue'
 import KartuKeluargaContent from '@/components/candidates/KartuKeluargaContent.vue'
 import KtpModal from '@/components/candidates/KtpModal.vue'
 import KtpContent from '@/components/candidates/KtpContent.vue'
+import OfferingLetterModal from '@/components/candidates/OfferingLetterModal.vue'
+import OfferingLetterContent from '@/components/candidates/OfferingLetterContent.vue'
 import {
   Dialog,
   DialogContent,
@@ -114,6 +116,23 @@ const previewDocument = computed(() => {
     last_updated: d.last_updated,
     extracted_content: d.structured_data
   } as LegalDocumentSchemaV2
+})
+
+const previewOfferingLetter = computed(() => {
+  if (!offeringLetterAnalysis.value?.data) return undefined
+  
+  const d = offeringLetterAnalysis.value.data
+  return {
+    type: 'Signed Offering Letter',
+    name: tempUploadedFile.value?.name || d.name,
+    url: d.url,
+    last_updated: d.last_updated || new Date().toISOString(),
+    extracted_content: {
+      content: d.extracted_content?.content || '',
+      bounding_boxes: d.extracted_content?.bounding_boxes || [],
+      structured_data: d.extracted_content?.structured_data || {}
+    }
+  } as OfferingLetter
 })
 
 const hasResume = computed(() => {
@@ -423,16 +442,13 @@ const confirmOfferingLetter = () => {
   // Create offering letter entry
   const newOfferingLetter: OfferingLetter = {
     type: 'Signed Offering Letter',
-    name: file.name,
-    url: '',
-    last_updated: new Date().toISOString(),
+    name: analysis.data?.name || file.name,
+    url: analysis.data?.url || '',
+    last_updated: analysis.data?.last_updated || new Date().toISOString(),
     extracted_content: {
-      content: analysis.data?.signed_content || '',
-      bounding_boxes: [],
-      structured_data: {
-        exists: analysis.data?.exists || false,
-        signed_content: analysis.data?.signed_content || ''
-      }
+      content: analysis.data?.extracted_content?.content || '',
+      bounding_boxes: analysis.data?.extracted_content?.bounding_boxes || [],
+      structured_data: analysis.data?.extracted_content?.structured_data || {}
     }
   }
   
@@ -721,20 +737,38 @@ const saveCandidate = async () => {
           <CardDescription>Upload or manage the signed offer letter document.</CardDescription>
         </CardHeader>
         <CardContent class="space-y-4">
-          <div v-if="hasOfferingLetter" class="flex items-center justify-between p-3 border rounded-md bg-green-50 hover:bg-green-100 cursor-pointer transition-colors" @click="selectedDocument = form.offering_letter; isModalOpen = true">
-            <div class="flex items-center gap-3 flex-1">
-              <FileText class="h-5 w-5 text-green-600" />
-              <div class="flex-1">
-                <div class="flex items-center gap-2">
-                  <p class="text-sm font-medium">{{ form.offering_letter.name }}</p>
-                  <Badge variant="default" class="bg-green-600">Signed</Badge>
+          <div v-if="hasOfferingLetter" class="flex flex-col gap-2 p-4 border rounded-md bg-green-50 hover:bg-green-100 cursor-pointer transition-colors" @click="selectedDocument = form.offering_letter; isModalOpen = true">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 flex-1">
+                <FileText class="h-5 w-5 text-green-600" />
+                <div class="flex-1">
+                  <div class="flex items-center gap-2">
+                    <p class="text-sm font-medium">{{ form.offering_letter.name }}</p>
+                    <Badge variant="default" class="bg-green-600">Signed</Badge>
+                  </div>
+                  <p class="text-xs text-muted-foreground">Signed Offering Letter • {{ new Date(form.offering_letter.last_updated).toLocaleDateString() }}</p>
                 </div>
-                <p class="text-xs text-muted-foreground">Signed Offering Letter • {{ new Date(form.offering_letter.last_updated).toLocaleDateString() }}</p>
+              </div>
+              <Button variant="ghost" size="icon" @click.stop="form.offering_letter = undefined" class="text-destructive hover:text-destructive hover:bg-destructive/10">
+                <Trash2 class="h-4 w-4" />
+              </Button>
+            </div>
+
+            <!-- Structured Data Preview -->
+            <div v-if="form.offering_letter.extracted_content?.structured_data" class="grid grid-cols-1 sm:grid-cols-3 gap-4 pl-8 mt-1 border-t border-green-200/50 pt-3">
+              <div v-if="form.offering_letter.extracted_content.structured_data.position">
+                <p class="text-xs text-muted-foreground">Position</p>
+                <p class="text-sm font-medium">{{ form.offering_letter.extracted_content.structured_data.position }}</p>
+              </div>
+              <div v-if="form.offering_letter.extracted_content.structured_data.salary">
+                <p class="text-xs text-muted-foreground">Salary</p>
+                <p class="text-sm font-medium">{{ form.offering_letter.extracted_content.structured_data.salary }}</p>
+              </div>
+              <div v-if="form.offering_letter.extracted_content.structured_data.start_date">
+                <p class="text-xs text-muted-foreground">Start Date</p>
+                <p class="text-sm font-medium">{{ formatDate(form.offering_letter.extracted_content.structured_data.start_date) }}</p>
               </div>
             </div>
-            <Button variant="ghost" size="icon" @click.stop="form.offering_letter = undefined" class="text-destructive hover:text-destructive hover:bg-destructive/10">
-              <Trash2 class="h-4 w-4" />
-            </Button>
           </div>
           <div v-else class="text-sm text-muted-foreground text-center py-4 border border-dashed rounded-md">
             No offering letter uploaded yet.
@@ -762,6 +796,13 @@ const saveCandidate = async () => {
         v-else-if="selectedDocument && (selectedDocument.type === 'KTP' || selectedDocument.type === 'KARTU_TANDA_PENDUDUK')"
         :open="isModalOpen" 
         :data="selectedDocument"
+        @update:open="isModalOpen = $event"
+      />
+
+      <OfferingLetterModal 
+        v-else-if="selectedDocument && selectedDocument.type === 'Signed Offering Letter'"
+        :open="isModalOpen" 
+        :data="selectedDocument as any"
         @update:open="isModalOpen = $event"
       />
       
@@ -829,7 +870,7 @@ const saveCandidate = async () => {
 
       <!-- Offering Letter Analysis Modal -->
       <Dialog :open="isOfferingLetterModalOpen" @update:open="isOfferingLetterModalOpen = $event">
-        <DialogContent class="w-[95vw] max-w-2xl flex flex-col p-6 max-h-[90vh] overflow-y-auto">
+        <DialogContent class="w-[95vw] max-w-none! h-[95vh] flex flex-col p-6">
           <DialogHeader>
             <DialogTitle>Offering Letter Preview</DialogTitle>
             <DialogDescription>
@@ -837,45 +878,18 @@ const saveCandidate = async () => {
             </DialogDescription>
           </DialogHeader>
           
-          <div v-if="isAnalyzing" class="space-y-4 flex flex-col items-center justify-center py-12">
+          <div v-if="isAnalyzing" class="space-y-4 flex flex-col items-center justify-center py-12 h-full">
             <Progress :model-value="uploadProgress" class="w-full max-w-md" />
             <p class="text-sm text-center text-muted-foreground">Analyzing document... {{ uploadProgress }}%</p>
           </div>
 
-          <div v-else-if="offeringLetterAnalysis" class="space-y-6 py-4">
-            <!-- Signature Status -->
-            <div class="flex items-center gap-3 p-4 border rounded-lg" :class="offeringLetterAnalysis.data?.exists ? 'bg-green-50 border-green-200' : 'bg-yellow-50 border-yellow-200'">
-              <div>
-                <Badge :class="offeringLetterAnalysis.data?.exists ? 'bg-green-600' : 'bg-yellow-600'">
-                  {{ offeringLetterAnalysis.data?.exists ? 'Signed' : 'Not Signed' }}
-                </Badge>
-              </div>
-              <div>
-                <p class="font-medium text-sm">Signature Status</p>
-                <p class="text-xs text-muted-foreground">
-                  {{ offeringLetterAnalysis.data?.exists ? 'This document has been signed.' : 'This document has not been signed yet.' }}
-                </p>
-              </div>
-            </div>
-
-            <!-- Document Content Preview -->
-            <div class="space-y-2">
-              <Label class="text-base font-semibold">Document Content</Label>
-              <div class="bg-muted p-4 rounded-lg max-h-[300px] overflow-y-auto border">
-                <pre class="text-xs whitespace-pre-wrap text-muted-foreground">{{ offeringLetterAnalysis.data?.signed_content }}</pre>
-              </div>
-            </div>
-
-            <!-- File Name -->
-            <div class="space-y-2">
-              <Label class="text-sm font-medium">File Name</Label>
-              <p class="text-sm text-muted-foreground">{{ tempUploadedFile?.name }}</p>
-            </div>
+          <div v-else-if="previewOfferingLetter" class="flex-1 overflow-hidden py-4">
+            <OfferingLetterContent :data="previewOfferingLetter" />
           </div>
 
           <DialogFooter v-if="!isAnalyzing">
             <Button variant="outline" @click="isOfferingLetterModalOpen = false">Cancel</Button>
-            <Button @click="confirmOfferingLetter" :disabled="!offeringLetterAnalysis?.data?.exists">
+            <Button @click="confirmOfferingLetter" :disabled="!previewOfferingLetter?.extracted_content?.structured_data?.is_signed">
               Confirm & Add Offering Letter
             </Button>
           </DialogFooter>
