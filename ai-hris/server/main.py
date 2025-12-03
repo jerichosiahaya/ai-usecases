@@ -19,6 +19,7 @@ from src.usecase.employee_service import EmployeeService
 from src.repository.document_intelligence import DocumentIntelligenceRepository
 from src.repository.blob_storage import BlobStorageRepository
 from src.usecase.document_analyzer import DocumentAnalyzer
+from src.domain.document_analyzer import LegalDocumentResponse
 
 app = Flask(__name__)
 
@@ -365,21 +366,21 @@ def document_upload():
         
         try:
             # Analyze document
-            result = asyncio.run(document_analyzer.upload_document(document_path=temp_path, candidate_id=candidate_id))
+            result: LegalDocumentResponse = asyncio.run(document_analyzer.upload_document(document_path=temp_path, candidate_id=candidate_id))
             
             # Upload to blob storage
             file.seek(0)  # Reset file pointer
             blob_info = blob_storage.upload_file(file=file, candidate_id=candidate_id, original_filename=file.filename)
             
             # Add blob info to response
-            if isinstance(result, dict):
-                result['url'] = blob_info.get('url', '')
-                result['name'] = blob_info.get('blob_name', '')
-                result['last_updated'] = blob_info.get('uploaded_at', '')
+            result_dict = result.model_dump() if hasattr(result, 'model_dump') else result
+            result_dict['url'] = blob_info.get('url', '')
+            result_dict['name'] = file.filename
+            result_dict['last_updated'] = blob_info.get('uploaded_at', '')
             
             return ok(
                 message="Document uploaded successfully",
-                data=result.model_dump() if hasattr(result, 'model_dump') else result
+                data=result_dict
             )
         finally:
             # Clean up temporary file

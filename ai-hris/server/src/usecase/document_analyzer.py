@@ -69,8 +69,9 @@ class DocumentAnalyzer:
             logger.error(f"Error in classify_legal_document use case: {e}")
             raise
 
-    async def upload_document(self, document_path: str, candidate_id: str = None) -> dict:
+    async def upload_document(self, document_path: str, candidate_id: str = None) -> LegalDocumentResponse:
         try:
+            # flow: extract content -> classify document -> extract structured data based on type
             # extract raw content
             document_content = self.doc_intel_repo.analyze_read(document_path=document_path)
 
@@ -82,28 +83,31 @@ class DocumentAnalyzer:
                 # bounding_boxes = self._extract_bounding_boxes(document_content)
                 kartu_keluarga_structured: KartuKeluarga = await self.llm_service.kartu_keluarga_extractor(document_content.content)
                 response = LegalDocumentResponse(
-                    raw_content=document_content.content,
+                    type=DocumentType.KK.value,
+                    name="",
+                    last_updated="",
+                    url="",
                     structured_data=kartu_keluarga_structured,
-                    document_type=DocumentType.KK.value,
-                    bounding_boxes=[]
                 )
                 return response
             elif doc_type and doc_type == DocumentType.BukuTabungan.value:
                 buku_tabungan_structured: BukuTabungan = await self.llm_service.buku_tabungan_extractor(document_content.content)
                 response = LegalDocumentResponse(
-                    raw_content=document_content.content,
+                    type=DocumentType.BukuTabungan.value,
+                    name="",
+                    last_updated="",
+                    url="",
                     structured_data=buku_tabungan_structured,
-                    document_type=DocumentType.BukuTabungan.value,
-                    bounding_boxes=[]
                 )
                 return response
             elif doc_type and doc_type == DocumentType.KTP.value:
                 ktp_structured = await self.llm_service.ktp_extractor(document_content.content)
                 response = LegalDocumentResponse(
-                    raw_content=document_content.content,
+                    type=DocumentType.KTP.value,
+                    name="",
+                    last_updated="",
+                    url="",
                     structured_data=ktp_structured,
-                    document_type=DocumentType.KTP.value,
-                    bounding_boxes=[]
                 )
                 return response
             else:

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { Candidate, LegalDocument, FamilyMember, ResumeDocument, OfferingLetter } from '@/components/candidates/data/schema'
+import type { Candidate, LegalDocument, FamilyMember, ResumeDocument, OfferingLetter, LegalDocumentSchemaV2 } from '@/components/candidates/data/schema'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -13,6 +13,8 @@ import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import KartuKeluargaModal from '@/components/candidates/KartuKeluargaModal.vue'
 import KartuKeluargaContent from '@/components/candidates/KartuKeluargaContent.vue'
+import KtpModal from '@/components/candidates/KtpModal.vue'
+import KtpContent from '@/components/candidates/KtpContent.vue'
 import {
   Dialog,
   DialogContent,
@@ -106,12 +108,12 @@ const previewDocument = computed(() => {
   if (!tempExtractedData.value?.data) return null
   const d = tempExtractedData.value.data
   return {
-    type: d.document_type,
+    type: d.type,
     name: d.name,
     url: d.url,
     last_updated: d.last_updated,
-    extracted_content: d.document_data
-  } as LegalDocument
+    extracted_content: d.structured_data
+  } as LegalDocumentSchemaV2
 })
 
 const hasResume = computed(() => {
@@ -257,7 +259,6 @@ if (error.value || !candidate.value) {
     offering_letter: c.offering_letter,
     family_members: c.family_members || []
   }
-  console.log('Loaded candidate data:', form.value)
 }
 
 const goBack = () => {
@@ -301,8 +302,7 @@ const removeFamilyMember = (index: number) => {
   form.value.family_members.splice(index, 1)
 }
 
-const openDocumentModal = (doc: LegalDocument) => {
-  console.log('Opening document:', doc)
+const openDocumentModal = (doc: LegalDocumentSchemaV2) => {
   selectedDocument.value = doc
   isModalOpen.value = true
 }
@@ -754,6 +754,13 @@ const saveCandidate = async () => {
         :data="selectedDocument"
         @update:open="isModalOpen = $event"
       />
+
+      <KtpModal 
+        v-else-if="selectedDocument && (selectedDocument.type === 'KTP' || selectedDocument.type === 'KARTU_TANDA_PENDUDUK')"
+        :open="isModalOpen" 
+        :data="selectedDocument"
+        @update:open="isModalOpen = $event"
+      />
       
       <!-- Fallback for other document types -->
       <Dialog 
@@ -795,6 +802,11 @@ const saveCandidate = async () => {
             
             <KartuKeluargaContent 
               v-else-if="previewDocument && (previewDocument.type === 'KK' || previewDocument.type === 'KARTU_KELUARGA')" 
+              :data="previewDocument"
+            />
+
+            <KtpContent 
+              v-else-if="previewDocument && (previewDocument.type === 'KTP' || previewDocument.type === 'KARTU_TANDA_PENDUDUK')" 
               :data="previewDocument"
             />
 

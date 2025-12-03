@@ -31,17 +31,44 @@ const kartuKeluargaStructuredSchema = z.object({
   family_members: z.array(familyMemberDetailSchema),
 })
 
+const ktpStructuredSchema = z.object({
+  nik: z.string().optional(),
+  name: z.string().optional(),
+  birth_place: z.string().optional(),
+  birth_date: z.string().optional(),
+  gender: z.string().optional(),
+  religion: z.string().optional(),
+  marital_status: z.string().optional(),
+  occupation: z.string().optional(),
+  nationality: z.string().optional(),
+  address: z.string().optional(),
+  rt_rw: z.string().optional(),
+  village: z.string().optional(),
+  district: z.string().optional(),
+  city: z.string().optional(),
+  province: z.string().optional(),
+}).passthrough()
+
 const extractedContentSchema = z.object({
   bounding_boxes: z.array(boundingBoxSchema).optional(),
   content: z.string().optional(),
-  structured_data: kartuKeluargaStructuredSchema.optional(),
-})
+  structured_data: z.any().optional(),
+}).passthrough()
 
+// deprecated, use legalDocumentSchemaV2 instead
 const legalDocumentSchema = z.object({
   type: z.string(),
   name: z.string(),
   url: z.string(),
   last_updated: z.string(),
+  extracted_content: extractedContentSchema.optional(),
+})
+
+const legalDocumentSchemaV2 = z.object({
+  type: z.string(),
+  name: z.string(),
+  last_updated: z.string(),
+  url: z.string(),
   extracted_content: extractedContentSchema.optional(),
 })
 
@@ -182,9 +209,11 @@ export const candidateSchema = z.object({
 
 export type Candidate = z.infer<typeof candidateSchema>
 export type KartuKeluargaStructured = z.infer<typeof kartuKeluargaStructuredSchema>
+export type KtpStructured = z.infer<typeof ktpStructuredSchema>
 export type FamilyMemberDetail = z.infer<typeof familyMemberDetailSchema>
 export type BoundingBox = z.infer<typeof boundingBoxSchema>
 export type LegalDocument = z.infer<typeof legalDocumentSchema>
+export type LegalDocumentSchemaV2 = z.infer<typeof legalDocumentSchemaV2>
 export type ResumeDocument = z.infer<typeof resumeDocumentSchema>
 export type OfferingLetter = z.infer<typeof offeringLetterSchema>
 export type ExtractedContent = z.infer<typeof extractedContentSchema>

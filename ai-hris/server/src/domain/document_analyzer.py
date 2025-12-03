@@ -66,8 +66,9 @@ class KTP(KernelBaseModel):
     nationality: str
 
 class LegalDocumentResponse(KernelBaseModel):
-    raw_content: str
+    type: str
+    name: str
     structured_data: dict
-    document_type: str
-    bounding_boxes: list[dict] = []
+    url: str
+    last_updated: str
     
