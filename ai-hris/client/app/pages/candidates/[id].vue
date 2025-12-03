@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { Candidate, KartuKeluargaStructured, LegalDocument } from '@/components/candidates/data/schema'
 import KartuKeluargaModal from '@/components/candidates/KartuKeluargaModal.vue'
-import SignedOfferLetterContent from '@/components/candidates/SignedOfferLetterContent.vue'
+import OfferingLetterModal from '@/components/candidates/OfferingLetterModal.vue'
 import {
   Dialog,
   DialogContent,
@@ -138,7 +138,7 @@ const getSeverityIcon = (severity: string) => {
   return map[severity] || Info
 }
 
-const requiredDocuments = ['KTP', 'KK', 'Ijazah', 'Buku Tabungan', 'Signed Offer Letter']
+const requiredDocuments = ['KTP', 'KK', 'Buku Tabungan', 'Signed Offer Letter']
 
 const getDocumentIcon = (docType: string) => {
   const iconMap: Record<string, any> = {
@@ -961,17 +961,10 @@ const getSignalColor = (signal: string, index?: number) => {
     />
 
     <!-- Signed Offering Letter Modal -->
-    <Dialog :open="isOfferingLetterModalOpen" @update:open="isOfferingLetterModalOpen = $event">
-      <DialogContent class="w-[95vw] max-w-2xl flex flex-col p-6 max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>Signed Offering Letter</DialogTitle>
-          <DialogDescription>
-            Review the signed offering letter document
-          </DialogDescription>
-        </DialogHeader>
-        
-        <SignedOfferLetterContent :data="candidate?.offering_letter" />
-      </DialogContent>
-    </Dialog>
+    <OfferingLetterModal 
+      :open="isOfferingLetterModalOpen" 
+      :data="candidate?.offering_letter"
+      @update:open="isOfferingLetterModalOpen = $event"
+    />
   </div>
 </template>

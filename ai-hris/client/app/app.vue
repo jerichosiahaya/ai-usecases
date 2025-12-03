@@ -24,7 +24,7 @@ useHead({
   },
 })
 
-const title = 'AI HRIS'
+const title = 'HRIS AI'
 const description = ''
 
 useSeoMeta({
