@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import { CheckCircle2, AlertCircle, FileText } from 'lucide-vue-next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import { Button } from '@/components/ui/button'
 import type { OfferingLetter } from './data/schema'
 
 const props = defineProps<{
@@ -22,7 +24,15 @@ const formatDate = (dateString: string) => {
   }
 }
 
-const isSigned = props.data.extracted_content?.structured_data?.is_signed
+const isSigned = ref(props.data.extracted_content?.structured_data?.is_signed)
+
+watch(() => props.data.extracted_content?.structured_data?.is_signed, (newVal) => {
+  isSigned.value = newVal
+})
+
+const markAsUnsigned = () => {
+  isSigned.value = false
+}
 </script>
 
 <template>
@@ -34,12 +44,21 @@ const isSigned = props.data.extracted_content?.structured_data?.is_signed
     >
       <CheckCircle2 v-if="isSigned" class="h-6 w-6" />
       <AlertCircle v-else class="h-6 w-6" />
-      <div>
+      <div class="flex-1">
         <h3 class="font-semibold">{{ isSigned ? 'Document Signed' : 'Document Not Signed' }}</h3>
         <p class="text-sm opacity-90">
           {{ isSigned ? 'This offering letter has been digitally signed by the candidate.' : 'This offering letter has not been signed by the candidate.' }}
         </p>
       </div>
+      <Button 
+        v-if="isSigned"
+        variant="outline" 
+        size="sm"
+        class="bg-white/50 hover:bg-white/80 border-green-300 text-green-800 hover:text-green-900"
+        @click="markAsUnsigned"
+      >
+        Mark as Unsigned
+      </Button>
     </div>
 
     <div class="flex gap-6 flex-1 overflow-hidden">
