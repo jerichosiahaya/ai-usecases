@@ -32,28 +32,28 @@ const kartuKeluargaStructuredSchema = z.object({
 })
 
 const extractedContentSchema = z.object({
-  bounding_boxes: z.array(boundingBoxSchema).optional(),
+  boundingBoxes: z.array(boundingBoxSchema).optional(),
   content: z.string().optional(),
-  structured_data: kartuKeluargaStructuredSchema.optional(),
+  structuredData: kartuKeluargaStructuredSchema.optional(),
 })
 
 const legalDocumentSchema = z.object({
   type: z.string(),
   name: z.string(),
   url: z.string(),
-  last_updated: z.string(),
-  extracted_content: extractedContentSchema.optional(),
+  lastUpdated: z.string(),
+  extractedContent: extractedContentSchema.optional(),
 })
 
 const resumeDocumentSchema = z.object({
   type: z.string().default('RESUME'),
   name: z.string(),
   url: z.string(),
-  last_updated: z.string(),
-  extracted_content: z.object({
+  lastUpdated: z.string(),
+  extractedContent: z.object({
     content: z.string(),
     tables: z.array(z.any()).optional(),
-    bounding_boxes: z.array(z.any()).optional(),
+    boundingBoxes: z.array(z.any()).optional(),
   }).optional(),
 })
 
@@ -61,8 +61,8 @@ const offeringLetterSchema = z.object({
   type: z.string().default('OFFERING_LETTER'),
   name: z.string(),
   url: z.string(),
-  last_updated: z.string(),
-  extracted_content: extractedContentSchema.optional(),
+  lastUpdated: z.string(),
+  extractedContent: extractedContentSchema.optional(),
 })
 
 const noteSchema = z.object({
@@ -173,6 +173,7 @@ export const candidateSchema = z.object({
   })).optional(),
   family_members: z.array(familyMemberSchema).optional(),
   legal_documents: z.array(legalDocumentSchema).optional(),
+  legalDocuments: z.array(legalDocumentSchema).optional(),
   resume: resumeDocumentSchema.optional(),
   offering_letter: offeringLetterSchema.optional(),
   interview: interviewSchema.optional(),
@@ -214,6 +215,7 @@ export const employeeSchema = z.object({
   })).optional(),
   family_members: z.array(familyMemberSchema).optional(),
   legal_documents: z.array(legalDocumentSchema).optional(),
+  legalDocuments: z.array(legalDocumentSchema).optional(),
   resume: resumeDocumentSchema.optional(),
   offering_letter: offeringLetterSchema.optional(),
   // interview: interviewSchema.optional(),

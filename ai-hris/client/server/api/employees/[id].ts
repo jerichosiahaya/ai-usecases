@@ -69,12 +69,16 @@ export default defineEventHandler(async (event): Promise<any> => {
         "gender": "Male",
         "id": "b2c5b2c5-6400-42b9-b9b0-ac8ee7ea6400",
         "joined_date": "2025-11-20T07:13:36.180340Z",
-        "legal_documents": [
+        "legalDocuments": [
           {
-            "extracted_content": {
-              "bounding_boxes": [],
+            "type": "KK",
+            "name": "kartu_keluarga_siti_nurhaliza.png",
+            "url": "https://protohub.blob.core.windows.net/hris/siti_nurhaliza/kartu_keluarga_siti_nurhaliza.png",
+            "lastUpdated": "2025-11-25T07:16:04.742378Z",
+            "extractedContent": {
+              "boundingBoxes": [],
               "content": "KARTU KELUARGA No- 1000000000000000\nNama Kepala Keluarga Alamat RT/RW REPUBLIK INDONESIA Kode Pos\n: BAMBANG SUSENO\n: JALAN PEMUDA NO 105 RAWAMANGUN JAKARTA TIMUR\nDesa/Kelurahan Kecamatan : PULO GADUNG Kabupaten/Kota\nProvinsi\n: JAKARTA TIMUR : DKI JAKARTA\nNo\nNama Lengkap\nNIK\nJenis Kelamin\nTempat Lahir\nTanggal Lahir\nAgama\nPendidikan\nJenis Pekerjaan\nGolongan Darah\n(1)\n(2)\n(3)\n(4\n(5)\n(6)\n(7)\n(8)\n(9)\n1\nBAMBANG SUSENO\n1000000000000000\nLAKI-LAKI\nPONOROGO\n15-05-1990\nISLAM\nDIPLOMA IV/STRATA I\nSWASTA\n0\n2\nSITI NURHALIZA\n1000000000000333 |PEREMPUAN\nJAKARTA\n15-05-1992\nISLAM\nDIPLOMA IV/STRATA I\nSWASTA\n-\n4\n5\n6\n7\n-\nOC\n10\n-\n-\n-\nNo.\nStatus Perkawinan\nTanggal Perkawinan/Perceraian\nStatus Hubungan Dalam Keluarga\nKewarganegaraan\nNo. Paspor\nNo. KITAP\nAyah\nIbu\n(10)\n(11)\n(12)\n(13)\n(14)\n(15)\n(16)\n(17)\n1\nKAWIN TERCATAT\n14-02-2022\nKEPALA KELUARGA\nWNI\nSUKARJI\nSUTINI\n2\nKAWIN TERCATAT\n14-02-2022\nISTRI\nWNI\nADAM FAJAR\nENDANG RINI\n3\n4\n5\n6\n-\nF\n7\nF\n-\n#\n1\n1\n8\n9\n1\n-\n-\nF\n-\n10\n-\n-\n-\n-\n-\n-\n-\n1\nDikeluarkan Tanggal :\n12-10-2022\nKEPALA KELUARGA\nKEPALA DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL\nSUHENDRO, SH.MM NIP. 196300000000000000\nBAMBANG SUSENO Tanda Tangan/Cap Jempol\nDokumen ini telah ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), BSSN\n-\n-\n-\n-\nDokumen Imigrasi\nNama Orang Tua\n-\n-\n: PULO GADUNG\n: 003/001 : 335666\n3",
-              "structured_data": {
+              "structuredData": {
                 "address": "JALAN PEMUDA NO 105 RAWAMANGUN JAKARTA TIMUR",
                 "city": "JAKARTA TIMUR",
                 "district": "PULO GADUNG",
@@ -109,11 +113,34 @@ export default defineEventHandler(async (event): Promise<any> => {
                 "rt_rw": "003/001",
                 "village": "PULO GADUNG"
               }
-            },
-            "last_updated": "2025-11-25T07:16:04.742378Z",
-            "name": "kartu_keluarga_siti_nurhaliza.png",
-            "type": "KK",
-            "url": "https://protohub.blob.core.windows.net/hris/siti_nurhaliza/kartu_keluarga_siti_nurhaliza.png"
+            }
+          },
+          {
+            "type": "KTP",
+            "name": "ktp_siti_nurhaliza.png",
+            "url": "https://protohub.blob.core.windows.net/hris/siti_nurhaliza/kartu_keluarga_siti_nurhaliza.png",
+            "lastUpdated": "2025-11-25T07:16:04.742378Z",
+            "extractedContent": {
+              "boundingBoxes": [],
+              "content": "KARTU KELUARGA No- 1000000000000000\nNama Kepala Keluarga Alamat RT/RW REPUBLIK INDONESIA Kode Pos\n: BAMBANG SUSENO\n: JALAN PEMUDA NO 105 RAWAMANGUN JAKARTA TIMUR\nDesa/Kelurahan Kecamatan : PULO GADUNG Kabupaten/Kota\nProvinsi\n: JAKARTA TIMUR : DKI JAKARTA\nNo\nNama Lengkap\nNIK\nJenis Kelamin\nTempat Lahir\nTanggal Lahir\nAgama\nPendidikan\nJenis Pekerjaan\nGolongan Darah\n(1)\n(2)\n(3)\n(4\n(5)\n(6)\n(7)\n(8)\n(9)\n1\nBAMBANG SUSENO\n1000000000000000\nLAKI-LAKI\nPONOROGO\n15-05-1990\nISLAM\nDIPLOMA IV/STRATA I\nSWASTA\n0\n2\nSITI NURHALIZA\n1000000000000333 |PEREMPUAN\nJAKARTA\n15-05-1992\nISLAM\nDIPLOMA IV/STRATA I\nSWASTA\n-\n4\n5\n6\n7\n-\nOC\n10\n-\n-\n-\nNo.\nStatus Perkawinan\nTanggal Perkawinan/Perceraian\nStatus Hubungan Dalam Keluarga\nKewarganegaraan\nNo. Paspor\nNo. KITAP\nAyah\nIbu\n(10)\n(11)\n(12)\n(13)\n(14)\n(15)\n(16)\n(17)\n1\nKAWIN TERCATAT\n14-02-2022\nKEPALA KELUARGA\nWNI\nSUKARJI\nSUTINI\n2\nKAWIN TERCATAT\n14-02-2022\nISTRI\nWNI\nADAM FAJAR\nENDANG RINI\n3\n4\n5\n6\n-\nF\n7\nF\n-\n#\n1\n1\n8\n9\n1\n-\n-\nF\n-\n10\n-\n-\n-\n-\n-\n-\n-\n1\nDikeluarkan Tanggal :\n12-10-2022\nKEPALA KELUARGA\nKEPALA DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL\nSUHENDRO, SH.MM NIP. 196300000000000000\nBAMBANG SUSENO Tanda Tangan/Cap Jempol\nDokumen ini telah ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), BSSN\n-\n-\n-\n-\nDokumen Imigrasi\nNama Orang Tua\n-\n-\n: PULO GADUNG\n: 003/001 : 335666\n3",
+              "structuredData": {
+                "address": "JLN Pemuda 105 Rawamangun",
+                "birth_date": "1992-05-15",
+                "birth_place": "Jakarta",
+                "city": "null",
+                "district": "null",
+                "gender": "Perempuan",
+                "marital_status": "Kawin",
+                "name": "Siti Nurhaliza",
+                "nationality": "Indonesia",
+                "nik": "1000000000000333",
+                "occupation": "Swasta",
+                "province": "null",
+                "religion": "Islam",
+                "rt_rw": "003/001",
+                "village": "Pulo Gadung"
+              }
+            }
           }
         ],
         "name": "Agus Sulaiman",
