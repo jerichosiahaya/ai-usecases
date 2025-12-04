@@ -22,6 +22,7 @@ export default defineEventHandler(async (event): Promise<any> => {
 
     const response: any = await $fetch<any>(`${apiUrl}/api/v1/hr/candidate/${id}`, fetchOptions)
     // Extract the data object from the response wrapper
+    console.log(`Successfully ${method} candidate:`, response)
     return response?.data || response
   } catch (error) {
     console.error(`Error ${method} candidate:`, error)
