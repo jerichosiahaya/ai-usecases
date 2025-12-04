@@ -92,6 +92,22 @@ const offeringLetterSchema = z.object({
   extracted_content: extractedContentSchema.optional(),
 })
 
+const bukuTabunganStructuredSchema = z.object({
+  account_holder_name: z.string().optional(),
+  account_number: z.string().optional(),
+  account_type: z.string().optional(),
+  bank_name: z.string().optional(),
+  branch_name: z.string().optional(),
+})
+
+const bukuTabunganSchema = z.object({
+  type: z.string().default('Buku Tabungan'),
+  name: z.string(),
+  url: z.string(),
+  last_updated: z.string(),
+  extracted_content: extractedContentSchema.optional(),
+})
+
 const noteSchema = z.object({
   author: z.string(),
   role: z.string(),
@@ -216,6 +232,8 @@ export type LegalDocument = z.infer<typeof legalDocumentSchema>
 export type LegalDocumentSchemaV2 = z.infer<typeof legalDocumentSchemaV2>
 export type ResumeDocument = z.infer<typeof resumeDocumentSchema>
 export type OfferingLetter = z.infer<typeof offeringLetterSchema>
+export type BukuTabungan = z.infer<typeof bukuTabunganSchema>
+export type BukuTabunganStructured = z.infer<typeof bukuTabunganStructuredSchema>
 export type ExtractedContent = z.infer<typeof extractedContentSchema>
 export type Interview = z.infer<typeof interviewSchema>
 export type InterviewScore = z.infer<typeof interviewScoreSchema>
