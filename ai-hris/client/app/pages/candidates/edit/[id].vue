@@ -110,11 +110,11 @@ const previewDocument = computed(() => {
   if (!tempExtractedData.value?.data) return null
   const d = tempExtractedData.value.data
   return {
-    type: d.type,
+    type: d.type || d.document_type,
     name: d.name,
     url: d.url,
     last_updated: d.last_updated,
-    extracted_content: d.structured_data
+    extracted_content: d.document_data || (d.structured_data ? { structured_data: d.structured_data } : undefined)
   } as LegalDocumentSchemaV2
 })
 
@@ -206,7 +206,7 @@ const confirmUpload = () => {
       form.value.offering_letter = newOfferingLetter
     } else {
       // Handle legal documents
-      let docType = result.data?.document_type || result.document_type || 'OTHER'
+      let docType = result.data?.document_type || result.data?.type || result.document_type || 'OTHER'
 
       // Create new document entry
       const newDoc: LegalDocument = {
@@ -214,7 +214,7 @@ const confirmUpload = () => {
         name: result.data?.name || file.name,
         url: result.data?.url || '', 
         last_updated: result.data?.last_updated || new Date().toISOString(),
-        extracted_content: result.data?.document_data || result
+        extracted_content: result.data?.document_data || (result.data?.structured_data ? { structured_data: result.data.structured_data } : result)
       }
 
       form.value.legal_documents.push(newDoc)
