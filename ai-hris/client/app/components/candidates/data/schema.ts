@@ -31,18 +31,45 @@ const kartuKeluargaStructuredSchema = z.object({
   family_members: z.array(familyMemberDetailSchema),
 })
 
+const ktpStructuredSchema = z.object({
+  nik: z.string().optional(),
+  name: z.string().optional(),
+  birth_place: z.string().optional(),
+  birth_date: z.string().optional(),
+  gender: z.string().optional(),
+  religion: z.string().optional(),
+  marital_status: z.string().optional(),
+  occupation: z.string().optional(),
+  nationality: z.string().optional(),
+  address: z.string().optional(),
+  rt_rw: z.string().optional(),
+  village: z.string().optional(),
+  district: z.string().optional(),
+  city: z.string().optional(),
+  province: z.string().optional(),
+}).passthrough()
+
 const extractedContentSchema = z.object({
   boundingBoxes: z.array(boundingBoxSchema).optional(),
   content: z.string().optional(),
-  structuredData: kartuKeluargaStructuredSchema.optional(),
-})
+  structured_data: z.any().optional(),
+}).passthrough()
 
+// deprecated, use legalDocumentSchemaV2 instead
 const legalDocumentSchema = z.object({
   type: z.string(),
   name: z.string(),
   url: z.string(),
   lastUpdated: z.string(),
   extractedContent: extractedContentSchema.optional(),
+})
+
+const legalDocumentSchemaV2 = z.object({
+  type: z.string(),
+  name: z.string(),
+  last_updated: z.string(),
+  url: z.string(),
+  extracted_content: extractedContentSchema.optional(),
 })
 
 const resumeDocumentSchema = z.object({
@@ -58,7 +85,23 @@ const resumeDocumentSchema = z.object({
 })
 
 const offeringLetterSchema = z.object({
-  type: z.string().default('OFFERING_LETTER'),
+  type: z.string().default('Signed Offering Letter'),
+  name: z.string(),
+  url: z.string(),
+  last_updated: z.string(),
+  extracted_content: extractedContentSchema.optional(),
+})
+
+const bukuTabunganStructuredSchema = z.object({
+  account_holder_name: z.string().optional(),
+  account_number: z.string().optional(),
+  account_type: z.string().optional(),
+  bank_name: z.string().optional(),
+  branch_name: z.string().optional(),
+})
+
+const bukuTabunganSchema = z.object({
+  type: z.string().default('Buku Tabungan'),
   name: z.string(),
   url: z.string(),
   lastUpdated: z.string(),
@@ -226,11 +269,15 @@ export const employeeSchema = z.object({
 export type Candidate = z.infer<typeof candidateSchema>
 export type Employee = z.infer<typeof employeeSchema>
 export type KartuKeluargaStructured = z.infer<typeof kartuKeluargaStructuredSchema>
+export type KtpStructured = z.infer<typeof ktpStructuredSchema>
 export type FamilyMemberDetail = z.infer<typeof familyMemberDetailSchema>
 export type BoundingBox = z.infer<typeof boundingBoxSchema>
 export type LegalDocument = z.infer<typeof legalDocumentSchema>
+export type LegalDocumentSchemaV2 = z.infer<typeof legalDocumentSchemaV2>
 export type ResumeDocument = z.infer<typeof resumeDocumentSchema>
 export type OfferingLetter = z.infer<typeof offeringLetterSchema>
+export type BukuTabungan = z.infer<typeof bukuTabunganSchema>
+export type BukuTabunganStructured = z.infer<typeof bukuTabunganStructuredSchema>
 export type ExtractedContent = z.infer<typeof extractedContentSchema>
 export type Interview = z.infer<typeof interviewSchema>
 export type InterviewScore = z.infer<typeof interviewScoreSchema>

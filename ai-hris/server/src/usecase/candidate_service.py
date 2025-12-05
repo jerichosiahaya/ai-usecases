@@ -90,7 +90,7 @@ class CandidateService:
             if not existing_candidate:
                 return None
             
-            discrepancy_results = await self.llm_service.discrepancy_analysis(existing_candidate)
+            discrepancy_results = await self.llm_service.discrepancy_analysis(existing_candidate.model_copy(update=candidate_data))
             
             # Get existing raw candidate (Dict) to preserve extra fields and casing
             existing_candidate_raw = self.candidate_repo.get_raw_by_id(candidate_id, id_field="candidateId")
@@ -153,6 +153,10 @@ class CandidateService:
                 item_to_save = existing_candidate_raw
             else:
                 item_to_save = updated_data_camel
+            
+            # Insert discrepancy results into discrepancies field
+            if discrepancy_results and "discrepancies" in discrepancy_results:
+                item_to_save["discrepancies"] = discrepancy_results["discrepancies"]
             
             # Save to DB using raw update to preserve structure
             self.candidate_repo.update_item(item=item_to_save)

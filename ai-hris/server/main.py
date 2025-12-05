@@ -15,9 +15,11 @@ from src.domain.candidate_recommendation import CandidateData, JobData
 from pydantic import ValidationError
 from src.repository.database import CosmosDB
 from src.usecase.candidate_service import CandidateService
+from src.usecase.employee_service import EmployeeService
 from src.repository.document_intelligence import DocumentIntelligenceRepository
 from src.repository.blob_storage import BlobStorageRepository
 from src.usecase.document_analyzer import DocumentAnalyzer
+from src.domain.document_analyzer import LegalDocumentResponse
 
 app = Flask(__name__)
 
@@ -41,6 +43,7 @@ cv_scoring = CVScoring(llm_service=llm)
 cv_extractor = CVExtractor(llm_service=llm)
 candidate_recommendation = CandidateRecommendation(cosmosdb=cosmosdb, embedding_service=azembedding)
 candidate_service = CandidateService(cosmosdb=cosmosdb, llm_service=llm)
+employee_service = EmployeeService(cosmosdb=cosmosdb, llm_service=llm)
 
 document_analyzer = DocumentAnalyzer(doc_intel_repo=document_intelligence, llm_service=llm)
 
@@ -333,7 +336,7 @@ def classify_document():
         app.logger.exception("Error in classify_document route")
         return internal_server_error(str(e))
     
-@app.route('/api/v1/hr/document/upload', methods=['POST'])
+@app.route('/api/v1/document/upload', methods=['POST'])
 def document_upload():
     try:
         candidate_id = request.form.get('candidate_id')
@@ -363,21 +366,21 @@ def document_upload():
         
         try:
             # Analyze document
-            result = asyncio.run(document_analyzer.upload_document(document_path=temp_path, candidate_id=candidate_id))
+            result: LegalDocumentResponse = asyncio.run(document_analyzer.upload_document(document_path=temp_path, candidate_id=candidate_id))
             
             # Upload to blob storage
             file.seek(0)  # Reset file pointer
             blob_info = blob_storage.upload_file(file=file, candidate_id=candidate_id, original_filename=file.filename)
             
             # Add blob info to response
-            if isinstance(result, dict):
-                result['url'] = blob_info.get('url', '')
-                result['name'] = blob_info.get('blob_name', '')
-                result['last_updated'] = blob_info.get('uploaded_at', '')
+            result_dict = result.model_dump() if hasattr(result, 'model_dump') else result
+            result_dict['url'] = blob_info.get('url', '')
+            result_dict['name'] = file.filename
+            result_dict['last_updated'] = blob_info.get('uploaded_at', '')
             
             return ok(
                 message="Document uploaded successfully",
-                data=result.model_dump() if hasattr(result, 'model_dump') else result
+                data=result_dict
             )
         finally:
             # Clean up temporary file
@@ -388,9 +391,13 @@ def document_upload():
         app.logger.exception("Error in document_upload route")
         return internal_server_error(str(e))
     
-@app.route('/api/v1/document/analyze/offering-signature', methods=['POST'])
-def analyze_document_offering_signature():
+@app.route('/api/v1/document/analyze/offering-letter', methods=['POST'])
+def analyze_document_offering_letter():
     try:
+        candidate_id = request.form.get('candidate_id')
+        if not candidate_id:
+            return bad_request_error("candidate_id is required")
+        
         if 'document' not in request.files:
             return bad_request_error("No document file provided")
         
@@ -412,10 +419,21 @@ def analyze_document_offering_signature():
         file.save(temp_path)
         
         try:
-            result = asyncio.run(document_analyzer.analyze_document_layout(document_path=temp_path))
+            result = asyncio.run(document_analyzer.analyze_offering_letter(document_path=temp_path))
+
+            # Upload to blob storage
+            file.seek(0)  # Reset file pointer
+            blob_info = blob_storage.upload_file(file=file, candidate_id=candidate_id, original_filename=file.filename)
+            
+            # Add blob info to response
+            result_dict = result.model_dump() if hasattr(result, 'model_dump') else result
+            result_dict['url'] = blob_info.get('url', '')
+            result_dict['name'] = file.filename
+            result_dict['last_updated'] = blob_info.get('uploaded_at', '')
+
             return ok(
                 message="Document analyzed successfully",
-                data=result.model_dump()
+                data=result_dict
             )
         finally:
             # Clean up temporary file
@@ -424,6 +442,42 @@ def analyze_document_offering_signature():
     
     except Exception as e:
         app.logger.exception("Error in analyze_document route")
+        return internal_server_error(str(e))
+    
+@app.route('/api/v1/employees/by-position', methods=['GET'])
+def get_employees_by_position():
+    try:
+        position = request.args.get('position')
+        limit = request.args.get('limit', default=100, type=int)
+        
+        if not position:
+            return bad_request_error("position query parameter is required")
+
+        result = asyncio.run(candidate_service.get_candidates_by_position(position=position, limit=limit))
+
+        return ok(
+            message=f"Candidates for position '{position}' retrieved successfully",
+            data=[c.model_dump() for c in result]
+        )
+
+    except Exception as e:
+        app.logger.exception("Error in get_candidates_by_position route")
+        return internal_server_error(str(e))
+    
+@app.route('/api/v1/employees', methods=['GET'])
+def list_employees():
+    try:
+        limit = request.args.get('limit', default=100, type=int)
+        
+        result = asyncio.run(employee_service.list_employees(limit=limit))
+
+        return ok(
+            message="Employees retrieved successfully",
+            data=[c.model_dump() for c in result]
+        )
+
+    except Exception as e:
+        app.logger.exception("Error in list_employees route")
         return internal_server_error(str(e))
 
 if __name__ == '__main__':

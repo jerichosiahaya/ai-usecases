@@ -17,3 +17,11 @@ class LLMModel(str, Enum):
 class AssessmentType(str, Enum):
     PredefinedScore = "predefined_score"
     OnlineBackgroundCheck = "online_background_check"
+
+class DocumentType(str, Enum):
+    KTP = "KTP"
+    KK = "KK"
+    Ijazah = "Ijazah"
+    BukuTabungan = "Buku Tabungan"
+    NPWP = "NPWP"
+    SignedOfferLetter = "Signed Offer Letter"

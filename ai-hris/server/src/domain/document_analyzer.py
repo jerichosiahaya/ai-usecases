@@ -22,6 +22,7 @@ class FamilyMemberDetail(KernelBaseModel):
     marital_status: str
     blood_type: str
 
+# structure for Kartu Keluarga document
 class KartuKeluarga(KernelBaseModel):
     family_head_name: str
     family_number: str
@@ -34,6 +35,59 @@ class KartuKeluarga(KernelBaseModel):
     postal_code: str
     family_members: list[FamilyMemberDetail]
 
-class OfferingSignatureResponse(KernelBaseModel):
-    exists: bool
-    signed_content: str | None = None
+# structure for Buku Tabungan document
+class BukuTabungan(KernelBaseModel):
+    account_holder_name: str
+    account_number: str
+    bank_name: str
+    branch_name: str
+    account_type: str
+
+# structure for KTP document
+class KTP(KernelBaseModel):
+    nik: str
+    name: str
+    birth_place: str
+    birth_date: str
+    gender: str
+    address: str
+    rt_rw: str
+    village: str
+    district: str
+    city: str
+    province: str
+    religion: str
+    marital_status: str
+    occupation: str
+    nationality: str
+
+class LegalDocumentResponse(KernelBaseModel):
+    type: str
+    name: str
+    structured_data: dict
+    url: str
+    last_updated: str
+
+class OfferingLetterContent(KernelBaseModel):
+    position: str
+    start_date: str
+    salary: str
+    benefits: list[str]
+
+class OfferingLetterData(KernelBaseModel):
+    is_signed: bool
+    content: OfferingLetterContent
+
+class ExtractedDocumentContent(KernelBaseModel):
+    bounding_boxes: list[dict]
+    content: str
+    structured_data: dict
+
+class DocumentResponse(KernelBaseModel):
+    type: str
+    name: str
+    last_updated: str
+    url: str
+    extracted_content: ExtractedDocumentContent
+
+    

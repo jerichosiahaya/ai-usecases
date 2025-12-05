@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const response = await $fetch(`${apiUrl}/api/v1/hr/document/upload`, {
+    const response = await $fetch(`${apiUrl}/api/v1/document/upload`, {
       method: 'POST',
       body: formData
     })
