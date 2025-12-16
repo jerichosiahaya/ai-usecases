@@ -8,5 +8,7 @@ dependencies = [
     "azure-ai-documentintelligence>=1.0.2",
     "fastapi>=0.124.4",
     "loguru>=0.7.3",
+    "python-multipart>=0.0.20",
     "semantic-kernel>=1.36.0",
+    "uvicorn>=0.38.0",
 ]

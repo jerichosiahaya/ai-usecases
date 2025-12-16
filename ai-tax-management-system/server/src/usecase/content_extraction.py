@@ -3,7 +3,6 @@ from src.repository.content_understanding import ContentUnderstandingRepository
 from src.repository.blob_storage import BlobStorageRepository
 from loguru import logger
 
-
 class ContentExtraction:
     def __init__(
         self, 

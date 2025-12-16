@@ -1,0 +1,18 @@
+2025-12-16 09:58:57.310 | INFO     | __main__:<module>:152 - Starting application in 'http' mode
+2025-12-16 10:26:48.291 | INFO     | src.delivery.status_routes:check_status:20 - Checking status for upload_id: health
+2025-12-16 10:35:54.903 | INFO     | __main__:<module>:152 - Starting application in 'http' mode
+2025-12-16 10:37:32.324 | INFO     | src.config.dependencies:get_app_config:27 - Initializing application configuration
+2025-12-16 10:37:32.328 | ERROR    | src.repository.blob_storage:__init__:25 - Failed to connect to Blob Storage: Connection string is either blank or malformed.
+2025-12-16 10:42:36.705 | INFO     | __main__:<module>:152 - Starting application in 'http' mode
+2025-12-16 10:43:11.220 | INFO     | src.config.dependencies:get_app_config:27 - Initializing application configuration
+2025-12-16 10:43:12.157 | INFO     | src.repository.blob_storage:__init__:16 - Created blob container: tax-documents
+2025-12-16 10:43:12.157 | INFO     | src.repository.blob_storage:__init__:23 - Connected to Blob Storage, container: tax-documents
+2025-12-16 10:52:22.941 | INFO     | __main__:<module>:152 - Starting application in 'http' mode
+2025-12-16 10:53:11.691 | INFO     | src.config.dependencies:get_app_config:27 - Initializing application configuration
+2025-12-16 10:55:16.716 | INFO     | __main__:<module>:152 - Starting application in 'http' mode
+2025-12-16 10:57:18.319 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-16 10:57:18.319 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-16 10:57:18.319 | INFO     | src.config.dependencies:get_blob_storage_repository:77 - Creating BlobStorageRepository singleton
+2025-12-16 10:57:19.071 | INFO     | src.repository.blob_storage:__init__:19 - Blob container already exists: tax-documents
+2025-12-16 10:57:19.071 | INFO     | src.repository.blob_storage:__init__:23 - Connected to Blob Storage, container: tax-documents
+2025-12-16 10:57:26.726 | INFO     | src.delivery.upload_routes:upload_file:30 - Received file upload: 7603480352.pdf with upload_id 040679eb-7275-4693-9e90-8c978ed66c1a
