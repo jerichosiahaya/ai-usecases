@@ -1,7 +1,6 @@
 from typing import Dict, Any, Optional
 from src.repository.content_understanding import ContentUnderstandingRepository
-from src.repository.storage import MinioStorageRepository
-from src.repository.storage import AzureBlobStorageRepository
+from src.repository.storage import MinioStorageRepository, AzureBlobStorageRepository
 from src.repository.messaging import RabbitMQRepository
 from loguru import logger
 from src.domain.file_upload import FileUploadResponse
@@ -61,6 +60,16 @@ class FileUpload:
                     file_id=file_id, 
                     original_filename=original_filename,
                     activity_id=activity_id
+                )
+
+                messaging_payload = {
+                    "file_id": file_id,
+                    "blob_name": file_info["object_name"],
+                    "original_filename": original_filename
+                }
+                self.rabbitmq_repo.send_message(
+                    queue_name="file_upload_queue",
+                    message_data=messaging_payload
                 )
 
             return FileUploadResponse(

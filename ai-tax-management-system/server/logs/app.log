@@ -194,3 +194,50 @@ activity_id
 activity_id
   Field required [type=missing, input_value={'file_id': '7f9651b4-457... 'status': 'processing'}, input_type=dict]
     For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-12-16 13:40:24.995 | INFO     | __main__:<module>:178 - Starting application in 'http' mode
+2025-12-16 13:40:32.927 | INFO     | src.config.dependencies:get_app_config:36 - Initializing application configuration
+2025-12-16 13:40:32.929 | INFO     | src.config.dependencies:get_content_understanding_repository:58 - Creating ContentUnderstandingRepository singleton
+2025-12-16 13:40:32.930 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:81 - Creating AzureBlobStorageRepository singleton
+2025-12-16 13:40:33.697 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-16 13:40:33.697 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-16 13:40:33.697 | INFO     | src.config.dependencies:get_rabbitmq_repository:106 - Creating RabbitMQRepository singleton
+2025-12-16 13:40:33.697 | INFO     | src.repository.messaging:__init__:44 - RabbitMQ repository initialized for localhost:5672
+2025-12-16 13:40:33.697 | INFO     | src.config.dependencies:get_minio_storage_repository:134 - Creating MinioStorageRepository singleton
+2025-12-16 13:40:33.734 | INFO     | src.repository.storage:__init__:156 - MinIO bucket already exists: tax-documents
+2025-12-16 13:40:33.735 | INFO     | src.repository.storage:__init__:158 - Connected to MinIO at localhost:9100, bucket: tax-documents
+2025-12-16 13:40:33.739 | INFO     | src.delivery.upload_routes:upload_file:40 - Received file upload: 7603485268.pdf with file_id 09c25dc4-51ec-4d40-bcd2-81619c174337 and activity_id e5a55e8c-e28c-46e8-a9e4-52c77dad912e
+2025-12-16 13:40:39.406 | INFO     | src.repository.storage:upload_file:208 - Uploaded file 7603485268.pdf for case 09c25dc4-51ec-4d40-bcd2-81619c174337, object: e5a55e8c-e28c-46e8-a9e4-52c77dad912e/09c25dc4-51ec-4d40-bcd2-81619c174337/7603485268.pdf
+2025-12-16 13:40:39.407 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed file upload for file_id 09c25dc4-51ec-4d40-bcd2-81619c174337 and activity_id e5a55e8c-e28c-46e8-a9e4-52c77dad912e
+2025-12-16 13:40:55.335 | INFO     | src.delivery.upload_routes:upload_file:40 - Received file upload: 7603485268.pdf with file_id 678663fd-cedd-4154-b5d6-3ae28498ad2c and activity_id e5a55e8c-e28c-46e8-a9e4-52c77dad912e
+2025-12-16 13:40:59.363 | INFO     | src.repository.storage:upload_file:208 - Uploaded file 7603485268.pdf for case 678663fd-cedd-4154-b5d6-3ae28498ad2c, object: e5a55e8c-e28c-46e8-a9e4-52c77dad912e/678663fd-cedd-4154-b5d6-3ae28498ad2c/7603485268.pdf
+2025-12-16 13:40:59.363 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed file upload for file_id 678663fd-cedd-4154-b5d6-3ae28498ad2c and activity_id e5a55e8c-e28c-46e8-a9e4-52c77dad912e
+2025-12-16 14:04:01.101 | INFO     | __main__:<module>:178 - Starting application in 'http' mode
+2025-12-16 14:04:22.228 | INFO     | src.config.dependencies:get_app_config:36 - Initializing application configuration
+2025-12-16 14:04:22.229 | INFO     | src.config.dependencies:get_content_understanding_repository:58 - Creating ContentUnderstandingRepository singleton
+2025-12-16 14:04:22.231 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:81 - Creating AzureBlobStorageRepository singleton
+2025-12-16 14:04:23.159 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-16 14:04:23.160 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-16 14:04:23.161 | INFO     | src.config.dependencies:get_rabbitmq_repository:106 - Creating RabbitMQRepository singleton
+2025-12-16 14:04:23.162 | INFO     | src.repository.messaging:__init__:44 - RabbitMQ repository initialized for localhost:5672
+2025-12-16 14:04:23.162 | INFO     | src.config.dependencies:get_minio_storage_repository:134 - Creating MinioStorageRepository singleton
+2025-12-16 14:04:23.173 | INFO     | src.repository.storage:__init__:156 - MinIO bucket already exists: tax-documents
+2025-12-16 14:04:23.173 | INFO     | src.repository.storage:__init__:158 - Connected to MinIO at localhost:9100, bucket: tax-documents
+2025-12-16 14:04:23.176 | INFO     | src.delivery.upload_routes:upload_file:40 - Received file upload: 7603485268.pdf with file_id d9665b33-24af-4cee-9875-71528df2b296 and activity_id e5a55e8c-e28c-46e8-a9e4-52c77dad912e
+2025-12-16 14:04:23.210 | INFO     | src.repository.storage:upload_file:208 - Uploaded file 7603485268.pdf for case d9665b33-24af-4cee-9875-71528df2b296, object: e5a55e8c-e28c-46e8-a9e4-52c77dad912e/d9665b33-24af-4cee-9875-71528df2b296/7603485268.pdf
+2025-12-16 14:04:23.211 | ERROR    | src.usecase.file_upload:upload:85 - Error extracting content from 7603485268.pdf: RabbitMQRepository.send_message() got an unexpected keyword argument 'message'
+2025-12-16 14:04:23.211 | ERROR    | src.delivery.upload_routes:upload_file:60 - Error uploading file: RabbitMQRepository.send_message() got an unexpected keyword argument 'message'
+2025-12-16 14:04:48.926 | INFO     | __main__:<module>:178 - Starting application in 'http' mode
+2025-12-16 14:04:51.481 | INFO     | src.config.dependencies:get_app_config:36 - Initializing application configuration
+2025-12-16 14:04:51.483 | INFO     | src.config.dependencies:get_content_understanding_repository:58 - Creating ContentUnderstandingRepository singleton
+2025-12-16 14:04:51.485 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:81 - Creating AzureBlobStorageRepository singleton
+2025-12-16 14:04:52.108 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-16 14:04:52.109 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-16 14:04:52.109 | INFO     | src.config.dependencies:get_rabbitmq_repository:106 - Creating RabbitMQRepository singleton
+2025-12-16 14:04:52.110 | INFO     | src.repository.messaging:__init__:44 - RabbitMQ repository initialized for localhost:5672
+2025-12-16 14:04:52.111 | INFO     | src.config.dependencies:get_minio_storage_repository:134 - Creating MinioStorageRepository singleton
+2025-12-16 14:04:52.118 | INFO     | src.repository.storage:__init__:156 - MinIO bucket already exists: tax-documents
+2025-12-16 14:04:52.119 | INFO     | src.repository.storage:__init__:158 - Connected to MinIO at localhost:9100, bucket: tax-documents
+2025-12-16 14:04:52.121 | INFO     | src.delivery.upload_routes:upload_file:40 - Received file upload: 7603485268.pdf with file_id fe4e9c5b-78f5-4534-92c0-925697bf9dc9 and activity_id e5a55e8c-e28c-46e8-a9e4-52c77dad912e
+2025-12-16 14:04:52.128 | INFO     | src.repository.storage:upload_file:208 - Uploaded file 7603485268.pdf for case fe4e9c5b-78f5-4534-92c0-925697bf9dc9, object: e5a55e8c-e28c-46e8-a9e4-52c77dad912e/fe4e9c5b-78f5-4534-92c0-925697bf9dc9/7603485268.pdf
+2025-12-16 14:04:52.154 | INFO     | src.repository.messaging:send_message:73 - Message sent to RabbitMQ queue file_upload_queue: {'file_id': 'fe4e9c5b-78f5-4534-92c0-925697bf9dc9', 'blob_name': 'e5a55e8c-e28c-46e8-a9e4-52c77dad912e/fe4e9c5b-78f5-4534-92c0-925697bf9dc9/7603485268.pdf', 'original_filename': '7603485268.pdf'}
+2025-12-16 14:04:52.159 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed file upload for file_id fe4e9c5b-78f5-4534-92c0-925697bf9dc9 and activity_id e5a55e8c-e28c-46e8-a9e4-52c77dad912e
