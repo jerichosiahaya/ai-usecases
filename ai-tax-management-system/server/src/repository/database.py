@@ -130,7 +130,6 @@ class AzureCosmosDBRepository:
             if order_by:
                 query += f" ORDER BY c.{order_by}"
             
-            # Execute query
             items = list(container.query_items(
                 query=query,
                 parameters=parameters,

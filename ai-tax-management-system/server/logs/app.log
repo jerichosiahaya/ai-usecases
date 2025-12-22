@@ -884,3 +884,23 @@ nikPembeliKenaPajak
 2025-12-22 16:46:09.661 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
 2025-12-22 16:46:11.423 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
 2025-12-22 16:46:11.423 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 1 G/L transactions
+2025-12-22 16:53:34.118 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 17:22:18.650 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 17:23:22.347 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 17:23:22.347 | INFO     | src.config.dependencies:get_content_understanding_repository:53 - Creating ContentUnderstandingRepository singleton
+2025-12-22 17:23:22.347 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:76 - Creating AzureBlobStorageRepository singleton
+2025-12-22 17:23:23.055 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-22 17:23:23.055 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-22 17:23:23.057 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 17:23:24.309 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 17:23:24.312 | INFO     | src.config.dependencies:get_rabbitmq_repository:131 - Creating RabbitMQRepository singleton
+2025-12-22 17:23:24.313 | INFO     | src.repository.messaging:__init__:44 - RabbitMQ repository initialized for localhost:5672
+2025-12-22 17:23:24.314 | INFO     | src.config.dependencies:get_minio_storage_repository:159 - Creating MinioStorageRepository singleton
+2025-12-22 17:23:54.897 | ERROR    | src.repository.storage:__init__:160 - Failed to connect to MinIO: HTTPConnectionPool(host='localhost', port=9100): Max retries exceeded with url: /tax-documents?location= (Caused by NewConnectionError("HTTPConnection(host='localhost', port=9100): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2025-12-22 17:24:56.794 | INFO     | src.config.dependencies:get_minio_storage_repository:159 - Creating MinioStorageRepository singleton
+2025-12-22 17:24:56.805 | INFO     | src.repository.storage:__init__:156 - MinIO bucket already exists: tax-documents
+2025-12-22 17:24:56.806 | INFO     | src.repository.storage:__init__:158 - Connected to MinIO at localhost:9100, bucket: tax-documents
+2025-12-22 17:24:56.808 | INFO     | src.delivery.status_routes:check_status:17 - Checking status for document_id: 84cffe18-1b7c-41cc-ad01-881b885d7894
+2025-12-22 17:25:11.290 | INFO     | src.repository.database:query_documents:140 - Retrieved 1 documents (type: all)
+2025-12-22 17:26:36.258 | INFO     | src.delivery.status_routes:check_status:17 - Checking status for document_id: 84cffe18-1b7c-41cc-ad01-881b885d7894
+2025-12-22 17:26:38.381 | INFO     | src.repository.database:query_documents:140 - Retrieved 1 documents (type: all)

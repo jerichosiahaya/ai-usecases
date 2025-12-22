@@ -266,3 +266,20 @@ class FileUpload:
         except Exception as e:
             logger.error(f"Error uploading file {original_filename}: {e}")
             raise
+
+    def get_status(self, document_id: str):
+        
+        try:
+            document = self.azure_cosmos_repo.query_documents(
+                container_id="uploads",
+                query_filter=f"c.documentId = '{document_id}'",
+                max_items=1
+            )
+            if not document:
+                raise Exception(f"No upload found with document ID: {document_id}")
+            
+            return document[0]
+            
+        except Exception as e:
+            logger.error(f"Error retrieving status for document ID {document_id}: {e}")
+            raise
