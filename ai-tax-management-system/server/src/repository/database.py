@@ -29,7 +29,7 @@ class AzureCosmosDBRepository:
             logger.error(f"Failed to connect to Cosmos DB: {e}")
             raise
 
-    def create_document(self, document_data: Dict[str, Any], document_type: str, partition_key: Optional[str] = None) -> Dict[str, Any]:
+    def create_document(self, document_data: Dict[str, Any], partition_key: Optional[str] = None, container_id: Optional[str] = None) -> Dict[str, Any]:
         """
         Create a new document in Cosmos DB
         
@@ -42,13 +42,14 @@ class AzureCosmosDBRepository:
             Created document with id and timestamps
         """
         try:
+            container = self.database.get_container_client(container_id) if container_id else self.container
+
             doc_id = document_data.get("id") or str(uuid.uuid4())
             now = datetime.utcnow().isoformat()
             
             document = {
                 **document_data,
                 "id": doc_id,
-                "type": document_type,
                 "created_at": document_data.get("created_at", now),
                 "updated_at": now
             }
@@ -57,14 +58,11 @@ class AzureCosmosDBRepository:
             if partition_key and partition_key != doc_id:
                 document[partition_key] = document.get(partition_key, doc_id)
             
-            created = self.container.create_item(body=document)
-            logger.info(f"Created {document_type} document with ID: {doc_id}")
+            created = container.create_item(body=document)
             return created
         except exceptions.CosmosHttpResponseError as e:
-            logger.error(f"Error creating {document_type} document: {e}")
             raise
         except Exception as e:
-            logger.error(f"Unexpected error creating {document_type} document: {e}")
             raise
 
     def get_document_by_id(self, document_id: str, partition_key: Optional[str] = None) -> Dict[str, Any]:

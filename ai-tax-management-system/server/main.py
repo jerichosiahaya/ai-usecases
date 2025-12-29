@@ -19,7 +19,8 @@ from src.config.dependencies import (
     get_minio_storage_repository,
     get_azure_service_bus_repository,
     get_content_extraction_service,
-    get_llm_service_repository
+    get_llm_service_repository,
+    get_azure_cosmos_repository
 )
 
 from src.common.const import Environment
@@ -48,7 +49,8 @@ async def run_worker():
         blob_storage_repo=get_azure_blob_storage_repository(config),
         rabbitmq_repo=get_rabbitmq_repository(config),
         minio_storage_repo=get_minio_storage_repository(config),
-        llm_service_repo=get_llm_service_repository(config)
+        llm_service_repo=get_llm_service_repository(config),
+        azure_cosmos_repo=get_azure_cosmos_repository(config)
     )
     
     try:
@@ -80,12 +82,15 @@ async def run_worker():
                                 # Process the message using content extraction service
                                 await content_extraction.process_message(data)
                                 
-                                await receiver.complete_message(message)
-                                logger.info(f"Message processed: {message.message_id}")
+                                try:
+                                    await receiver.complete_message(message)
+                                    logger.info(f"Message processed: {message.message_id}")
+                                except Exception as complete_error:
+                                    logger.error(f"Error completing message (lock may have expired): {complete_error}")
                             except Exception as e:
                                 logger.error(f"Error processing message: {e}")
-                                # Optionally dead-letter the message on error
-                                # await receiver.dead_letter_message(message)
+                                # Don't try to complete if message processing failed
+                                # The message will be retried automatically after lock expiration
                                 
             except Exception as e:
                 logger.error(f"Connection error: {e}. Reconnecting in 5 seconds...")

@@ -233,6 +233,10 @@ def get_content_extraction_service(
     llm_service_repo: Annotated[
         Optional[LLMService],
         Depends(get_llm_service_repository)
+    ],
+    azure_cosmos_repo: Annotated[
+        Optional[AzureCosmosDBRepository],
+        Depends(get_azure_cosmos_repository)
     ]
 
 ) -> ContentExtraction:
@@ -257,7 +261,8 @@ def get_content_extraction_service(
         azure_blob_storage_repo=blob_storage_repo,
         rabbitmq_repo=rabbitmq_repo,
         minio_storage_repo=minio_storage_repo,
-        llm_service_repo=llm_service_repo
+        llm_service_repo=llm_service_repo,
+        azure_cosmos_repo=azure_cosmos_repo
     )
 
 def get_file_upload_service(

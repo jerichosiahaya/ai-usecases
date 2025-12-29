@@ -8,3 +8,9 @@ class ResponseStatus(str, Enum):
 class Environment(str, Enum):
     Development = "development"
     Production = "production"
+
+class ContentType(str, Enum):
+    Invoice = "Invoice"
+    TaxInvoice = "Tax Invoice (Faktur Pajak)"
+    GeneralLedger = "General Ledger"
+    Unknown = "Unknown"

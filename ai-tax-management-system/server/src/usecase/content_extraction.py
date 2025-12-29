@@ -1,12 +1,16 @@
 from typing import Dict, Any, Optional, List
 import asyncio
 import time
+import re
 from src.repository.content_understanding import ContentUnderstandingRepository
 from src.repository.storage import MinioStorageRepository
 from src.repository.storage import AzureBlobStorageRepository
 from src.repository.messaging import RabbitMQRepository
 from src.repository.llm.llm_service import LLMService
+from src.repository.database import AzureCosmosDBRepository
 from loguru import logger
+from src.common.const import ContentType
+import uuid
 
 class ContentExtraction:
     def __init__(
@@ -15,7 +19,8 @@ class ContentExtraction:
         azure_blob_storage_repo: AzureBlobStorageRepository,
         rabbitmq_repo: Optional[RabbitMQRepository] = None,
         minio_storage_repo: Optional[MinioStorageRepository] = None,
-        llm_service_repo: Optional[LLMService] = None
+        llm_service_repo: Optional[LLMService] = None,
+        azure_cosmos_repo: Optional[AzureCosmosDBRepository] = None
     ):
         
         self.content_understanding_repo = content_understanding_repo
@@ -23,6 +28,7 @@ class ContentExtraction:
         self.rabbitmq_repo = rabbitmq_repo
         self.minio_storage_repo = minio_storage_repo
         self.llm_service_repo = llm_service_repo
+        self.azure_cosmos_repo = azure_cosmos_repo
 
     def _extract_content(self, file, upload_id: str, original_filename: str) -> Dict[str, Any]:
 
@@ -45,19 +51,50 @@ class ContentExtraction:
             logger.error(f"Error retrieving file {file_id}: {e}")
             raise
 
+    def _extract_urn_from_content(self, content: str) -> Optional[str]:
+        """
+        Extract URN (Unique Reference Number) from document content using regex.
+        Looks for the first numeric sequence at the beginning of the content (typically 10+ digits).
+        
+        Args:
+            content: The extracted document content text
+            
+        Returns:
+            The extracted URN or None if not found
+        """
+        try:
+            # Match the first sequence of digits (typically 10+ digits at the start)
+            # Strip whitespace and newlines first
+            content_stripped = content.strip()
+            
+            # Look for the first sequence of digits
+            match = re.search(r'^(\d{10,})', content_stripped)
+            
+            if match:
+                urn = match.group(1)
+                logger.info(f"Extracted URN from content: {urn}")
+                return urn
+            
+            logger.warning("No URN found in document content")
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error extracting URN from content: {e}")
+            return None
+
     async def _wait_for_analysis_result(
         self, 
         request_id: str, 
-        max_retries: int = 60, 
-        retry_interval: int = 2
+        max_retries: int = 35, 
+        retry_interval: int = 3
     ) -> Dict[str, Any]:
         """
         Poll the analyzer results endpoint until the analysis is complete
         
         Args:
             request_id: The request ID from the initial analyze_invoice call
-            max_retries: Maximum number of retry attempts (default 60 = 2 minutes with 2s interval)
-            retry_interval: Seconds to wait between retries (default 2)
+            max_retries: Maximum number of retry attempts (default 15 = 15 seconds with 1s interval)
+            retry_interval: Seconds to wait between retries (default 1)
             
         Returns:
             Dictionary with the final analysis results when status is not "Running"
@@ -84,9 +121,43 @@ class ContentExtraction:
                     if self.llm_service_repo:
                         try:
                             content = result['result']['contents'][0]['markdown']
+                            urn = self._extract_urn_from_content(content)
                             content_classification = await self.llm_service_repo.get_content_classification(
                                 document_text=content
                             )
+                            content_classification_data = content_classification.get("classification", ContentType.Unknown.value)
+
+                            if content_classification_data == ContentType.Invoice.value:
+                                # call invoice extraction
+                                result = await self.llm_service_repo.get_invoice_extraction(
+                                    document_text=content
+                                )
+                                result['urn'] = urn
+                                result['invoiceId'] = str(uuid.uuid4())
+
+                                # save the result to cosmos db
+                                if self.azure_cosmos_repo and urn:
+                                    self.azure_cosmos_repo.create_document(
+                                        document_data=result,
+                                        container_id="invoices"
+                                    )
+
+                            elif content_classification_data == ContentType.TaxInvoice.value:
+                                result = await self.llm_service_repo.get_tax_invoice_extraction(
+                                    document_text=content)
+                                result['urn'] = urn
+                                result['taxInvoiceId'] = str(uuid.uuid4())
+                                if self.azure_cosmos_repo and urn:
+                                    self.azure_cosmos_repo.create_document(
+                                        document_data=result,
+                                        container_id="tax-invoices"
+                                    )
+                            elif content_classification_data == ContentType.GeneralLedger.value:
+                                result = await self.llm_service_repo.get_gl_extraction(
+                                    document_text=content)
+                            else:
+                                result = {"message": "Content type is Unknown, no extraction performed."}
+
                             logger.info(f"Content classification completed for {request_id}")
                         except Exception as e:
                             logger.error(f"Error getting content classification for {request_id}: {e}")
