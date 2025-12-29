@@ -975,3 +975,963 @@ nikPembeliKenaPajak
 2025-12-29 09:03:00.840 | INFO     | src.repository.storage:upload_file:75 - Uploaded file table (2)_page_1.pdf for case 4052b127-96d3-4ce2-a212-54e39ccaa171, blob: string/4052b127-96d3-4ce2-a212-54e39ccaa171/table (2)_page_1.pdf
 2025-12-29 09:03:00.931 | INFO     | src.repository.storage:upload_file:75 - Uploaded file table (2)_page_2.pdf for case 4052b127-96d3-4ce2-a212-54e39ccaa171, blob: string/4052b127-96d3-4ce2-a212-54e39ccaa171/table (2)_page_2.pdf
 2025-12-29 09:03:25.872 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 4052b127-96d3-4ce2-a212-54e39ccaa171 and activity_id string
+2025-12-29 09:13:04.083 | INFO     | __main__:<module>:201 - Starting application in 'worker' mode
+2025-12-29 09:13:04.087 | INFO     | __main__:run_worker_standalone:137 - Starting worker in standalone mode...
+2025-12-29 09:13:04.087 | INFO     | __main__:run_worker:26 - Worker started
+2025-12-29 09:13:04.087 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:13:04.088 | INFO     | __main__:run_worker:35 - Connected to Service Bus
+2025-12-29 09:13:04.088 | ERROR    | __main__:run_worker:56 - Connection error: 'NoneType' object has no attribute 'get_queue_receiver'. Reconnecting in 5 seconds...
+2025-12-29 09:13:09.097 | INFO     | __main__:run_worker:35 - Connected to Service Bus
+2025-12-29 09:13:09.097 | ERROR    | __main__:run_worker:56 - Connection error: 'NoneType' object has no attribute 'get_queue_receiver'. Reconnecting in 5 seconds...
+2025-12-29 09:15:10.930 | INFO     | __main__:<module>:220 - Starting application in 'worker' mode
+2025-12-29 09:15:10.935 | INFO     | __main__:run_worker_standalone:156 - Starting worker in standalone mode...
+2025-12-29 09:15:10.935 | INFO     | __main__:run_worker:29 - Worker started
+2025-12-29 09:15:10.936 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:15:10.936 | ERROR    | __main__:run_worker_standalone:162 - Worker failed: 'AppConfig' object has no attribute 'SERVICE_BUS_QUEUE_NAME'
+2025-12-29 09:15:49.759 | INFO     | __main__:<module>:220 - Starting application in 'worker' mode
+2025-12-29 09:15:49.759 | INFO     | __main__:run_worker_standalone:156 - Starting worker in standalone mode...
+2025-12-29 09:15:49.764 | INFO     | __main__:run_worker:29 - Worker started
+2025-12-29 09:15:49.765 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:15:49.765 | ERROR    | __main__:run_worker:36 - SERVICE_BUS_CONNECTION_STRING not configured
+2025-12-29 09:17:00.595 | INFO     | __main__:<module>:220 - Starting application in 'worker' mode
+2025-12-29 09:17:00.599 | INFO     | __main__:run_worker_standalone:156 - Starting worker in standalone mode...
+2025-12-29 09:17:00.599 | INFO     | __main__:run_worker:29 - Worker started
+2025-12-29 09:17:00.600 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:17:00.600 | ERROR    | __main__:run_worker:36 - SERVICE_BUS_CONNECTION_STRING not configured
+2025-12-29 09:18:15.362 | INFO     | __main__:<module>:220 - Starting application in 'worker' mode
+2025-12-29 09:18:15.365 | INFO     | __main__:run_worker_standalone:156 - Starting worker in standalone mode...
+2025-12-29 09:18:15.366 | INFO     | __main__:run_worker:29 - Worker started
+2025-12-29 09:18:15.366 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:18:18.315 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:18:23.020 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:18:27.665 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:18:32.189 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:18:36.880 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:18:41.569 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:18:46.269 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:18:50.363 | INFO     | __main__:<module>:220 - Starting application in 'http' mode
+2025-12-29 09:18:51.264 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:18:55.888 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:00.481 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:05.234 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:09.741 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:14.237 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:18.842 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:23.330 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:27.928 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:32.577 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:37.027 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:41.580 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:46.149 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:50.806 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:19:51.201 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:19:51.203 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-29 09:19:51.204 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:77 - Creating AzureBlobStorageRepository singleton
+2025-12-29 09:19:51.919 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 09:19:51.919 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 09:19:51.920 | INFO     | src.config.dependencies:get_azure_cosmos_repository:101 - Creating AzureCosmosDBRepository singleton
+2025-12-29 09:19:53.085 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 09:19:53.089 | INFO     | src.config.dependencies:get_azure_service_bus_repository:185 - Creating AzureServiceBusRepository singleton
+2025-12-29 09:19:53.092 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: table (2).pdf with file_id 4c3a9360-62cc-4388-bed5-da2e9686195e and activity_id string
+2025-12-29 09:19:53.095 | INFO     | src.usecase.file_upload:_split_pdf_pages:80 - Splitting PDF table (2).pdf into 2 pages
+2025-12-29 09:19:53.101 | INFO     | src.usecase.file_upload:_split_pdf_pages:96 - Successfully split table (2).pdf into 2 pages
+2025-12-29 09:19:53.101 | INFO     | src.usecase.file_upload:upload:139 - Uploading 2 pages from PDF table (2).pdf
+2025-12-29 09:19:53.224 | INFO     | src.repository.storage:upload_file:75 - Uploaded file table (2)_page_1.pdf for case 4c3a9360-62cc-4388-bed5-da2e9686195e, blob: string/4c3a9360-62cc-4388-bed5-da2e9686195e/table (2)_page_1.pdf
+2025-12-29 09:19:53.312 | INFO     | src.repository.storage:upload_file:75 - Uploaded file table (2)_page_2.pdf for case 4c3a9360-62cc-4388-bed5-da2e9686195e, blob: string/4c3a9360-62cc-4388-bed5-da2e9686195e/table (2)_page_2.pdf
+2025-12-29 09:19:55.318 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:00.049 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:04.612 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:06.662 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 4c3a9360-62cc-4388-bed5-da2e9686195e and activity_id string
+2025-12-29 09:20:09.254 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:13.934 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:18.540 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:23.230 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:27.727 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:32.437 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:37.047 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:41.476 | INFO     | __main__:<module>:220 - Starting application in 'http' mode
+2025-12-29 09:20:42.094 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:46.394 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:20:46.394 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-29 09:20:46.400 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:77 - Creating AzureBlobStorageRepository singleton
+2025-12-29 09:20:46.675 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:47.034 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 09:20:47.042 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 09:20:47.042 | INFO     | src.config.dependencies:get_azure_cosmos_repository:101 - Creating AzureCosmosDBRepository singleton
+2025-12-29 09:20:48.274 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 09:20:48.281 | INFO     | src.config.dependencies:get_azure_service_bus_repository:185 - Creating AzureServiceBusRepository singleton
+2025-12-29 09:20:48.286 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: table (2).pdf with file_id de859c2f-62c1-4318-b0d3-3d10d2d2cf79 and activity_id string
+2025-12-29 09:20:48.291 | INFO     | src.usecase.file_upload:_split_pdf_pages:80 - Splitting PDF table (2).pdf into 2 pages
+2025-12-29 09:20:48.298 | INFO     | src.usecase.file_upload:_split_pdf_pages:96 - Successfully split table (2).pdf into 2 pages
+2025-12-29 09:20:48.299 | INFO     | src.usecase.file_upload:upload:139 - Uploading 2 pages from PDF table (2).pdf
+2025-12-29 09:20:48.431 | INFO     | src.repository.storage:upload_file:75 - Uploaded file table (2)_page_1.pdf for case de859c2f-62c1-4318-b0d3-3d10d2d2cf79, blob: string/de859c2f-62c1-4318-b0d3-3d10d2d2cf79/table (2)_page_1.pdf
+2025-12-29 09:20:48.536 | INFO     | src.repository.storage:upload_file:75 - Uploaded file table (2)_page_2.pdf for case de859c2f-62c1-4318-b0d3-3d10d2d2cf79, blob: string/de859c2f-62c1-4318-b0d3-3d10d2d2cf79/table (2)_page_2.pdf
+2025-12-29 09:20:51.777 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:20:56.274 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:21:00.402 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'de859c2f-62c1-4318-b0d3-3d10d2d2cf79'}
+2025-12-29 09:21:00.901 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:21:05.190 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id de859c2f-62c1-4318-b0d3-3d10d2d2cf79 and activity_id string
+2025-12-29 09:21:19.472 | INFO     | __main__:run_worker:52 - Received message: c3be97cd-dfea-4ba2-b0be-184aaf52efa9
+2025-12-29 09:22:11.337 | ERROR    | __main__:run_worker:70 - Error processing message: The lock on the message lock has expired.
+2025-12-29 09:22:14.658 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:22:23.891 | INFO     | __main__:run_worker:52 - Received message: c3be97cd-dfea-4ba2-b0be-184aaf52efa9
+2025-12-29 09:22:23.894 | INFO     | __main__:run_worker:68 - Message processed: c3be97cd-dfea-4ba2-b0be-184aaf52efa9
+2025-12-29 09:22:26.936 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:22:31.695 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:22:36.609 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:22:41.362 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:22:46.165 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:22:50.849 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:22:55.798 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:23:00.826 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:23:06.253 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:23:11.406 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:23:16.454 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:23:21.376 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:23:26.237 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:23:31.372 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:23:36.396 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:23:41.517 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:23:46.475 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:24:07.497 | INFO     | __main__:<module>:228 - Starting application in 'worker' mode
+2025-12-29 09:24:07.506 | INFO     | __main__:run_worker_standalone:164 - Starting worker in standalone mode...
+2025-12-29 09:24:07.507 | INFO     | __main__:run_worker:29 - Worker started
+2025-12-29 09:24:07.509 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:24:10.747 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:24:15.794 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:24:20.712 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:24:25.516 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:24:30.435 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:24:30.779 | INFO     | src.config.dependencies:get_azure_service_bus_repository:185 - Creating AzureServiceBusRepository singleton
+2025-12-29 09:24:30.793 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: table (2).pdf with file_id 50527529-36a4-4f98-9626-488d1d02c324 and activity_id string
+2025-12-29 09:24:30.804 | INFO     | src.usecase.file_upload:_split_pdf_pages:80 - Splitting PDF table (2).pdf into 2 pages
+2025-12-29 09:24:30.830 | INFO     | src.usecase.file_upload:_split_pdf_pages:96 - Successfully split table (2).pdf into 2 pages
+2025-12-29 09:24:30.843 | INFO     | src.usecase.file_upload:upload:139 - Uploading 2 pages from PDF table (2).pdf
+2025-12-29 09:24:32.282 | INFO     | src.repository.storage:upload_file:75 - Uploaded file table (2)_page_1.pdf for case 50527529-36a4-4f98-9626-488d1d02c324, blob: string/50527529-36a4-4f98-9626-488d1d02c324/table (2)_page_1.pdf
+2025-12-29 09:24:32.390 | INFO     | src.repository.storage:upload_file:75 - Uploaded file table (2)_page_2.pdf for case 50527529-36a4-4f98-9626-488d1d02c324, blob: string/50527529-36a4-4f98-9626-488d1d02c324/table (2)_page_2.pdf
+2025-12-29 09:24:35.629 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:24:40.553 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:24:44.007 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '50527529-36a4-4f98-9626-488d1d02c324'}
+2025-12-29 09:24:44.009 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 50527529-36a4-4f98-9626-488d1d02c324 and activity_id string
+2025-12-29 09:24:45.487 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:24:45.740 | INFO     | __main__:run_worker:52 - Received message: 8965e20a-761e-4f31-ac13-388a64335396
+2025-12-29 09:24:45.748 | INFO     | __main__:run_worker:76 - Message processed: 8965e20a-761e-4f31-ac13-388a64335396
+2025-12-29 09:24:50.611 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:24:55.353 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:24:59.937 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:04.418 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:08.949 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:13.499 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:18.074 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:22.996 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:27.509 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:32.244 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:36.783 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:41.515 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:46.116 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:50.716 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:25:55.466 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:00.059 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:04.610 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:09.118 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:13.718 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:18.150 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:22.809 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:27.601 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:32.693 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:37.562 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:43.904 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:48.802 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:53.921 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:26:58.850 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:03.674 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:08.563 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:13.290 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:18.053 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:22.802 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:27.620 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:32.101 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:36.985 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:41.696 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:46.610 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:51.411 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:27:56.318 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:01.070 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:06.178 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:11.592 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:16.459 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:21.392 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:26.245 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:31.000 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:35.803 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:40.736 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:45.494 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:50.686 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:28:56.121 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:00.906 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:05.365 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:10.347 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:14.837 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:19.645 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:24.192 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:28.799 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:33.498 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:38.008 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:42.603 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:47.078 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:51.851 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:29:56.763 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:01.536 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:06.624 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:11.530 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:16.149 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:21.022 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:25.770 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:30.541 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:35.287 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:39.992 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:44.808 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:49.487 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:54.220 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:30:58.960 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:03.789 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:08.511 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:13.198 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:17.977 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:22.727 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:27.344 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:31.820 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:36.382 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:41.062 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:45.630 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:50.278 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:54.839 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:31:59.417 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:04.066 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:08.585 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:13.138 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:17.588 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:22.120 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:26.650 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:31.183 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:35.683 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:40.180 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:45.027 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:49.844 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:54.409 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:32:58.824 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:03.471 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:08.124 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:12.518 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:16.962 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:21.593 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:26.012 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:30.552 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:35.167 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:39.590 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:44.794 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:49.256 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:53.703 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:33:58.106 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:02.593 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:07.105 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:11.728 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:16.144 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:20.589 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:25.148 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:29.667 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:34.087 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:38.820 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:43.172 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:47.772 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:52.407 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:34:56.923 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:01.497 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:06.061 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:10.680 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:15.461 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:20.073 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:24.737 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:29.591 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:34.270 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:38.940 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:43.680 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:48.319 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:53.071 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:35:57.912 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:02.703 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:07.537 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:12.384 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:16.986 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:21.735 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:26.471 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:31.035 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:35.956 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:40.702 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:45.545 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:50.238 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:54.986 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:36:59.737 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:04.303 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:09.264 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:14.154 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:18.953 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:23.669 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:28.340 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:32.892 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:37.732 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:42.380 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:47.067 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:51.604 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:37:56.335 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:01.036 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:05.585 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:10.377 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:15.077 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:19.744 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:24.321 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:28.919 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:33.574 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:38.313 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:43.092 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:48.326 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:52.994 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:38:57.627 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:02.176 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:07.150 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:11.913 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:16.610 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:21.535 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:26.345 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:31.222 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:36.034 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:41.066 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:45.859 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:51.198 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:39:55.430 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:00.104 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:04.904 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:09.457 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:14.320 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:19.061 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:24.104 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:29.256 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:33.473 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:38.107 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:42.862 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:47.588 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:52.217 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:40:56.888 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:01.771 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:06.509 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:11.201 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:15.853 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:20.604 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:25.671 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:30.349 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:35.634 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:40.305 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:44.790 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:49.295 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:53.811 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:41:58.363 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:03.052 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:07.420 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:11.972 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:16.795 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:21.167 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:25.762 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:30.225 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:35.194 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:39.845 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:44.706 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:49.379 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:54.107 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:42:58.811 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:03.509 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:08.208 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:13.413 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:17.746 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:22.401 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:27.029 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:31.431 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:35.879 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:40.425 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:45.091 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:49.785 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:54.331 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:43:58.922 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:03.785 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:08.224 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:12.593 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:17.264 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:21.836 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:26.288 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:30.971 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:35.332 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:36.632 | INFO     | __main__:<module>:228 - Starting application in 'http' mode
+2025-12-29 09:44:39.828 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:44.681 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:49.424 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:54.291 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:44:54.980 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:44:54.981 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-29 09:44:54.982 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:77 - Creating AzureBlobStorageRepository singleton
+2025-12-29 09:44:55.681 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 09:44:55.681 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 09:44:55.682 | INFO     | src.config.dependencies:get_azure_cosmos_repository:101 - Creating AzureCosmosDBRepository singleton
+2025-12-29 09:44:57.025 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 09:44:57.025 | INFO     | src.config.dependencies:get_azure_service_bus_repository:185 - Creating AzureServiceBusRepository singleton
+2025-12-29 09:44:57.043 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603485268.pdf with file_id fd4ed670-d51c-463c-8e80-c2421a27ea92 and activity_id string
+2025-12-29 09:44:57.108 | INFO     | src.usecase.file_upload:_split_pdf_pages:83 - Splitting PDF 7603485268.pdf into 5 pages
+2025-12-29 09:44:57.120 | INFO     | src.usecase.file_upload:_split_pdf_pages:99 - Successfully split 7603485268.pdf into 5 pages
+2025-12-29 09:44:57.120 | INFO     | src.usecase.file_upload:upload:142 - Uploading 5 pages from PDF 7603485268.pdf
+2025-12-29 09:44:57.274 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_page_1.pdf for case fd4ed670-d51c-463c-8e80-c2421a27ea92, blob: fd4ed670-d51c-463c-8e80-c2421a27ea92/7603485268_page_1.pdf
+2025-12-29 09:44:57.408 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_page_2.pdf for case fd4ed670-d51c-463c-8e80-c2421a27ea92, blob: fd4ed670-d51c-463c-8e80-c2421a27ea92/7603485268_page_2.pdf
+2025-12-29 09:44:57.541 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_page_3.pdf for case fd4ed670-d51c-463c-8e80-c2421a27ea92, blob: fd4ed670-d51c-463c-8e80-c2421a27ea92/7603485268_page_3.pdf
+2025-12-29 09:44:57.636 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_page_4.pdf for case fd4ed670-d51c-463c-8e80-c2421a27ea92, blob: fd4ed670-d51c-463c-8e80-c2421a27ea92/7603485268_page_4.pdf
+2025-12-29 09:44:57.777 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_page_5.pdf for case fd4ed670-d51c-463c-8e80-c2421a27ea92, blob: fd4ed670-d51c-463c-8e80-c2421a27ea92/7603485268_page_5.pdf
+2025-12-29 09:44:57.777 | ERROR    | src.usecase.file_upload:upload:187 - Error uploading file 7603485268.pdf: FileUpload._send_processing_message() missing 1 required positional argument: 'urn'
+2025-12-29 09:44:57.777 | ERROR    | src.delivery.upload_routes:upload_file:60 - Error uploading file: FileUpload._send_processing_message() missing 1 required positional argument: 'urn'
+2025-12-29 09:44:59.049 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:03.501 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:08.155 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:12.527 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:17.043 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:21.948 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:26.593 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:31.346 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:35.264 | INFO     | __main__:<module>:228 - Starting application in 'http' mode
+2025-12-29 09:45:36.047 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:40.250 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:45:40.252 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-29 09:45:40.252 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:77 - Creating AzureBlobStorageRepository singleton
+2025-12-29 09:45:40.599 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:40.884 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 09:45:40.884 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 09:45:40.884 | INFO     | src.config.dependencies:get_azure_cosmos_repository:101 - Creating AzureCosmosDBRepository singleton
+2025-12-29 09:45:42.076 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 09:45:42.089 | INFO     | src.config.dependencies:get_azure_service_bus_repository:185 - Creating AzureServiceBusRepository singleton
+2025-12-29 09:45:42.091 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603485268.pdf with file_id e1e082e1-26ca-47cc-bc29-eb3af57b9b60 and activity_id string
+2025-12-29 09:45:42.099 | INFO     | src.usecase.file_upload:_split_pdf_pages:81 - Splitting PDF 7603485268.pdf into 5 pages
+2025-12-29 09:45:42.108 | INFO     | src.usecase.file_upload:_split_pdf_pages:97 - Successfully split 7603485268.pdf into 5 pages
+2025-12-29 09:45:42.109 | INFO     | src.usecase.file_upload:upload:140 - Uploading 5 pages from PDF 7603485268.pdf
+2025-12-29 09:45:42.245 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_page_1.pdf for case e1e082e1-26ca-47cc-bc29-eb3af57b9b60, blob: e1e082e1-26ca-47cc-bc29-eb3af57b9b60/7603485268_page_1.pdf
+2025-12-29 09:45:42.331 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_page_2.pdf for case e1e082e1-26ca-47cc-bc29-eb3af57b9b60, blob: e1e082e1-26ca-47cc-bc29-eb3af57b9b60/7603485268_page_2.pdf
+2025-12-29 09:45:42.407 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_page_3.pdf for case e1e082e1-26ca-47cc-bc29-eb3af57b9b60, blob: e1e082e1-26ca-47cc-bc29-eb3af57b9b60/7603485268_page_3.pdf
+2025-12-29 09:45:42.506 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_page_4.pdf for case e1e082e1-26ca-47cc-bc29-eb3af57b9b60, blob: e1e082e1-26ca-47cc-bc29-eb3af57b9b60/7603485268_page_4.pdf
+2025-12-29 09:45:42.600 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_page_5.pdf for case e1e082e1-26ca-47cc-bc29-eb3af57b9b60, blob: e1e082e1-26ca-47cc-bc29-eb3af57b9b60/7603485268_page_5.pdf
+2025-12-29 09:45:45.158 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:45.666 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'e1e082e1-26ca-47cc-bc29-eb3af57b9b60', 'timestamp': '2025-12-29T02:45:42.601000Z'}
+2025-12-29 09:45:45.667 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id e1e082e1-26ca-47cc-bc29-eb3af57b9b60 and activity_id string
+2025-12-29 09:45:45.667 | INFO     | __main__:run_worker:52 - Received message: 49bd7517-9386-4e73-88b1-4e333f6cbbec
+2025-12-29 09:45:45.668 | INFO     | __main__:run_worker:76 - Message processed: 49bd7517-9386-4e73-88b1-4e333f6cbbec
+2025-12-29 09:45:49.859 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:54.706 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:45:59.167 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:03.893 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:08.555 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:13.268 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:17.782 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:22.526 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:27.251 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:31.840 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:36.268 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:40.870 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:45.466 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:49.977 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:54.489 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:46:59.507 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:03.710 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:07.430 | INFO     | __main__:<module>:228 - Starting application in 'http' mode
+2025-12-29 09:47:08.450 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:13.056 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:17.493 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:20.498 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:47:20.514 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-29 09:47:20.515 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:77 - Creating AzureBlobStorageRepository singleton
+2025-12-29 09:47:21.165 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 09:47:21.165 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 09:47:21.165 | INFO     | src.config.dependencies:get_azure_cosmos_repository:101 - Creating AzureCosmosDBRepository singleton
+2025-12-29 09:47:22.264 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:22.401 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 09:47:22.401 | INFO     | src.config.dependencies:get_azure_service_bus_repository:185 - Creating AzureServiceBusRepository singleton
+2025-12-29 09:47:22.401 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603485268.pdf with file_id ab11b645-a993-4660-abb1-ba0783ef0adf and activity_id string
+2025-12-29 09:47:22.419 | INFO     | src.usecase.file_upload:_split_pdf_pages:81 - Splitting PDF 7603485268.pdf into 5 pages
+2025-12-29 09:47:22.425 | INFO     | src.usecase.file_upload:_split_pdf_pages:97 - Successfully split 7603485268.pdf into 5 pages
+2025-12-29 09:47:22.425 | INFO     | src.usecase.file_upload:upload:140 - Uploading 5 pages from PDF 7603485268.pdf
+2025-12-29 09:47:22.537 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_1.pdf for case ab11b645-a993-4660-abb1-ba0783ef0adf, blob: ab11b645-a993-4660-abb1-ba0783ef0adf/7603485268_1.pdf
+2025-12-29 09:47:22.621 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_2.pdf for case ab11b645-a993-4660-abb1-ba0783ef0adf, blob: ab11b645-a993-4660-abb1-ba0783ef0adf/7603485268_2.pdf
+2025-12-29 09:47:22.703 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_3.pdf for case ab11b645-a993-4660-abb1-ba0783ef0adf, blob: ab11b645-a993-4660-abb1-ba0783ef0adf/7603485268_3.pdf
+2025-12-29 09:47:22.798 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_4.pdf for case ab11b645-a993-4660-abb1-ba0783ef0adf, blob: ab11b645-a993-4660-abb1-ba0783ef0adf/7603485268_4.pdf
+2025-12-29 09:47:22.882 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_5.pdf for case ab11b645-a993-4660-abb1-ba0783ef0adf, blob: ab11b645-a993-4660-abb1-ba0783ef0adf/7603485268_5.pdf
+2025-12-29 09:47:26.233 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'ab11b645-a993-4660-abb1-ba0783ef0adf', 'timestamp': '2025-12-29T02:47:22.898020Z'}
+2025-12-29 09:47:26.233 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id ab11b645-a993-4660-abb1-ba0783ef0adf and activity_id string
+2025-12-29 09:47:26.597 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:26.837 | INFO     | __main__:run_worker:52 - Received message: 83a2bf0c-1445-4f42-a95e-b5bf8f14f35e
+2025-12-29 09:47:26.838 | INFO     | __main__:run_worker:76 - Message processed: 83a2bf0c-1445-4f42-a95e-b5bf8f14f35e
+2025-12-29 09:47:31.171 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:36.092 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:40.631 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:45.369 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:50.146 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:54.878 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:47:59.619 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:04.189 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:08.970 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:13.992 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:18.668 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:23.515 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:28.116 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:33.163 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:37.651 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:42.469 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:47.210 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:51.881 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:48:57.000 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:01.693 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:06.578 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:11.110 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:15.594 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:20.570 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:24.908 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:29.581 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:34.035 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:38.627 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:43.154 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:47.643 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:52.161 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:49:56.680 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:01.318 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:05.787 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:10.266 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:14.935 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:19.353 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:23.989 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:28.586 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:33.125 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:37.658 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:42.179 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:46.681 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:51.344 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:50:56.233 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:00.548 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:05.251 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:09.687 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:14.693 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:19.175 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:23.568 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:28.094 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:32.667 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:37.106 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:41.627 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:46.184 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:50.732 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:55.432 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:51:59.798 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:04.239 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:08.716 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:13.233 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:17.628 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:22.261 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:26.843 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:31.476 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:36.016 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:40.551 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:45.372 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:49.786 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:54.301 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:52:58.688 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:03.101 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:07.555 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:12.097 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:16.532 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:21.131 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:25.479 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:30.058 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:34.539 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:39.177 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:43.836 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:48.644 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:53.545 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:53:58.518 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:03.586 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:08.155 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:12.867 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:17.583 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:22.194 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:26.937 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:31.556 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:36.212 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:40.951 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:45.795 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:50.459 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:54:55.626 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:00.316 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:04.932 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:09.714 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:14.968 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:19.901 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:25.056 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:29.711 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:34.381 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:39.012 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:43.944 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:48.711 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:53.426 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:55:58.190 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:03.262 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:07.955 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:12.768 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:17.752 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:22.605 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:27.308 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:31.956 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:36.859 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:41.673 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:46.583 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:51.139 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:56:55.815 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:00.617 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:05.370 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:09.878 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:14.491 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:19.048 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:23.917 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:28.501 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:32.965 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:37.527 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:42.053 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:46.746 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:51.332 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:57:55.991 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:00.395 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:04.977 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:09.528 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:14.076 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:18.605 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:23.173 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:27.587 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:32.096 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:36.767 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:41.421 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:45.997 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:50.511 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:54.981 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:58:59.541 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:04.084 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:08.587 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:13.110 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:17.880 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:22.242 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:26.698 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:31.151 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:35.704 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:40.150 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:45.342 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:49.635 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:54.227 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 09:59:58.714 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:03.221 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:07.818 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:12.335 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:16.958 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:21.456 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:26.066 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:30.784 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:35.398 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:40.018 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:44.842 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:49.411 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:53.938 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:00:58.404 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:02.959 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:07.604 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:12.119 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:16.571 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:21.216 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:25.742 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:30.283 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:34.662 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:40.128 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:44.607 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:48.982 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:53.536 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:01:58.037 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:02.463 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:07.006 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:11.734 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:16.312 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:20.873 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:25.508 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:29.912 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:34.636 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:37.102 | INFO     | __main__:<module>:234 - Starting application in 'http' mode
+2025-12-29 10:02:39.353 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:43.809 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:48.489 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:53.175 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:02:57.851 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:03:02.552 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:03:07.581 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:03:12.321 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:03:17.110 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:03:21.669 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:03:26.099 | INFO     | __main__:run_worker:49 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:03:38.325 | INFO     | __main__:<module>:234 - Starting application in 'worker' mode
+2025-12-29 10:03:38.328 | INFO     | __main__:run_worker_standalone:170 - Starting worker in standalone mode...
+2025-12-29 10:03:38.329 | INFO     | __main__:run_worker:30 - Worker started
+2025-12-29 10:03:38.329 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 10:03:38.329 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-29 10:03:38.329 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:77 - Creating AzureBlobStorageRepository singleton
+2025-12-29 10:03:38.904 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 10:03:38.904 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 10:03:38.905 | ERROR    | __main__:run_worker_standalone:176 - Worker failed: ContentExtraction.__init__() got an unexpected keyword argument 'blob_storage_repo'
+2025-12-29 10:04:45.929 | INFO     | __main__:<module>:234 - Starting application in 'worker' mode
+2025-12-29 10:04:45.932 | INFO     | __main__:run_worker_standalone:170 - Starting worker in standalone mode...
+2025-12-29 10:04:45.932 | INFO     | __main__:run_worker:30 - Worker started
+2025-12-29 10:04:45.933 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 10:04:45.933 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-29 10:04:45.933 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:77 - Creating AzureBlobStorageRepository singleton
+2025-12-29 10:04:46.414 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 10:04:46.415 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 10:04:49.367 | INFO     | __main__:run_worker:58 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:04:53.733 | INFO     | __main__:run_worker:58 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:04:58.358 | INFO     | __main__:run_worker:58 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:05:02.853 | INFO     | __main__:run_worker:58 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:05:07.700 | INFO     | __main__:run_worker:58 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:05:12.261 | INFO     | __main__:run_worker:58 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:05:16.965 | INFO     | __main__:run_worker:58 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:05:19.886 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 10:05:19.886 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-29 10:05:19.886 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:77 - Creating AzureBlobStorageRepository singleton
+2025-12-29 10:05:20.503 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 10:05:20.503 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 10:05:20.503 | INFO     | src.config.dependencies:get_azure_cosmos_repository:101 - Creating AzureCosmosDBRepository singleton
+2025-12-29 10:05:21.517 | INFO     | __main__:run_worker:58 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:05:21.750 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 10:05:21.750 | INFO     | src.config.dependencies:get_azure_service_bus_repository:185 - Creating AzureServiceBusRepository singleton
+2025-12-29 10:05:21.750 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603485268.pdf with file_id 742466fb-781f-4acc-ad48-578c93e0017d and activity_id string
+2025-12-29 10:05:21.816 | INFO     | src.usecase.file_upload:_split_pdf_pages:81 - Splitting PDF 7603485268.pdf into 5 pages
+2025-12-29 10:05:21.832 | INFO     | src.usecase.file_upload:_split_pdf_pages:97 - Successfully split 7603485268.pdf into 5 pages
+2025-12-29 10:05:21.832 | INFO     | src.usecase.file_upload:upload:140 - Uploading 5 pages from PDF 7603485268.pdf
+2025-12-29 10:05:21.982 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_1.pdf for case 742466fb-781f-4acc-ad48-578c93e0017d, blob: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 10:05:22.099 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_2.pdf for case 742466fb-781f-4acc-ad48-578c93e0017d, blob: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 10:05:22.199 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_3.pdf for case 742466fb-781f-4acc-ad48-578c93e0017d, blob: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 10:05:22.315 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_4.pdf for case 742466fb-781f-4acc-ad48-578c93e0017d, blob: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf
+2025-12-29 10:05:22.432 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_5.pdf for case 742466fb-781f-4acc-ad48-578c93e0017d, blob: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf
+2025-12-29 10:05:25.749 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '742466fb-781f-4acc-ad48-578c93e0017d', 'timestamp': '2025-12-29T03:05:22.432316Z'}
+2025-12-29 10:05:25.749 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 742466fb-781f-4acc-ad48-578c93e0017d and activity_id string
+2025-12-29 10:05:26.289 | INFO     | __main__:run_worker:58 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:05:26.551 | INFO     | __main__:run_worker:61 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 10:05:26.552 | INFO     | src.usecase.content_extraction:process_message:107 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:05:34.725 | INFO     | src.usecase.content_extraction:process_documents_in_folder:46 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:05:35.497 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:05:39.662 | INFO     | src.usecase.content_extraction:process_documents_in_folder:50 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:06:03.392 | INFO     | src.usecase.content_extraction:process_documents_in_folder:72 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 10:14:05.881 | INFO     | __main__:<module>:234 - Starting application in 'worker' mode
+2025-12-29 10:14:05.894 | INFO     | __main__:run_worker_standalone:170 - Starting worker in standalone mode...
+2025-12-29 10:14:05.894 | INFO     | __main__:run_worker:30 - Worker started
+2025-12-29 10:14:05.894 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 10:14:05.894 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-29 10:14:05.894 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:77 - Creating AzureBlobStorageRepository singleton
+2025-12-29 10:14:06.398 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 10:14:06.398 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 10:14:09.340 | INFO     | __main__:run_worker:58 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:14:09.585 | INFO     | __main__:run_worker:61 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 10:14:09.586 | INFO     | src.usecase.content_extraction:process_message:190 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:14:28.220 | INFO     | src.usecase.content_extraction:process_documents_in_folder:105 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:14:28.690 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:14:29.336 | INFO     | src.usecase.content_extraction:process_documents_in_folder:109 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:14:34.930 | INFO     | src.usecase.content_extraction:process_documents_in_folder:131 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 10:14:47.674 | INFO     | src.usecase.content_extraction:process_documents_in_folder:146 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: 39c343d7-fa17-420b-b376-ba48133d3440
+2025-12-29 10:15:07.414 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:78 - Analysis completed successfully: 39c343d7-fa17-420b-b376-ba48133d3440
+2025-12-29 10:15:12.513 | INFO     | src.usecase.content_extraction:process_documents_in_folder:152 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 10:46:35.587 | INFO     | __main__:<module>:236 - Starting application in 'worker' mode
+2025-12-29 10:46:35.603 | INFO     | __main__:run_worker_standalone:172 - Starting worker in standalone mode...
+2025-12-29 10:46:35.603 | INFO     | __main__:run_worker:31 - Worker started
+2025-12-29 10:46:35.603 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 10:46:35.603 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 10:46:35.603 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 10:46:36.122 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 10:46:36.122 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 10:46:36.122 | ERROR    | __main__:run_worker_standalone:178 - Worker failed: get_content_extraction_service() missing 1 required positional argument: 'llm_service_repo'
+2025-12-29 10:50:32.646 | INFO     | __main__:<module>:237 - Starting application in 'worker' mode
+2025-12-29 10:50:32.650 | INFO     | __main__:run_worker_standalone:173 - Starting worker in standalone mode...
+2025-12-29 10:50:32.650 | INFO     | __main__:run_worker:31 - Worker started
+2025-12-29 10:50:32.650 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 10:50:32.650 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 10:50:32.650 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 10:50:33.109 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 10:50:33.109 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 10:50:33.109 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 10:50:37.063 | INFO     | __main__:run_worker:60 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:50:37.298 | INFO     | __main__:run_worker:63 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 10:50:37.298 | INFO     | src.usecase.content_extraction:process_message:193 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:50:54.868 | INFO     | src.usecase.content_extraction:process_documents_in_folder:108 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:50:54.921 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:50:54.921 | INFO     | src.usecase.content_extraction:process_documents_in_folder:112 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 10:50:54.921 | INFO     | src.usecase.content_extraction:process_documents_in_folder:134 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 10:50:55.776 | INFO     | src.usecase.content_extraction:process_documents_in_folder:149 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: 519790c6-b2c9-4e0f-8806-85e460b4da68
+2025-12-29 10:51:11.190 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 519790c6-b2c9-4e0f-8806-85e460b4da68
+2025-12-29 10:51:11.191 | INFO     | src.usecase.content_extraction:process_documents_in_folder:155 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 10:51:11.191 | INFO     | src.usecase.content_extraction:process_documents_in_folder:134 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 10:51:11.918 | INFO     | src.usecase.content_extraction:process_documents_in_folder:149 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf, request ID: cc68ab15-1cc9-4638-bfaf-8678c7901e80
+2025-12-29 10:54:45.383 | INFO     | __main__:<module>:237 - Starting application in 'worker' mode
+2025-12-29 10:54:45.385 | INFO     | __main__:run_worker_standalone:173 - Starting worker in standalone mode...
+2025-12-29 10:54:45.386 | INFO     | __main__:run_worker:31 - Worker started
+2025-12-29 10:54:45.386 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 10:54:45.386 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 10:54:45.386 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 10:54:45.865 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 10:54:45.865 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 10:54:45.865 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 10:54:49.035 | INFO     | __main__:run_worker:60 - Connected to Service Bus queue: document-uploads
+2025-12-29 10:54:49.279 | INFO     | __main__:run_worker:63 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 10:54:49.279 | INFO     | src.usecase.content_extraction:process_message:199 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:17:12.488 | INFO     | src.usecase.content_extraction:process_documents_in_folder:114 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:17:13.036 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:17:13.037 | INFO     | src.usecase.content_extraction:process_documents_in_folder:118 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:17:13.037 | INFO     | src.usecase.content_extraction:process_documents_in_folder:140 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 11:17:14.003 | INFO     | src.usecase.content_extraction:process_documents_in_folder:155 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: 8a5bb446-b526-4e25-afb0-618163eaa096
+2025-12-29 11:17:34.242 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 8a5bb446-b526-4e25-afb0-618163eaa096
+2025-12-29 11:17:42.023 | ERROR    | src.usecase.content_extraction:_wait_for_analysis_result:105 - Error checking analysis results for 8a5bb446-b526-4e25-afb0-618163eaa096: 'NoneType' object has no attribute 'get_content_classification'
+2025-12-29 11:21:16.210 | INFO     | __main__:<module>:237 - Starting application in 'worker' mode
+2025-12-29 11:21:16.213 | INFO     | __main__:run_worker_standalone:173 - Starting worker in standalone mode...
+2025-12-29 11:21:16.213 | INFO     | __main__:run_worker:31 - Worker started
+2025-12-29 11:21:16.213 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 11:21:16.213 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 11:21:16.213 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 11:21:16.698 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 11:21:16.699 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 11:21:16.699 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 11:21:20.816 | INFO     | __main__:run_worker:60 - Connected to Service Bus queue: document-uploads
+2025-12-29 11:21:21.094 | INFO     | __main__:run_worker:63 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 11:21:21.095 | INFO     | src.usecase.content_extraction:process_message:206 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:21:41.292 | INFO     | src.usecase.content_extraction:process_documents_in_folder:121 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:21:41.528 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:21:41.529 | INFO     | src.usecase.content_extraction:process_documents_in_folder:125 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:21:41.529 | INFO     | src.usecase.content_extraction:process_documents_in_folder:147 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 11:21:42.408 | INFO     | src.usecase.content_extraction:process_documents_in_folder:162 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: 105db7d8-ed9b-474a-9147-78565f7923e6
+2025-12-29 11:22:01.101 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 105db7d8-ed9b-474a-9147-78565f7923e6
+2025-12-29 11:22:27.869 | ERROR    | src.repository.llm.llm_service:get_content_classification:53 - Error getting content classification: 'coroutine' object has no attribute 'content'
+2025-12-29 11:23:13.418 | INFO     | __main__:<module>:237 - Starting application in 'worker' mode
+2025-12-29 11:23:13.421 | INFO     | __main__:run_worker_standalone:173 - Starting worker in standalone mode...
+2025-12-29 11:23:13.421 | INFO     | __main__:run_worker:31 - Worker started
+2025-12-29 11:23:13.422 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 11:23:13.422 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 11:23:13.422 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 11:23:13.903 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 11:23:13.903 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 11:23:13.904 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 11:23:17.254 | INFO     | __main__:run_worker:60 - Connected to Service Bus queue: document-uploads
+2025-12-29 11:23:17.536 | INFO     | __main__:run_worker:63 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 11:23:17.537 | INFO     | src.usecase.content_extraction:process_message:206 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:23:17.538 | INFO     | src.usecase.content_extraction:process_documents_in_folder:121 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:23:17.606 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:23:17.607 | INFO     | src.usecase.content_extraction:process_documents_in_folder:125 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:23:17.607 | INFO     | src.usecase.content_extraction:process_documents_in_folder:147 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 11:23:18.211 | INFO     | src.usecase.content_extraction:process_documents_in_folder:162 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: a14b6b8c-c4a0-4c22-8b55-3e0691daac67
+2025-12-29 11:23:33.841 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: a14b6b8c-c4a0-4c22-8b55-3e0691daac67
+2025-12-29 11:26:44.308 | INFO     | __main__:<module>:237 - Starting application in 'worker' mode
+2025-12-29 11:26:44.310 | INFO     | __main__:run_worker_standalone:173 - Starting worker in standalone mode...
+2025-12-29 11:26:44.311 | INFO     | __main__:run_worker:31 - Worker started
+2025-12-29 11:26:44.311 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 11:26:44.311 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 11:26:44.311 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 11:26:44.829 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 11:26:44.829 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 11:26:44.829 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 11:26:48.025 | INFO     | __main__:run_worker:60 - Connected to Service Bus queue: document-uploads
+2025-12-29 11:26:48.289 | INFO     | __main__:run_worker:63 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 11:26:48.289 | INFO     | src.usecase.content_extraction:process_message:206 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:26:48.305 | INFO     | src.usecase.content_extraction:process_documents_in_folder:121 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:26:48.356 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:26:48.356 | INFO     | src.usecase.content_extraction:process_documents_in_folder:125 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:26:48.356 | INFO     | src.usecase.content_extraction:process_documents_in_folder:147 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 11:26:49.003 | INFO     | src.usecase.content_extraction:process_documents_in_folder:162 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: a0925df8-047d-4c56-b8e2-cbd230bcfbf0
+2025-12-29 11:27:01.995 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: a0925df8-047d-4c56-b8e2-cbd230bcfbf0
+2025-12-29 11:30:34.518 | INFO     | __main__:<module>:237 - Starting application in 'worker' mode
+2025-12-29 11:30:34.522 | INFO     | __main__:run_worker_standalone:173 - Starting worker in standalone mode...
+2025-12-29 11:30:34.522 | INFO     | __main__:run_worker:31 - Worker started
+2025-12-29 11:30:34.522 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 11:30:34.522 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 11:30:34.522 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 11:30:34.994 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 11:30:34.994 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 11:30:34.994 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 11:30:38.918 | INFO     | __main__:run_worker:60 - Connected to Service Bus queue: document-uploads
+2025-12-29 11:30:39.193 | INFO     | __main__:run_worker:63 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 11:30:39.195 | INFO     | src.usecase.content_extraction:process_message:207 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:30:39.195 | INFO     | src.usecase.content_extraction:process_documents_in_folder:122 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:30:39.249 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:30:39.249 | INFO     | src.usecase.content_extraction:process_documents_in_folder:126 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:30:39.250 | INFO     | src.usecase.content_extraction:process_documents_in_folder:148 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 11:30:39.946 | INFO     | src.usecase.content_extraction:process_documents_in_folder:163 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: 933d9fa4-56eb-4cff-961a-eab3ca95b9ba
+2025-12-29 11:30:57.530 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 933d9fa4-56eb-4cff-961a-eab3ca95b9ba
+2025-12-29 11:33:37.096 | INFO     | __main__:<module>:237 - Starting application in 'worker' mode
+2025-12-29 11:33:37.099 | INFO     | __main__:run_worker_standalone:173 - Starting worker in standalone mode...
+2025-12-29 11:33:37.100 | INFO     | __main__:run_worker:31 - Worker started
+2025-12-29 11:33:37.100 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 11:33:37.101 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 11:33:37.101 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 11:33:37.680 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 11:33:37.681 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 11:33:37.681 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 11:33:40.831 | INFO     | __main__:run_worker:60 - Connected to Service Bus queue: document-uploads
+2025-12-29 11:33:41.097 | INFO     | __main__:run_worker:63 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 11:33:41.098 | INFO     | src.usecase.content_extraction:process_message:207 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:33:41.099 | INFO     | src.usecase.content_extraction:process_documents_in_folder:122 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:33:41.161 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:33:41.161 | INFO     | src.usecase.content_extraction:process_documents_in_folder:126 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:33:41.162 | INFO     | src.usecase.content_extraction:process_documents_in_folder:148 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 11:33:41.951 | INFO     | src.usecase.content_extraction:process_documents_in_folder:163 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: 87f9bcdc-b5be-4b9b-952f-7d06ed9496d3
+2025-12-29 11:33:57.192 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 87f9bcdc-b5be-4b9b-952f-7d06ed9496d3
+2025-12-29 11:34:26.434 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:90 - Content classification completed for 87f9bcdc-b5be-4b9b-952f-7d06ed9496d3
+2025-12-29 11:34:26.434 | INFO     | src.usecase.content_extraction:process_documents_in_folder:169 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 11:34:26.434 | INFO     | src.usecase.content_extraction:process_documents_in_folder:148 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 11:34:26.978 | INFO     | src.usecase.content_extraction:process_documents_in_folder:163 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf, request ID: 9d7099c0-69b1-4c86-bdb5-42108444116c
+2025-12-29 11:34:51.862 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 9d7099c0-69b1-4c86-bdb5-42108444116c
+2025-12-29 11:35:10.953 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:90 - Content classification completed for 9d7099c0-69b1-4c86-bdb5-42108444116c
+2025-12-29 11:35:10.954 | INFO     | src.usecase.content_extraction:process_documents_in_folder:169 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 11:35:10.955 | INFO     | src.usecase.content_extraction:process_documents_in_folder:148 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 11:35:11.739 | INFO     | src.usecase.content_extraction:process_documents_in_folder:163 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf, request ID: 4fbbf484-374c-480f-8177-df23dc181103
+2025-12-29 11:35:41.520 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 4fbbf484-374c-480f-8177-df23dc181103
+2025-12-29 11:35:50.253 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:90 - Content classification completed for 4fbbf484-374c-480f-8177-df23dc181103
+2025-12-29 11:35:50.253 | INFO     | src.usecase.content_extraction:process_documents_in_folder:169 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 11:35:50.253 | INFO     | src.usecase.content_extraction:process_documents_in_folder:148 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf
+2025-12-29 11:35:50.869 | INFO     | src.usecase.content_extraction:process_documents_in_folder:163 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf, request ID: 22f8e0cc-6d0d-4de3-b17f-1a90871e27ef
+2025-12-29 11:36:25.488 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 22f8e0cc-6d0d-4de3-b17f-1a90871e27ef
+2025-12-29 11:37:28.414 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:90 - Content classification completed for 22f8e0cc-6d0d-4de3-b17f-1a90871e27ef
+2025-12-29 11:37:28.414 | INFO     | src.usecase.content_extraction:process_documents_in_folder:169 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf
+2025-12-29 11:37:28.418 | INFO     | src.usecase.content_extraction:process_documents_in_folder:148 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf
+2025-12-29 11:37:29.105 | INFO     | src.usecase.content_extraction:process_documents_in_folder:163 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf, request ID: 9fd3fa91-67bb-472a-a038-1ba53e090187
+2025-12-29 11:37:37.192 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 9fd3fa91-67bb-472a-a038-1ba53e090187
+2025-12-29 11:38:07.586 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:90 - Content classification completed for 9fd3fa91-67bb-472a-a038-1ba53e090187
+2025-12-29 11:38:07.586 | INFO     | src.usecase.content_extraction:process_documents_in_folder:169 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf
+2025-12-29 11:38:07.586 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Completed processing 5 documents from folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:38:07.586 | INFO     | src.usecase.content_extraction:process_message:211 - Successfully processed content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:38:07.586 | ERROR    | __main__:run_worker:86 - Error processing message: The lock on the message lock has expired.
+2025-12-29 11:38:10.456 | INFO     | __main__:run_worker:60 - Connected to Service Bus queue: document-uploads
+2025-12-29 11:38:11.048 | INFO     | __main__:run_worker:63 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 11:38:11.049 | INFO     | src.usecase.content_extraction:process_message:207 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:38:11.049 | INFO     | src.usecase.content_extraction:process_documents_in_folder:122 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:38:11.614 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:38:11.615 | INFO     | src.usecase.content_extraction:process_documents_in_folder:126 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 11:38:11.615 | INFO     | src.usecase.content_extraction:process_documents_in_folder:148 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 11:38:12.216 | INFO     | src.usecase.content_extraction:process_documents_in_folder:163 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: 2e7f16df-e5e1-47fe-b79d-77d9a6b53c4b
+2025-12-29 11:38:30.784 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 2e7f16df-e5e1-47fe-b79d-77d9a6b53c4b
+2025-12-29 11:38:32.637 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:90 - Content classification completed for 2e7f16df-e5e1-47fe-b79d-77d9a6b53c4b
+2025-12-29 11:38:32.637 | INFO     | src.usecase.content_extraction:process_documents_in_folder:169 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 11:38:32.637 | INFO     | src.usecase.content_extraction:process_documents_in_folder:148 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 11:38:33.272 | INFO     | src.usecase.content_extraction:process_documents_in_folder:163 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf, request ID: 08b1e1ac-30d4-4bfe-9525-5b94bf9cf362
+2025-12-29 11:39:22.800 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 08b1e1ac-30d4-4bfe-9525-5b94bf9cf362
+2025-12-29 11:39:24.449 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:90 - Content classification completed for 08b1e1ac-30d4-4bfe-9525-5b94bf9cf362
+2025-12-29 11:39:24.451 | INFO     | src.usecase.content_extraction:process_documents_in_folder:169 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 11:39:24.451 | INFO     | src.usecase.content_extraction:process_documents_in_folder:148 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 11:39:25.039 | INFO     | src.usecase.content_extraction:process_documents_in_folder:163 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf, request ID: 448c8c20-6700-41c7-9db7-4a84a9adc4d0
+2025-12-29 11:39:42.712 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:81 - Analysis completed successfully: 448c8c20-6700-41c7-9db7-4a84a9adc4d0
+2025-12-29 11:39:44.409 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:90 - Content classification completed for 448c8c20-6700-41c7-9db7-4a84a9adc4d0
+2025-12-29 11:39:44.410 | INFO     | src.usecase.content_extraction:process_documents_in_folder:169 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 11:39:44.410 | INFO     | src.usecase.content_extraction:process_documents_in_folder:148 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf
+2025-12-29 11:39:44.974 | INFO     | src.usecase.content_extraction:process_documents_in_folder:163 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf, request ID: eada3366-863b-4047-9f3b-f3430369bfc7

@@ -11,6 +11,7 @@ from src.repository.database import AzureCosmosDBRepository
 from src.usecase.content_extraction import ContentExtraction
 from src.usecase.file_upload import FileUpload
 from src.usecase.tax_management import TaxManagementUseCase
+from src.repository.llm.llm_service import LLMService
 
 # Module-level singleton instances
 _content_understanding_repo: Optional[ContentUnderstandingRepository] = None
@@ -19,6 +20,7 @@ _azure_cosmos_repo: Optional[AzureCosmosDBRepository] = None
 _rabbitmq_repo: Optional[RabbitMQRepository] = None
 _minio_storage_repo: Optional[MinioStorageRepository] = None
 _azure_service_bus_repo: Optional[AzureServiceBusRepository] = None
+_llm_service_repo: Optional[LLMService] = None
 
 
 @lru_cache
@@ -180,13 +182,36 @@ def get_azure_service_bus_repository(
     Returns:
         AzureServiceBusRepository singleton instance or None if not configured
     """
-    if not config.SERVICE_BUS_CONNECTION_STRING:
+    if not config.AZURE_SERVICE_BUS_CONNECTION_STRING:
         return None
     logger.info("Creating AzureServiceBusRepository singleton")
     return AzureServiceBusRepository(
-        connection_string=config.SERVICE_BUS_CONNECTION_STRING
+        connection_string=config.AZURE_SERVICE_BUS_CONNECTION_STRING
     )
 
+def get_llm_service_repository(
+    config: Annotated[AppConfig, Depends(get_app_config)]
+) -> Optional[LLMService]:
+    """
+    Create and return LLMService instance (singleton).
+    
+    LLMService wraps Azure OpenAI client which is thread-safe and
+    maintains internal connection pooling. Creating once at startup
+    and reusing across requests is the recommended approach.
+    
+    Args:
+        config: Application configuration dependency
+    Returns:
+        LLMService singleton instance
+    """
+    global _llm_service_repo
+    if _llm_service_repo is None:
+        logger.info("Creating LLMService singleton")
+        _llm_service_repo = LLMService(
+            service_id="default_service",
+            config=config
+        )
+    return _llm_service_repo
 
 def get_content_extraction_service(
     content_understanding_repo: Annotated[
@@ -204,7 +229,12 @@ def get_content_extraction_service(
     minio_storage_repo: Annotated[
         Optional[MinioStorageRepository],
         Depends(get_minio_storage_repository)
+    ],
+    llm_service_repo: Annotated[
+        Optional[LLMService],
+        Depends(get_llm_service_repository)
     ]
+
 ) -> ContentExtraction:
     """
     Create and return ContentExtraction use case with all dependencies.
@@ -224,9 +254,10 @@ def get_content_extraction_service(
     logger.debug("Creating ContentExtraction use case")
     return ContentExtraction(
         content_understanding_repo=content_understanding_repo,
-        blob_storage_repo=blob_storage_repo,
+        azure_blob_storage_repo=blob_storage_repo,
         rabbitmq_repo=rabbitmq_repo,
-        minio_storage_repo=minio_storage_repo
+        minio_storage_repo=minio_storage_repo,
+        llm_service_repo=llm_service_repo
     )
 
 def get_file_upload_service(

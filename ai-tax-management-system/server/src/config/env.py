@@ -33,7 +33,7 @@ class AppConfig:
     RABBITMQ_DEFAULT_USER: str = os.getenv('RABBITMQ_DEFAULT_USER', 'admin')
     RABBITMQ_DEFAULT_PASS: str = os.getenv('RABBITMQ_DEFAULT_PASS', 'admin123')
 
-    SERVICE_BUS_CONNECTION_STRING: str = os.getenv('SERVICE_BUS_CONNECTION_STRING', '')
+    AZURE_SERVICE_BUS_CONNECTION_STRING: str = os.getenv('AZURE_SERVICE_BUS_CONNECTION_STRING', '')
     AZURE_SERVICE_BUS_QUEUE_NAME: str = os.getenv('AZURE_SERVICE_BUS_QUEUE_NAME', 'file-processing-queue')
 
     ENV: str = os.getenv('ENV', 'development')

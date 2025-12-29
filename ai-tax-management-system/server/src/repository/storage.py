@@ -44,7 +44,7 @@ class AzureBlobStorageRepository:
         try:
             file_name = original_filename.split('.')[0] if '.' in original_filename else original_filename
             file_extension = original_filename.split('.')[-1] if '.' in original_filename else ''
-            object_name = f"{activity_id}/{file_id}/{file_name}.{file_extension}"
+            object_name = f"{file_id}/{file_name}.{file_extension}"
             
             # Upload file
             blob_client = self.blob_service_client.get_blob_client(

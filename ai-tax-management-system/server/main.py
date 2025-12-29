@@ -1,9 +1,12 @@
 import asyncio
 import argparse
+import os
+import json
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from loguru import logger
 import uvicorn
+from azure.servicebus.aio import ServiceBusClient
 
 from src.delivery.upload_routes import router as upload_router
 from src.delivery.status_routes import router as status_router
@@ -14,7 +17,9 @@ from src.config.dependencies import (
     get_azure_blob_storage_repository,
     get_rabbitmq_repository,
     get_minio_storage_repository,
-    get_azure_service_bus_repository
+    get_azure_service_bus_repository,
+    get_content_extraction_service,
+    get_llm_service_repository
 )
 
 from src.common.const import Environment
@@ -24,18 +29,68 @@ from src.common.const import Environment
 async def run_worker():
 
     logger.info("Worker started")
-
-    client = get_azure_service_bus_repository(get_app_config())
-
+    
+    config = get_app_config()
+    connection_string = config.AZURE_SERVICE_BUS_CONNECTION_STRING
+    queue_name = config.AZURE_SERVICE_BUS_QUEUE_NAME
+    
+    if not connection_string:
+        logger.error("SERVICE_BUS_CONNECTION_STRING not configured")
+        return
+    
+    if not queue_name:
+        logger.error("SERVICE_BUS_QUEUE_NAME not configured")
+        return
+    
+    # Initialize content extraction service
+    content_extraction = get_content_extraction_service(
+        content_understanding_repo=get_content_understanding_repository(config),
+        blob_storage_repo=get_azure_blob_storage_repository(config),
+        rabbitmq_repo=get_rabbitmq_repository(config),
+        minio_storage_repo=get_minio_storage_repository(config),
+        llm_service_repo=get_llm_service_repository(config)
+    )
+    
     try:
         while True:
-            # TODO: Implement your worker logic here
-            # Examples:
-            # - Process queue messages
-            # - Handle background tasks
-            # - Process uploaded files
-            await asyncio.sleep(10)  # Placeholder - replace with actual work
-            logger.debug("Worker heartbeat")
+            try:
+                client = ServiceBusClient.from_connection_string(connection_string)
+                async with client:
+                    async with client.get_queue_receiver(queue_name, max_wait_time=1) as receiver:
+                        logger.info(f"Connected to Service Bus queue: {queue_name}")
+                        async for message in receiver:
+                            try:
+                                logger.info(f"Received message: {message.message_id}")
+                                # Parse message body - handle generator case
+                                body = message.body
+                                if hasattr(body, '__iter__') and not isinstance(body, (str, dict, bytes)):
+                                    # It's a generator or iterator, join it
+                                    body = b''.join(body).decode('utf-8')
+                                elif isinstance(body, bytes):
+                                    body = body.decode('utf-8')
+                                
+                                # Parse JSON if string
+                                if isinstance(body, str):
+                                    data = json.loads(body)
+                                else:
+                                    data = body
+                                
+                                logger.debug(f"Message data: {data}")
+                                
+                                # Process the message using content extraction service
+                                await content_extraction.process_message(data)
+                                
+                                await receiver.complete_message(message)
+                                logger.info(f"Message processed: {message.message_id}")
+                            except Exception as e:
+                                logger.error(f"Error processing message: {e}")
+                                # Optionally dead-letter the message on error
+                                # await receiver.dead_letter_message(message)
+                                
+            except Exception as e:
+                logger.error(f"Connection error: {e}. Reconnecting in 5 seconds...")
+                await asyncio.sleep(5)
+                
     except asyncio.CancelledError:
         logger.info("Worker shutting down...")
         raise
@@ -57,6 +112,7 @@ async def lifespan(app: FastAPI):
     config = get_app_config()
     get_content_understanding_repository(config)
     get_azure_blob_storage_repository(config)
+    get_llm_service_repository(config)
     
     # Initialize RabbitMQ and MinIO only in development environment
     if config.ENV.lower() == Environment.Development.value:

@@ -52,16 +52,17 @@ class FileUpload:
     
     def _send_processing_message(
         self, 
-        file_id: str, 
+        file_id: str
     ) -> None:
 
-        if IS_PRODUCTION or not self.rabbitmq_repo:
-            return
+        # if IS_PRODUCTION or not self.rabbitmq_repo:
+        #     return
             
         payload = {
             "document_id": file_id,
+            "timestamp": datetime.utcnow().isoformat() + "Z"
         }
-            
+
         # self.rabbitmq_repo.send_message(
         #     queue_name="file_upload_queue",
         #     message_data=payload
@@ -90,7 +91,7 @@ class FileUpload:
             writer.write(page_buffer)
             page_buffer.seek(0)
             
-            page_filename = f"{base_filename}_page_{page_num + 1}.pdf"
+            page_filename = f"{base_filename}_{page_num + 1}.pdf"
             pages.append((page_num + 1, page_buffer.read(), page_filename))
             
         logger.info(f"Successfully split {original_filename} into {len(pages)} pages")
