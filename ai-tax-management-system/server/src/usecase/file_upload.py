@@ -168,14 +168,19 @@ class FileUpload:
             total_size = sum(f["size"] for f in uploaded_files)
             
             upload_result = {
-                "file_id": file_id,
-                "activity_id": activity_id,
-                "original_filename": original_filename,
-                "total_size": total_size,
-                "total_pages": len(uploaded_files) if is_pdf and len(uploaded_files) > 1 else 1,
-                "uploaded_files": uploaded_files,
+                "documentId": file_id,
+                "activityId": activity_id,
+                "originalFilename": original_filename,
+                "totalSize": total_size,
+                "totalPages": len(uploaded_files) if is_pdf and len(uploaded_files) > 1 else 1,
+                "uploadedFiles": uploaded_files,
                 "status": "processing"
             }
+
+            self.azure_cosmos_repo.create_document(
+                container_id="uploads",
+                document_data=upload_result
+            )
             
             self._send_processing_message(file_id)
             

@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from loguru import logger
 import uvicorn
-from azure.servicebus.aio import ServiceBusClient
+from azure.servicebus.aio import ServiceBusClient, AutoLockRenewer
 
 from src.delivery.upload_routes import router as upload_router
 from src.delivery.status_routes import router as status_router
@@ -54,15 +54,23 @@ async def run_worker():
     )
     
     try:
+        client = ServiceBusClient.from_connection_string(connection_string)
+        renewer = AutoLockRenewer(max_lock_renewal_duration=3600)
         while True:
             try:
-                client = ServiceBusClient.from_connection_string(connection_string)
                 async with client:
-                    async with client.get_queue_receiver(queue_name, max_wait_time=1) as receiver:
+                    # Use max_lock_renewal_duration to automatically renew the message lock
+                    # This allows processing to take up to 5 minutes without losing the lock
+                    async with client.get_queue_receiver(
+                        queue_name, 
+                        max_wait_time=1,
+                        auto_lock_renewer=renewer
+                    ) as receiver:
                         logger.info(f"Connected to Service Bus queue: {queue_name}")
                         async for message in receiver:
                             try:
                                 logger.info(f"Received message: {message.message_id}")
+                                
                                 # Parse message body - handle generator case
                                 body = message.body
                                 if hasattr(body, '__iter__') and not isinstance(body, (str, dict, bytes)):
@@ -79,14 +87,10 @@ async def run_worker():
                                 
                                 logger.debug(f"Message data: {data}")
                                 
+                                await receiver.complete_message(message)
                                 # Process the message using content extraction service
                                 await content_extraction.process_message(data)
                                 
-                                try:
-                                    await receiver.complete_message(message)
-                                    logger.info(f"Message processed: {message.message_id}")
-                                except Exception as complete_error:
-                                    logger.error(f"Error completing message (lock may have expired): {complete_error}")
                             except Exception as e:
                                 logger.error(f"Error processing message: {e}")
                                 # Don't try to complete if message processing failed

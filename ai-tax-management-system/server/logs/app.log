@@ -2135,3 +2135,871 @@ nikPembeliKenaPajak
 2025-12-29 14:48:43.119 | ERROR    | src.usecase.content_extraction:process_documents_in_folder:250 - Timeout waiting for analysis of 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf: Analysis did not complete within 15 seconds for request a4ac7280-28ee-454d-95cc-06b35c381634
 2025-12-29 14:48:43.120 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf
 2025-12-29 14:48:43.648 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf, request ID: c589b954-1b8a-4c21-866d-cbcec5a61d31
+2025-12-29 14:50:51.809 | INFO     | __main__:<module>:242 - Starting application in 'worker' mode
+2025-12-29 14:50:51.809 | INFO     | __main__:run_worker_standalone:178 - Starting worker in standalone mode...
+2025-12-29 14:50:51.809 | INFO     | __main__:run_worker:32 - Worker started
+2025-12-29 14:50:51.809 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 14:50:51.809 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 14:50:51.809 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 14:50:52.311 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 14:50:52.327 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 14:50:52.327 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 14:50:52.691 | INFO     | src.config.dependencies:get_azure_cosmos_repository:103 - Creating AzureCosmosDBRepository singleton
+2025-12-29 14:50:53.768 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 14:50:56.746 | INFO     | __main__:run_worker:62 - Connected to Service Bus queue: document-uploads
+2025-12-29 14:50:56.978 | INFO     | __main__:run_worker:65 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 14:50:56.993 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:50:56.993 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:50:57.050 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:50:57.050 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:50:57.050 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 14:50:57.721 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: e8cfc7d2-4acf-438b-acf6-edc8e5232188
+2025-12-29 14:51:12.055 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: e8cfc7d2-4acf-438b-acf6-edc8e5232188
+2025-12-29 14:51:12.056 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 14:51:16.420 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for e8cfc7d2-4acf-438b-acf6-edc8e5232188
+2025-12-29 14:51:16.420 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 14:51:16.420 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 14:51:17.128 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf, request ID: 3cfcdfe3-07ce-4019-bbd3-6bcff29d12b4
+2025-12-29 14:52:05.806 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 3cfcdfe3-07ce-4019-bbd3-6bcff29d12b4
+2025-12-29 14:52:05.806 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 14:52:09.814 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 3cfcdfe3-07ce-4019-bbd3-6bcff29d12b4
+2025-12-29 14:52:09.814 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 14:52:09.814 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 14:52:10.397 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf, request ID: e9876d5b-c331-42a5-a383-61d1974b6ea5
+2025-12-29 14:52:28.584 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: e9876d5b-c331-42a5-a383-61d1974b6ea5
+2025-12-29 14:52:28.585 | WARNING  | src.usecase.content_extraction:_extract_urn_from_content:78 - No URN found in document content
+2025-12-29 14:52:36.575 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for e9876d5b-c331-42a5-a383-61d1974b6ea5
+2025-12-29 14:52:36.576 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 14:52:36.576 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf
+2025-12-29 14:52:37.484 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf, request ID: 50bb841c-751a-4653-b47d-bee70f4994e2
+2025-12-29 14:53:19.798 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 50bb841c-751a-4653-b47d-bee70f4994e2
+2025-12-29 14:53:19.799 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 14:53:25.511 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 50bb841c-751a-4653-b47d-bee70f4994e2
+2025-12-29 14:53:25.511 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf
+2025-12-29 14:53:25.512 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf
+2025-12-29 14:53:26.049 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf, request ID: 22f13ae4-4e7d-49be-add8-8f55eb257559
+2025-12-29 14:53:36.913 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 22f13ae4-4e7d-49be-add8-8f55eb257559
+2025-12-29 14:53:36.913 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 14:53:38.329 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 22f13ae4-4e7d-49be-add8-8f55eb257559
+2025-12-29 14:53:38.330 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf
+2025-12-29 14:53:38.330 | INFO     | src.usecase.content_extraction:process_documents_in_folder:264 - Completed processing 5 documents from folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:53:38.331 | INFO     | src.usecase.content_extraction:process_message:282 - Successfully processed content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:53:38.332 | ERROR    | __main__:run_worker:89 - Error completing message (lock may have expired): The lock on the message lock has expired.
+2025-12-29 14:53:41.803 | INFO     | __main__:run_worker:62 - Connected to Service Bus queue: document-uploads
+2025-12-29 14:53:42.046 | INFO     | __main__:run_worker:65 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 14:53:42.047 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:53:42.048 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:53:42.635 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:53:42.635 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:53:42.636 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 14:53:43.413 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: 169e0aac-8604-4256-bdbf-6befc103696d
+2025-12-29 14:53:58.102 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 169e0aac-8604-4256-bdbf-6befc103696d
+2025-12-29 14:53:58.102 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 14:54:02.433 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 169e0aac-8604-4256-bdbf-6befc103696d
+2025-12-29 14:54:02.433 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 14:54:02.433 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 14:54:03.050 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf, request ID: 8d709ac5-a4fc-47d4-91f4-34dc8fb71888
+2025-12-29 14:56:33.131 | INFO     | __main__:<module>:248 - Starting application in 'worker' mode
+2025-12-29 14:56:33.147 | INFO     | __main__:run_worker_standalone:184 - Starting worker in standalone mode...
+2025-12-29 14:56:33.147 | INFO     | __main__:run_worker:32 - Worker started
+2025-12-29 14:56:33.147 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 14:56:33.147 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 14:56:33.147 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 14:56:33.584 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 14:56:33.584 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 14:56:33.584 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 14:56:33.954 | INFO     | src.config.dependencies:get_azure_cosmos_repository:103 - Creating AzureCosmosDBRepository singleton
+2025-12-29 14:56:35.057 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 14:56:37.923 | INFO     | __main__:run_worker:68 - Connected to Service Bus queue: document-uploads
+2025-12-29 14:56:38.165 | INFO     | __main__:run_worker:71 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 14:56:38.166 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:56:38.167 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:56:38.226 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:56:38.226 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:56:38.227 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 14:56:38.839 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: 3d205210-1b7c-439f-b920-5342b937373a
+2025-12-29 14:56:56.509 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 3d205210-1b7c-439f-b920-5342b937373a
+2025-12-29 14:56:56.509 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 14:57:01.077 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 3d205210-1b7c-439f-b920-5342b937373a
+2025-12-29 14:57:01.078 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 14:57:01.078 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 14:57:01.529 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf, request ID: 3e277d46-5339-4ca5-9185-2b6e12f58674
+2025-12-29 14:57:48.472 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 3e277d46-5339-4ca5-9185-2b6e12f58674
+2025-12-29 14:57:48.472 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 14:57:52.392 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 3e277d46-5339-4ca5-9185-2b6e12f58674
+2025-12-29 14:57:52.392 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 14:57:52.392 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 14:57:53.134 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf, request ID: 9987b441-0a17-4ca5-8c78-c07a213b0989
+2025-12-29 14:58:15.776 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 9987b441-0a17-4ca5-8c78-c07a213b0989
+2025-12-29 14:58:15.777 | WARNING  | src.usecase.content_extraction:_extract_urn_from_content:78 - No URN found in document content
+2025-12-29 14:58:23.317 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 9987b441-0a17-4ca5-8c78-c07a213b0989
+2025-12-29 14:58:23.317 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 14:58:23.317 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf
+2025-12-29 14:58:24.296 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf, request ID: 9072b162-1394-48d6-b46e-414812c65e59
+2025-12-29 14:59:03.619 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 9072b162-1394-48d6-b46e-414812c65e59
+2025-12-29 14:59:03.619 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 14:59:07.752 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 9072b162-1394-48d6-b46e-414812c65e59
+2025-12-29 14:59:07.752 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf
+2025-12-29 14:59:07.753 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf
+2025-12-29 14:59:08.483 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf, request ID: 0c77bbd4-90ab-4cc0-a35d-4b0f5c64abf1
+2025-12-29 14:59:19.159 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 0c77bbd4-90ab-4cc0-a35d-4b0f5c64abf1
+2025-12-29 14:59:19.159 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 14:59:20.615 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 0c77bbd4-90ab-4cc0-a35d-4b0f5c64abf1
+2025-12-29 14:59:20.615 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf
+2025-12-29 14:59:20.615 | INFO     | src.usecase.content_extraction:process_documents_in_folder:264 - Completed processing 5 documents from folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:59:20.615 | INFO     | src.usecase.content_extraction:process_message:282 - Successfully processed content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:59:20.615 | ERROR    | __main__:run_worker:95 - Error completing message (lock may have expired): The lock on the message lock has expired.
+2025-12-29 14:59:23.980 | INFO     | __main__:run_worker:68 - Connected to Service Bus queue: document-uploads
+2025-12-29 14:59:24.376 | INFO     | __main__:run_worker:71 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 14:59:24.376 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:59:24.376 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:59:24.518 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:59:24.518 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 14:59:24.519 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 14:59:24.984 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: ab849163-d106-441a-822e-e1283af7821c
+2025-12-29 15:03:42.858 | INFO     | __main__:<module>:249 - Starting application in 'worker' mode
+2025-12-29 15:03:42.873 | INFO     | __main__:run_worker_standalone:185 - Starting worker in standalone mode...
+2025-12-29 15:03:42.873 | INFO     | __main__:run_worker:32 - Worker started
+2025-12-29 15:03:42.874 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 15:03:42.875 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 15:03:42.875 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 15:06:19.534 | INFO     | __main__:<module>:249 - Starting application in 'worker' mode
+2025-12-29 15:06:19.546 | INFO     | __main__:run_worker_standalone:185 - Starting worker in standalone mode...
+2025-12-29 15:06:19.546 | INFO     | __main__:run_worker:32 - Worker started
+2025-12-29 15:06:19.546 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 15:06:19.546 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 15:06:19.549 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 15:18:06.936 | INFO     | __main__:<module>:249 - Starting application in 'worker' mode
+2025-12-29 15:18:06.939 | INFO     | __main__:run_worker_standalone:185 - Starting worker in standalone mode...
+2025-12-29 15:18:06.939 | INFO     | __main__:run_worker:32 - Worker started
+2025-12-29 15:18:06.939 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 15:18:06.939 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 15:18:06.939 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 15:18:07.532 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 15:18:07.532 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 15:18:07.532 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 15:18:08.037 | INFO     | src.config.dependencies:get_azure_cosmos_repository:103 - Creating AzureCosmosDBRepository singleton
+2025-12-29 15:18:09.257 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 15:18:12.179 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 15:18:12.426 | INFO     | __main__:run_worker:72 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 15:18:12.426 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:18:12.427 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:18:12.490 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:18:12.490 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:18:12.491 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 15:18:13.680 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: 0dcee711-759d-49a2-a714-17afd8df5862
+2025-12-29 15:18:31.512 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 0dcee711-759d-49a2-a714-17afd8df5862
+2025-12-29 15:18:43.370 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 15:18:47.941 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 0dcee711-759d-49a2-a714-17afd8df5862
+2025-12-29 15:18:47.942 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 15:18:47.942 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 15:18:48.663 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf, request ID: c4868c57-beb2-4980-a5be-e256f82894c2
+2025-12-29 15:19:27.446 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: c4868c57-beb2-4980-a5be-e256f82894c2
+2025-12-29 15:19:27.446 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 15:19:47.839 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for c4868c57-beb2-4980-a5be-e256f82894c2
+2025-12-29 15:19:47.839 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 15:19:47.839 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 15:19:48.351 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf, request ID: f377c0eb-a534-44be-bdf9-d249c3b072d8
+2025-12-29 15:20:06.379 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: f377c0eb-a534-44be-bdf9-d249c3b072d8
+2025-12-29 15:20:06.379 | WARNING  | src.usecase.content_extraction:_extract_urn_from_content:78 - No URN found in document content
+2025-12-29 15:29:15.132 | INFO     | __main__:<module>:249 - Starting application in 'worker' mode
+2025-12-29 15:29:15.136 | INFO     | __main__:run_worker_standalone:185 - Starting worker in standalone mode...
+2025-12-29 15:29:15.136 | INFO     | __main__:run_worker:32 - Worker started
+2025-12-29 15:29:15.136 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 15:29:15.136 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 15:29:15.136 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 15:29:15.673 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 15:29:15.674 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 15:29:15.674 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 15:29:16.046 | INFO     | src.config.dependencies:get_azure_cosmos_repository:103 - Creating AzureCosmosDBRepository singleton
+2025-12-29 15:29:17.159 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 15:29:20.046 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 15:29:20.292 | INFO     | __main__:run_worker:72 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 15:29:20.292 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:29:20.292 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:29:20.363 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:29:20.365 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:29:20.365 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 15:29:21.331 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: fc159d35-5326-4ea2-b08d-9861187d5d0b
+2025-12-29 15:29:28.738 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: fc159d35-5326-4ea2-b08d-9861187d5d0b
+2025-12-29 15:29:28.740 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 15:29:54.733 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for fc159d35-5326-4ea2-b08d-9861187d5d0b
+2025-12-29 15:29:54.733 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 15:29:54.733 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 15:29:55.377 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf, request ID: 586079fe-eb22-4eab-9b0d-25d90246abc0
+2025-12-29 15:30:09.714 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 586079fe-eb22-4eab-9b0d-25d90246abc0
+2025-12-29 15:30:09.714 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 15:30:18.581 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 586079fe-eb22-4eab-9b0d-25d90246abc0
+2025-12-29 15:30:18.582 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_2.pdf
+2025-12-29 15:30:18.582 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 15:30:19.273 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf, request ID: aa7de2c1-1cf9-4aee-9d36-342658486134
+2025-12-29 15:31:07.825 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: aa7de2c1-1cf9-4aee-9d36-342658486134
+2025-12-29 15:31:07.825 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 15:31:41.051 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for aa7de2c1-1cf9-4aee-9d36-342658486134
+2025-12-29 15:56:22.143 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_3.pdf
+2025-12-29 15:56:47.612 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf
+2025-12-29 15:56:49.132 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf, request ID: c1ee8c76-5bee-4c61-b36c-6b3add1210b1
+2025-12-29 15:56:56.433 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: c1ee8c76-5bee-4c61-b36c-6b3add1210b1
+2025-12-29 15:56:56.433 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 15:57:08.061 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for c1ee8c76-5bee-4c61-b36c-6b3add1210b1
+2025-12-29 15:57:08.061 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_4.pdf
+2025-12-29 15:57:08.061 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf
+2025-12-29 15:57:09.404 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf, request ID: 907d8691-d19b-41c9-8877-5bc5a0683866
+2025-12-29 15:57:20.448 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 907d8691-d19b-41c9-8877-5bc5a0683866
+2025-12-29 15:57:20.448 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 15:57:21.942 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 907d8691-d19b-41c9-8877-5bc5a0683866
+2025-12-29 15:57:21.942 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_5.pdf
+2025-12-29 15:57:21.943 | INFO     | src.usecase.content_extraction:process_documents_in_folder:264 - Completed processing 5 documents from folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:57:21.943 | INFO     | src.usecase.content_extraction:process_message:282 - Successfully processed content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:57:21.944 | ERROR    | __main__:run_worker:96 - Error completing message (lock may have expired): The lock on the message lock has expired.
+2025-12-29 15:57:24.896 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 15:57:25.130 | INFO     | __main__:run_worker:72 - Received message: d4f0bcbd-f9b5-4940-8955-a812195915bc
+2025-12-29 15:57:25.146 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:57:25.146 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:57:25.598 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:57:25.598 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder 742466fb-781f-4acc-ad48-578c93e0017d
+2025-12-29 15:57:25.598 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf
+2025-12-29 15:57:26.168 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for 742466fb-781f-4acc-ad48-578c93e0017d/7603485268_1.pdf, request ID: 16e17d57-2aab-4e25-a117-3f238bff8fcc
+2025-12-29 16:01:17.703 | INFO     | __main__:<module>:249 - Starting application in 'worker' mode
+2025-12-29 16:01:17.706 | INFO     | __main__:run_worker_standalone:185 - Starting worker in standalone mode...
+2025-12-29 16:01:17.706 | INFO     | __main__:run_worker:32 - Worker started
+2025-12-29 16:01:17.706 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 16:01:17.706 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 16:01:17.706 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 16:01:18.248 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 16:01:18.249 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 16:01:18.249 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 16:01:19.615 | INFO     | src.config.dependencies:get_azure_cosmos_repository:103 - Creating AzureCosmosDBRepository singleton
+2025-12-29 16:01:20.815 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 16:01:23.752 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:01:28.295 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:01:32.797 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:01:36.222 | INFO     | src.config.dependencies:get_azure_service_bus_repository:185 - Creating AzureServiceBusRepository singleton
+2025-12-29 16:01:36.231 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603485268.pdf with file_id fb937880-2042-42ec-a66d-5f7fc2a7d56d and activity_id string
+2025-12-29 16:01:36.240 | INFO     | src.usecase.file_upload:_split_pdf_pages:81 - Splitting PDF 7603485268.pdf into 5 pages
+2025-12-29 16:01:36.250 | INFO     | src.usecase.file_upload:_split_pdf_pages:97 - Successfully split 7603485268.pdf into 5 pages
+2025-12-29 16:01:36.251 | INFO     | src.usecase.file_upload:upload:140 - Uploading 5 pages from PDF 7603485268.pdf
+2025-12-29 16:01:36.952 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_1.pdf for case fb937880-2042-42ec-a66d-5f7fc2a7d56d, blob: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_1.pdf
+2025-12-29 16:01:37.055 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_2.pdf for case fb937880-2042-42ec-a66d-5f7fc2a7d56d, blob: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_2.pdf
+2025-12-29 16:01:37.155 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_3.pdf for case fb937880-2042-42ec-a66d-5f7fc2a7d56d, blob: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_3.pdf
+2025-12-29 16:01:37.263 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_4.pdf for case fb937880-2042-42ec-a66d-5f7fc2a7d56d, blob: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_4.pdf
+2025-12-29 16:01:37.366 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_5.pdf for case fb937880-2042-42ec-a66d-5f7fc2a7d56d, blob: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_5.pdf
+2025-12-29 16:01:37.497 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:01:40.447 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'fb937880-2042-42ec-a66d-5f7fc2a7d56d', 'timestamp': '2025-12-29T09:01:37.367648Z'}
+2025-12-29 16:01:40.448 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id fb937880-2042-42ec-a66d-5f7fc2a7d56d and activity_id string
+2025-12-29 16:01:42.180 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:01:42.428 | INFO     | __main__:run_worker:72 - Received message: ce58689f-8c5c-4734-add2-83241226e3a6
+2025-12-29 16:01:42.429 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: fb937880-2042-42ec-a66d-5f7fc2a7d56d
+2025-12-29 16:01:42.429 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: fb937880-2042-42ec-a66d-5f7fc2a7d56d
+2025-12-29 16:01:42.495 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case fb937880-2042-42ec-a66d-5f7fc2a7d56d
+2025-12-29 16:01:42.496 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder fb937880-2042-42ec-a66d-5f7fc2a7d56d
+2025-12-29 16:01:42.496 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_1.pdf
+2025-12-29 16:01:43.214 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_1.pdf, request ID: fdf2d343-d44f-4418-a93c-2828aef64a84
+2025-12-29 16:01:57.392 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: fdf2d343-d44f-4418-a93c-2828aef64a84
+2025-12-29 16:01:57.393 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:02:01.922 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for fdf2d343-d44f-4418-a93c-2828aef64a84
+2025-12-29 16:02:01.922 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_1.pdf
+2025-12-29 16:02:01.922 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_2.pdf
+2025-12-29 16:02:02.441 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_2.pdf, request ID: b68759cf-b59f-4ced-aca2-473bd90489ec
+2025-12-29 16:02:56.060 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: b68759cf-b59f-4ced-aca2-473bd90489ec
+2025-12-29 16:02:56.060 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:03:00.381 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for b68759cf-b59f-4ced-aca2-473bd90489ec
+2025-12-29 16:03:00.381 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_2.pdf
+2025-12-29 16:03:00.382 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_3.pdf
+2025-12-29 16:03:00.901 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_3.pdf, request ID: 7a7c0cdc-70e0-4bd4-92e6-496478fbafeb
+2025-12-29 16:03:18.755 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 7a7c0cdc-70e0-4bd4-92e6-496478fbafeb
+2025-12-29 16:03:18.755 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:03:26.734 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 7a7c0cdc-70e0-4bd4-92e6-496478fbafeb
+2025-12-29 16:03:26.734 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_3.pdf
+2025-12-29 16:03:26.734 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_4.pdf
+2025-12-29 16:03:27.653 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_4.pdf, request ID: 4f43e7ba-058a-4348-9644-9dfed1484ce3
+2025-12-29 16:03:35.562 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 4f43e7ba-058a-4348-9644-9dfed1484ce3
+2025-12-29 16:03:35.562 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:03:39.382 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 4f43e7ba-058a-4348-9644-9dfed1484ce3
+2025-12-29 16:03:39.382 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_4.pdf
+2025-12-29 16:03:39.382 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_5.pdf
+2025-12-29 16:03:40.081 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_5.pdf, request ID: a69f614b-3399-483d-95f5-c70674b83f84
+2025-12-29 16:03:48.423 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: a69f614b-3399-483d-95f5-c70674b83f84
+2025-12-29 16:03:48.423 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:03:49.923 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for a69f614b-3399-483d-95f5-c70674b83f84
+2025-12-29 16:03:49.923 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_5.pdf
+2025-12-29 16:03:49.923 | INFO     | src.usecase.content_extraction:process_documents_in_folder:264 - Completed processing 5 documents from folder fb937880-2042-42ec-a66d-5f7fc2a7d56d
+2025-12-29 16:03:49.923 | INFO     | src.usecase.content_extraction:process_message:282 - Successfully processed content extraction for document ID: fb937880-2042-42ec-a66d-5f7fc2a7d56d
+2025-12-29 16:03:49.936 | ERROR    | __main__:run_worker:96 - Error completing message (lock may have expired): The lock on the message lock has expired.
+2025-12-29 16:03:53.433 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:03:53.923 | INFO     | __main__:run_worker:72 - Received message: ce58689f-8c5c-4734-add2-83241226e3a6
+2025-12-29 16:03:53.924 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: fb937880-2042-42ec-a66d-5f7fc2a7d56d
+2025-12-29 16:03:53.924 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: fb937880-2042-42ec-a66d-5f7fc2a7d56d
+2025-12-29 16:03:53.988 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case fb937880-2042-42ec-a66d-5f7fc2a7d56d
+2025-12-29 16:03:53.988 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder fb937880-2042-42ec-a66d-5f7fc2a7d56d
+2025-12-29 16:03:53.988 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_1.pdf
+2025-12-29 16:03:54.643 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for fb937880-2042-42ec-a66d-5f7fc2a7d56d/7603485268_1.pdf, request ID: 85243728-25d8-453f-8f90-f31ced38778b
+2025-12-29 16:05:41.501 | INFO     | __main__:<module>:249 - Starting application in 'worker' mode
+2025-12-29 16:05:41.505 | INFO     | __main__:run_worker_standalone:185 - Starting worker in standalone mode...
+2025-12-29 16:05:41.506 | INFO     | __main__:run_worker:32 - Worker started
+2025-12-29 16:05:41.506 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 16:05:41.506 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 16:05:41.506 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 16:05:42.052 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 16:05:42.052 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 16:05:42.052 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 16:05:42.478 | INFO     | src.config.dependencies:get_azure_cosmos_repository:103 - Creating AzureCosmosDBRepository singleton
+2025-12-29 16:05:43.592 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 16:05:46.551 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:05:51.119 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:05:51.120 | INFO     | src.config.dependencies:get_azure_service_bus_repository:185 - Creating AzureServiceBusRepository singleton
+2025-12-29 16:05:51.120 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603485268.pdf with file_id ac633b06-55c3-43f0-9132-a58f33c355a9 and activity_id string
+2025-12-29 16:05:51.120 | INFO     | src.usecase.file_upload:_split_pdf_pages:81 - Splitting PDF 7603485268.pdf into 5 pages
+2025-12-29 16:05:51.120 | INFO     | src.usecase.file_upload:_split_pdf_pages:97 - Successfully split 7603485268.pdf into 5 pages
+2025-12-29 16:05:51.120 | INFO     | src.usecase.file_upload:upload:140 - Uploading 5 pages from PDF 7603485268.pdf
+2025-12-29 16:05:51.826 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_1.pdf for case ac633b06-55c3-43f0-9132-a58f33c355a9, blob: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:05:51.920 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_2.pdf for case ac633b06-55c3-43f0-9132-a58f33c355a9, blob: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf
+2025-12-29 16:05:52.016 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_3.pdf for case ac633b06-55c3-43f0-9132-a58f33c355a9, blob: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf
+2025-12-29 16:05:52.133 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_4.pdf for case ac633b06-55c3-43f0-9132-a58f33c355a9, blob: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf
+2025-12-29 16:05:52.231 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_5.pdf for case ac633b06-55c3-43f0-9132-a58f33c355a9, blob: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf
+2025-12-29 16:05:55.466 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'ac633b06-55c3-43f0-9132-a58f33c355a9', 'timestamp': '2025-12-29T09:05:52.231774Z'}
+2025-12-29 16:05:55.466 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id ac633b06-55c3-43f0-9132-a58f33c355a9 and activity_id string
+2025-12-29 16:05:55.631 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:05:55.879 | INFO     | __main__:run_worker:72 - Received message: 241b6f2d-dae3-47dd-9c37-38b1e917cf6f
+2025-12-29 16:05:55.879 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:05:55.879 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:05:56.029 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:05:56.030 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:05:56.030 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:05:56.745 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf, request ID: e78a4632-afec-4b3d-9539-dcee1d11bf0a
+2025-12-29 16:06:11.423 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: e78a4632-afec-4b3d-9539-dcee1d11bf0a
+2025-12-29 16:06:11.425 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:06:16.045 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for e78a4632-afec-4b3d-9539-dcee1d11bf0a
+2025-12-29 16:06:16.046 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:06:16.046 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf
+2025-12-29 16:06:16.729 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf, request ID: 94716345-2f90-4c7a-840c-ebff933e328a
+2025-12-29 16:06:24.231 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 94716345-2f90-4c7a-840c-ebff933e328a
+2025-12-29 16:06:24.231 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:06:29.966 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 94716345-2f90-4c7a-840c-ebff933e328a
+2025-12-29 16:06:29.966 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf
+2025-12-29 16:06:29.966 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf
+2025-12-29 16:06:30.785 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf, request ID: 864996e8-544e-46cc-9995-8f8144afeb5d
+2025-12-29 16:07:09.703 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 864996e8-544e-46cc-9995-8f8144afeb5d
+2025-12-29 16:07:09.703 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:07:17.597 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 864996e8-544e-46cc-9995-8f8144afeb5d
+2025-12-29 16:07:17.598 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf
+2025-12-29 16:07:17.598 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf
+2025-12-29 16:07:18.276 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf, request ID: e87ca1f8-2a3a-4636-8d6d-5e529da69d85
+2025-12-29 16:07:42.749 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: e87ca1f8-2a3a-4636-8d6d-5e529da69d85
+2025-12-29 16:07:42.749 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:07:46.831 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for e87ca1f8-2a3a-4636-8d6d-5e529da69d85
+2025-12-29 16:07:46.831 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf
+2025-12-29 16:07:46.832 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf
+2025-12-29 16:07:47.415 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf, request ID: 20bac16b-9605-4f7f-87fa-f3fd2dfb0692
+2025-12-29 16:07:58.112 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 20bac16b-9605-4f7f-87fa-f3fd2dfb0692
+2025-12-29 16:07:58.112 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:07:59.743 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 20bac16b-9605-4f7f-87fa-f3fd2dfb0692
+2025-12-29 16:07:59.743 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf
+2025-12-29 16:07:59.743 | INFO     | src.usecase.content_extraction:process_documents_in_folder:264 - Completed processing 5 documents from folder ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:07:59.744 | INFO     | src.usecase.content_extraction:process_message:282 - Successfully processed content extraction for document ID: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:07:59.744 | ERROR    | __main__:run_worker:96 - Error completing message (lock may have expired): The lock on the message lock has expired.
+2025-12-29 16:08:03.381 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:08:03.763 | INFO     | __main__:run_worker:72 - Received message: 241b6f2d-dae3-47dd-9c37-38b1e917cf6f
+2025-12-29 16:08:03.763 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:08:03.763 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:08:03.824 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:08:03.824 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:08:03.824 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:08:04.420 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf, request ID: 56a7d74b-3493-451a-abcd-9a704fe68e8c
+2025-12-29 16:08:32.983 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 56a7d74b-3493-451a-abcd-9a704fe68e8c
+2025-12-29 16:08:32.983 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:08:36.842 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 56a7d74b-3493-451a-abcd-9a704fe68e8c
+2025-12-29 16:08:36.842 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:08:36.843 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf
+2025-12-29 16:08:37.413 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf, request ID: f5f4ff27-d257-4052-82ce-176fb730bd16
+2025-12-29 16:13:08.020 | INFO     | __main__:<module>:249 - Starting application in 'worker' mode
+2025-12-29 16:13:08.024 | INFO     | __main__:run_worker_standalone:185 - Starting worker in standalone mode...
+2025-12-29 16:13:08.024 | INFO     | __main__:run_worker:32 - Worker started
+2025-12-29 16:13:08.024 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 16:13:08.024 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 16:13:08.024 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 16:13:40.204 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 16:13:40.204 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 16:13:40.205 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 16:13:41.227 | INFO     | src.config.dependencies:get_azure_cosmos_repository:103 - Creating AzureCosmosDBRepository singleton
+2025-12-29 16:13:42.883 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 16:13:46.278 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:13:46.546 | INFO     | __main__:run_worker:72 - Received message: 241b6f2d-dae3-47dd-9c37-38b1e917cf6f
+2025-12-29 16:13:46.546 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:13:46.546 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:13:46.679 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:13:46.679 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:13:46.679 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:13:47.829 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf, request ID: 42426de1-a2f5-4652-8dbe-87edf103e01e
+2025-12-29 16:14:11.264 | ERROR    | src.usecase.content_extraction:_wait_for_analysis_result:184 - Error checking analysis results for 42426de1-a2f5-4652-8dbe-87edf103e01e: HTTPSConnectionPool(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Max retries exceeded with url: /contentunderstanding/analyzerResults/42426de1-a2f5-4652-8dbe-87edf103e01e?api-version=2025-11-01 (Caused by NameResolutionError("HTTPSConnection(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Failed to resolve 'tax-resource-6596.cognitiveservices.azure.com' ([Errno 11001] getaddrinfo failed)"))
+2025-12-29 16:14:11.264 | ERROR    | src.usecase.content_extraction:process_documents_in_folder:257 - Error analyzing document ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf: HTTPSConnectionPool(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Max retries exceeded with url: /contentunderstanding/analyzerResults/42426de1-a2f5-4652-8dbe-87edf103e01e?api-version=2025-11-01 (Caused by NameResolutionError("HTTPSConnection(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Failed to resolve 'tax-resource-6596.cognitiveservices.azure.com' ([Errno 11001] getaddrinfo failed)"))
+2025-12-29 16:14:11.265 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf
+2025-12-29 16:14:23.296 | ERROR    | src.usecase.content_extraction:process_documents_in_folder:257 - Error analyzing document ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf: HTTPSConnectionPool(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Max retries exceeded with url: /contentunderstanding/analyzers/prebuilt-invoice:analyze?api-version=2025-11-01 (Caused by NameResolutionError("HTTPSConnection(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Failed to resolve 'tax-resource-6596.cognitiveservices.azure.com' ([Errno 11001] getaddrinfo failed)"))
+2025-12-29 16:14:23.296 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf
+2025-12-29 16:14:35.329 | ERROR    | src.usecase.content_extraction:process_documents_in_folder:257 - Error analyzing document ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf: HTTPSConnectionPool(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Max retries exceeded with url: /contentunderstanding/analyzers/prebuilt-invoice:analyze?api-version=2025-11-01 (Caused by NameResolutionError("HTTPSConnection(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Failed to resolve 'tax-resource-6596.cognitiveservices.azure.com' ([Errno 11001] getaddrinfo failed)"))
+2025-12-29 16:14:35.329 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf
+2025-12-29 16:14:47.371 | ERROR    | src.usecase.content_extraction:process_documents_in_folder:257 - Error analyzing document ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf: HTTPSConnectionPool(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Max retries exceeded with url: /contentunderstanding/analyzers/prebuilt-invoice:analyze?api-version=2025-11-01 (Caused by NameResolutionError("HTTPSConnection(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Failed to resolve 'tax-resource-6596.cognitiveservices.azure.com' ([Errno 11001] getaddrinfo failed)"))
+2025-12-29 16:14:47.372 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf
+2025-12-29 16:14:47.374 | ERROR    | src.usecase.content_extraction:process_documents_in_folder:257 - Error analyzing document ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf: HTTPSConnectionPool(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Max retries exceeded with url: /contentunderstanding/analyzers/prebuilt-invoice:analyze?api-version=2025-11-01 (Caused by NameResolutionError("HTTPSConnection(host='tax-resource-6596.cognitiveservices.azure.com', port=443): Failed to resolve 'tax-resource-6596.cognitiveservices.azure.com' ([Errno 11001] getaddrinfo failed)"))
+2025-12-29 16:14:47.374 | INFO     | src.usecase.content_extraction:process_documents_in_folder:264 - Completed processing 5 documents from folder ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:14:47.374 | INFO     | src.usecase.content_extraction:process_message:282 - Successfully processed content extraction for document ID: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:14:47.375 | ERROR    | __main__:run_worker:96 - Error completing message (lock may have expired): The lock on the message lock has expired.
+2025-12-29 16:15:02.460 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:15:02.833 | INFO     | __main__:run_worker:72 - Received message: 241b6f2d-dae3-47dd-9c37-38b1e917cf6f
+2025-12-29 16:15:02.833 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:15:02.849 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:18:22.512 | INFO     | __main__:<module>:249 - Starting application in 'worker' mode
+2025-12-29 16:18:22.515 | INFO     | __main__:run_worker_standalone:185 - Starting worker in standalone mode...
+2025-12-29 16:18:22.516 | INFO     | __main__:run_worker:32 - Worker started
+2025-12-29 16:18:22.516 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 16:18:22.516 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 16:18:22.516 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 16:18:23.000 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 16:18:23.000 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 16:18:23.001 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 16:18:24.127 | INFO     | src.config.dependencies:get_azure_cosmos_repository:103 - Creating AzureCosmosDBRepository singleton
+2025-12-29 16:18:29.243 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 16:18:32.129 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:18:32.497 | INFO     | __main__:run_worker:72 - Received message: 241b6f2d-dae3-47dd-9c37-38b1e917cf6f
+2025-12-29 16:18:32.497 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:18:32.498 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:18:32.560 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:18:32.561 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:18:32.562 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:18:33.264 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf, request ID: 4727bf4c-d398-492f-a103-968d459b9d37
+2025-12-29 16:18:47.424 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 4727bf4c-d398-492f-a103-968d459b9d37
+2025-12-29 16:18:47.424 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:18:51.904 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 4727bf4c-d398-492f-a103-968d459b9d37
+2025-12-29 16:18:51.904 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:18:51.904 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf
+2025-12-29 16:18:52.590 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf, request ID: f7bfafde-4f7c-47e7-9f28-99390413a24a
+2025-12-29 16:19:41.568 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: f7bfafde-4f7c-47e7-9f28-99390413a24a
+2025-12-29 16:19:41.568 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:19:45.458 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for f7bfafde-4f7c-47e7-9f28-99390413a24a
+2025-12-29 16:19:45.458 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf
+2025-12-29 16:19:45.459 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf
+2025-12-29 16:19:46.576 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf, request ID: e06a877c-a27b-4e0b-83c9-c78d3cc8843f
+2025-12-29 16:20:02.414 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: e06a877c-a27b-4e0b-83c9-c78d3cc8843f
+2025-12-29 16:20:02.414 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:20:11.192 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for e06a877c-a27b-4e0b-83c9-c78d3cc8843f
+2025-12-29 16:20:11.193 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf
+2025-12-29 16:20:11.193 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf
+2025-12-29 16:20:30.984 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf, request ID: bd4adec1-0236-4f54-ac99-f968cb8b2114
+2025-12-29 16:20:57.074 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: bd4adec1-0236-4f54-ac99-f968cb8b2114
+2025-12-29 16:20:57.075 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:21:00.961 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for bd4adec1-0236-4f54-ac99-f968cb8b2114
+2025-12-29 16:21:00.962 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf
+2025-12-29 16:21:00.962 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf
+2025-12-29 16:21:01.839 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf, request ID: 96b6a3cf-ba59-4cc0-a119-a703e8c5dce5
+2025-12-29 16:21:13.352 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 96b6a3cf-ba59-4cc0-a119-a703e8c5dce5
+2025-12-29 16:21:13.352 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:21:14.930 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 96b6a3cf-ba59-4cc0-a119-a703e8c5dce5
+2025-12-29 16:21:14.930 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf
+2025-12-29 16:21:14.931 | INFO     | src.usecase.content_extraction:process_documents_in_folder:264 - Completed processing 5 documents from folder ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:21:14.931 | INFO     | src.usecase.content_extraction:process_message:282 - Successfully processed content extraction for document ID: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:21:14.932 | ERROR    | __main__:run_worker:96 - Error completing message (lock may have expired): The lock on the message lock has expired.
+2025-12-29 16:21:18.318 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:21:18.721 | INFO     | __main__:run_worker:72 - Received message: 241b6f2d-dae3-47dd-9c37-38b1e917cf6f
+2025-12-29 16:21:18.722 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:21:18.723 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:21:18.787 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:21:18.788 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:21:18.788 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:21:19.522 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf, request ID: 3cf5286e-8f68-458c-8dd0-dacbebf50efe
+2025-12-29 16:21:41.732 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 3cf5286e-8f68-458c-8dd0-dacbebf50efe
+2025-12-29 16:21:41.733 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:21:45.922 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 3cf5286e-8f68-458c-8dd0-dacbebf50efe
+2025-12-29 16:21:45.923 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:21:45.923 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf
+2025-12-29 16:21:46.602 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf, request ID: d9a22cf5-6da5-43d1-8041-30d11ce29a8f
+2025-12-29 16:22:30.904 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: d9a22cf5-6da5-43d1-8041-30d11ce29a8f
+2025-12-29 16:22:30.904 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:22:34.634 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for d9a22cf5-6da5-43d1-8041-30d11ce29a8f
+2025-12-29 16:22:34.635 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf
+2025-12-29 16:22:34.635 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf
+2025-12-29 16:22:35.357 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf, request ID: 4cbd6429-2d2a-45c9-972b-9e1f3783b3dc
+2025-12-29 16:23:01.188 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 4cbd6429-2d2a-45c9-972b-9e1f3783b3dc
+2025-12-29 16:23:01.188 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:23:09.624 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 4cbd6429-2d2a-45c9-972b-9e1f3783b3dc
+2025-12-29 16:23:09.625 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_3.pdf
+2025-12-29 16:23:09.626 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf
+2025-12-29 16:23:10.401 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf, request ID: 732b07eb-5224-4d44-a66e-2eb61ee8cb6d
+2025-12-29 16:23:47.159 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 732b07eb-5224-4d44-a66e-2eb61ee8cb6d
+2025-12-29 16:23:47.159 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:23:51.280 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 732b07eb-5224-4d44-a66e-2eb61ee8cb6d
+2025-12-29 16:23:51.281 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_4.pdf
+2025-12-29 16:23:51.281 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf
+2025-12-29 16:23:52.233 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf, request ID: e1c8e886-ecdb-4fef-a755-86ad494ef91f
+2025-12-29 16:24:00.041 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: e1c8e886-ecdb-4fef-a755-86ad494ef91f
+2025-12-29 16:24:00.042 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:24:01.805 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for e1c8e886-ecdb-4fef-a755-86ad494ef91f
+2025-12-29 16:24:01.805 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_5.pdf
+2025-12-29 16:24:01.805 | INFO     | src.usecase.content_extraction:process_documents_in_folder:264 - Completed processing 5 documents from folder ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:24:01.806 | INFO     | src.usecase.content_extraction:process_message:282 - Successfully processed content extraction for document ID: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:24:01.806 | ERROR    | __main__:run_worker:96 - Error completing message (lock may have expired): The lock on the message lock has expired.
+2025-12-29 16:24:09.656 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:24:10.153 | INFO     | __main__:run_worker:72 - Received message: 241b6f2d-dae3-47dd-9c37-38b1e917cf6f
+2025-12-29 16:24:10.154 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:24:10.154 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:24:10.223 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:24:10.223 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder ac633b06-55c3-43f0-9132-a58f33c355a9
+2025-12-29 16:24:10.224 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:24:11.031 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf, request ID: f1645092-fb64-4da0-a880-7eaea187f60e
+2025-12-29 16:24:26.282 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: f1645092-fb64-4da0-a880-7eaea187f60e
+2025-12-29 16:24:26.282 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:24:30.205 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for f1645092-fb64-4da0-a880-7eaea187f60e
+2025-12-29 16:24:30.206 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_1.pdf
+2025-12-29 16:24:30.206 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf
+2025-12-29 16:24:30.866 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for ac633b06-55c3-43f0-9132-a58f33c355a9/7603485268_2.pdf, request ID: c551b09c-9717-44a1-aa60-2cef8d0e2a09
+2025-12-29 16:27:27.528 | INFO     | __main__:<module>:246 - Starting application in 'worker' mode
+2025-12-29 16:27:27.532 | INFO     | __main__:run_worker_standalone:182 - Starting worker in standalone mode...
+2025-12-29 16:27:27.532 | INFO     | __main__:run_worker:32 - Worker started
+2025-12-29 16:27:27.533 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 16:27:27.533 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 16:27:27.534 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 16:27:28.113 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 16:27:28.113 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 16:27:28.114 | INFO     | src.config.dependencies:get_llm_service_repository:209 - Creating LLMService singleton
+2025-12-29 16:27:28.624 | INFO     | src.config.dependencies:get_azure_cosmos_repository:103 - Creating AzureCosmosDBRepository singleton
+2025-12-29 16:27:29.883 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 16:27:33.021 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:27:37.452 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:27:40.476 | INFO     | src.config.dependencies:get_azure_service_bus_repository:185 - Creating AzureServiceBusRepository singleton
+2025-12-29 16:27:40.478 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603485268.pdf with file_id a447055a-ed24-4205-81ac-167d10f37d43 and activity_id string
+2025-12-29 16:27:40.480 | INFO     | src.usecase.file_upload:_split_pdf_pages:81 - Splitting PDF 7603485268.pdf into 5 pages
+2025-12-29 16:27:40.495 | INFO     | src.usecase.file_upload:_split_pdf_pages:97 - Successfully split 7603485268.pdf into 5 pages
+2025-12-29 16:27:40.496 | INFO     | src.usecase.file_upload:upload:140 - Uploading 5 pages from PDF 7603485268.pdf
+2025-12-29 16:27:42.217 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:27:46.943 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:27:51.638 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:27:56.321 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:27:57.992 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_1.pdf for case a447055a-ed24-4205-81ac-167d10f37d43, blob: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_1.pdf
+2025-12-29 16:27:58.089 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_2.pdf for case a447055a-ed24-4205-81ac-167d10f37d43, blob: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_2.pdf
+2025-12-29 16:27:58.188 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_3.pdf for case a447055a-ed24-4205-81ac-167d10f37d43, blob: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_3.pdf
+2025-12-29 16:27:58.288 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_4.pdf for case a447055a-ed24-4205-81ac-167d10f37d43, blob: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_4.pdf
+2025-12-29 16:27:58.394 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_5.pdf for case a447055a-ed24-4205-81ac-167d10f37d43, blob: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_5.pdf
+2025-12-29 16:28:01.032 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:28:01.885 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'a447055a-ed24-4205-81ac-167d10f37d43', 'timestamp': '2025-12-29T09:27:58.395578Z'}
+2025-12-29 16:28:01.886 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id a447055a-ed24-4205-81ac-167d10f37d43 and activity_id string
+2025-12-29 16:28:01.887 | INFO     | __main__:run_worker:72 - Received message: 8fcaf833-a582-42c7-9bcf-2a5bb8692937
+2025-12-29 16:28:01.889 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: a447055a-ed24-4205-81ac-167d10f37d43
+2025-12-29 16:28:01.890 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: a447055a-ed24-4205-81ac-167d10f37d43
+2025-12-29 16:28:01.962 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case a447055a-ed24-4205-81ac-167d10f37d43
+2025-12-29 16:28:01.963 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder a447055a-ed24-4205-81ac-167d10f37d43
+2025-12-29 16:28:01.963 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_1.pdf
+2025-12-29 16:28:02.724 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for a447055a-ed24-4205-81ac-167d10f37d43/7603485268_1.pdf, request ID: 03b19d86-7480-4ab1-b0b7-5be958c3e7a5
+2025-12-29 16:28:10.130 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 03b19d86-7480-4ab1-b0b7-5be958c3e7a5
+2025-12-29 16:28:10.131 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:28:14.628 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 03b19d86-7480-4ab1-b0b7-5be958c3e7a5
+2025-12-29 16:28:14.629 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_1.pdf
+2025-12-29 16:28:14.629 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_2.pdf
+2025-12-29 16:28:15.238 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for a447055a-ed24-4205-81ac-167d10f37d43/7603485268_2.pdf, request ID: 215670b5-9306-4a26-9846-a5d7eb5637a9
+2025-12-29 16:28:25.919 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 215670b5-9306-4a26-9846-a5d7eb5637a9
+2025-12-29 16:28:25.919 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:28:29.916 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 215670b5-9306-4a26-9846-a5d7eb5637a9
+2025-12-29 16:28:29.916 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_2.pdf
+2025-12-29 16:28:29.916 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_3.pdf
+2025-12-29 16:28:30.498 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for a447055a-ed24-4205-81ac-167d10f37d43/7603485268_3.pdf, request ID: b169ef12-8c02-4e93-b4e1-5133987f877a
+2025-12-29 16:28:38.271 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: b169ef12-8c02-4e93-b4e1-5133987f877a
+2025-12-29 16:28:38.271 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:28:50.450 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for b169ef12-8c02-4e93-b4e1-5133987f877a
+2025-12-29 16:28:50.450 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_3.pdf
+2025-12-29 16:28:50.450 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_4.pdf
+2025-12-29 16:28:51.081 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for a447055a-ed24-4205-81ac-167d10f37d43/7603485268_4.pdf, request ID: f03c8935-a71a-427f-b7c1-ef9745702f2f
+2025-12-29 16:29:01.830 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: f03c8935-a71a-427f-b7c1-ef9745702f2f
+2025-12-29 16:29:01.831 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:29:05.798 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for f03c8935-a71a-427f-b7c1-ef9745702f2f
+2025-12-29 16:29:05.798 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_4.pdf
+2025-12-29 16:29:05.798 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_5.pdf
+2025-12-29 16:29:06.313 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for a447055a-ed24-4205-81ac-167d10f37d43/7603485268_5.pdf, request ID: 80593b50-fdd3-4089-8809-28b16c33a8b0
+2025-12-29 16:29:24.249 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 80593b50-fdd3-4089-8809-28b16c33a8b0
+2025-12-29 16:29:24.249 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:29:25.722 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 80593b50-fdd3-4089-8809-28b16c33a8b0
+2025-12-29 16:29:25.722 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: a447055a-ed24-4205-81ac-167d10f37d43/7603485268_5.pdf
+2025-12-29 16:29:25.722 | INFO     | src.usecase.content_extraction:process_documents_in_folder:264 - Completed processing 5 documents from folder a447055a-ed24-4205-81ac-167d10f37d43
+2025-12-29 16:29:25.722 | INFO     | src.usecase.content_extraction:process_message:282 - Successfully processed content extraction for document ID: a447055a-ed24-4205-81ac-167d10f37d43
+2025-12-29 16:29:29.043 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:29:33.602 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:29:38.156 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:29:42.605 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:29:47.402 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:29:51.989 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:29:56.664 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:01.353 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:06.107 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:10.804 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:15.488 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:20.116 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:24.711 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:29.471 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:34.170 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:38.892 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:43.562 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:48.319 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:52.918 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:30:57.598 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:02.326 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:07.004 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:11.681 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:16.370 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:21.113 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:26.143 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:30.789 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:35.649 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:40.188 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:44.886 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:49.401 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:53.934 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:31:58.420 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:03.116 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:07.897 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:12.678 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:17.616 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:22.390 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:27.548 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:32.343 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:37.492 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:42.251 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:46.938 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:51.625 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:32:56.399 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:01.147 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:05.882 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:10.602 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:15.399 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:20.106 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:24.730 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:29.538 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:35.208 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:40.169 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:45.958 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:50.468 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:55.122 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:33:59.933 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:04.663 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:09.416 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:14.116 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:18.753 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:23.611 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:28.339 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:33.036 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:37.663 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:42.130 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:46.987 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:51.617 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:34:56.334 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:00.971 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:05.749 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:10.346 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:15.061 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:19.798 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:24.560 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:29.387 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:34.153 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:38.696 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:43.361 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:47.812 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:52.281 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:35:57.033 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:01.532 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:05.971 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:10.586 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:15.082 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:19.593 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:24.084 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:28.627 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:33.239 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:37.778 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:42.379 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:46.844 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:51.536 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:36:55.776 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:00.306 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:04.840 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:09.459 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:14.038 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:18.584 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:23.128 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:25.869 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2025-12-29 16:37:27.539 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:32.146 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:36.595 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:41.182 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:45.816 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:50.370 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:54.880 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:37:59.401 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:03.907 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:08.478 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:12.910 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:17.577 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:22.160 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:26.684 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:31.181 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:35.661 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:40.227 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:44.767 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:49.207 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:53.760 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:38:58.229 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:02.678 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:07.155 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:11.567 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:16.110 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:20.642 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:25.215 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:29.718 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:34.712 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:39.329 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:39.640 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 16:39:39.640 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 16:39:39.640 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 16:39:40.460 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 16:39:40.460 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 16:39:40.460 | INFO     | src.config.dependencies:get_azure_cosmos_repository:103 - Creating AzureCosmosDBRepository singleton
+2025-12-29 16:39:42.373 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 16:39:42.373 | INFO     | src.config.dependencies:get_azure_service_bus_repository:187 - Creating AzureServiceBusRepository singleton
+2025-12-29 16:39:42.385 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603485268.pdf with file_id a8f36820-2c54-4018-99b7-89524facc21c and activity_id string
+2025-12-29 16:39:42.457 | INFO     | src.usecase.file_upload:_split_pdf_pages:81 - Splitting PDF 7603485268.pdf into 5 pages
+2025-12-29 16:39:42.462 | INFO     | src.usecase.file_upload:_split_pdf_pages:97 - Successfully split 7603485268.pdf into 5 pages
+2025-12-29 16:39:42.462 | INFO     | src.usecase.file_upload:upload:140 - Uploading 5 pages from PDF 7603485268.pdf
+2025-12-29 16:39:42.623 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_1.pdf for case a8f36820-2c54-4018-99b7-89524facc21c, blob: a8f36820-2c54-4018-99b7-89524facc21c/7603485268_1.pdf
+2025-12-29 16:39:42.757 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_2.pdf for case a8f36820-2c54-4018-99b7-89524facc21c, blob: a8f36820-2c54-4018-99b7-89524facc21c/7603485268_2.pdf
+2025-12-29 16:39:42.923 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_3.pdf for case a8f36820-2c54-4018-99b7-89524facc21c, blob: a8f36820-2c54-4018-99b7-89524facc21c/7603485268_3.pdf
+2025-12-29 16:39:43.040 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_4.pdf for case a8f36820-2c54-4018-99b7-89524facc21c, blob: a8f36820-2c54-4018-99b7-89524facc21c/7603485268_4.pdf
+2025-12-29 16:39:43.156 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_5.pdf for case a8f36820-2c54-4018-99b7-89524facc21c, blob: a8f36820-2c54-4018-99b7-89524facc21c/7603485268_5.pdf
+2025-12-29 16:39:44.304 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:48.851 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:49.656 | ERROR    | src.usecase.file_upload:upload:190 - Error uploading file 7603485268.pdf: AzureCosmosDBRepository.create_document() got an unexpected keyword argument 'document'
+2025-12-29 16:39:53.299 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:39:57.815 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:02.322 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:07.118 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:11.722 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:16.281 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:20.830 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:25.469 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:30.077 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:34.634 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:36.894 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2025-12-29 16:40:39.256 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:41.336 | INFO     | src.config.dependencies:get_app_config:34 - Initializing application configuration
+2025-12-29 16:40:41.337 | INFO     | src.config.dependencies:get_content_understanding_repository:56 - Creating ContentUnderstandingRepository singleton
+2025-12-29 16:40:41.338 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:79 - Creating AzureBlobStorageRepository singleton
+2025-12-29 16:40:41.987 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 16:40:41.987 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 16:40:41.988 | INFO     | src.config.dependencies:get_azure_cosmos_repository:103 - Creating AzureCosmosDBRepository singleton
+2025-12-29 16:40:43.184 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 16:40:43.188 | INFO     | src.config.dependencies:get_azure_service_bus_repository:187 - Creating AzureServiceBusRepository singleton
+2025-12-29 16:40:43.190 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603485268.pdf with file_id e652a070-0083-414f-b7c4-e6e656633dd8 and activity_id string
+2025-12-29 16:40:43.204 | INFO     | src.usecase.file_upload:_split_pdf_pages:81 - Splitting PDF 7603485268.pdf into 5 pages
+2025-12-29 16:40:43.210 | INFO     | src.usecase.file_upload:_split_pdf_pages:97 - Successfully split 7603485268.pdf into 5 pages
+2025-12-29 16:40:43.210 | INFO     | src.usecase.file_upload:upload:140 - Uploading 5 pages from PDF 7603485268.pdf
+2025-12-29 16:40:43.336 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_1.pdf for case e652a070-0083-414f-b7c4-e6e656633dd8, blob: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_1.pdf
+2025-12-29 16:40:43.440 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_2.pdf for case e652a070-0083-414f-b7c4-e6e656633dd8, blob: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_2.pdf
+2025-12-29 16:40:43.553 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_3.pdf for case e652a070-0083-414f-b7c4-e6e656633dd8, blob: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_3.pdf
+2025-12-29 16:40:43.668 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_4.pdf for case e652a070-0083-414f-b7c4-e6e656633dd8, blob: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_4.pdf
+2025-12-29 16:40:43.769 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_5.pdf for case e652a070-0083-414f-b7c4-e6e656633dd8, blob: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_5.pdf
+2025-12-29 16:40:43.820 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:48.730 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:53.391 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:40:58.369 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:41:03.032 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:41:07.807 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:41:12.568 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:41:17.524 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:41:22.020 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:41:26.970 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:41:31.407 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:41:35.935 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:41:40.602 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:41:41.878 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'e652a070-0083-414f-b7c4-e6e656633dd8', 'timestamp': '2025-12-29T09:41:38.748241Z'}
+2025-12-29 16:41:41.878 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id e652a070-0083-414f-b7c4-e6e656633dd8 and activity_id string
+2025-12-29 16:41:45.098 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:41:45.343 | INFO     | __main__:run_worker:72 - Received message: 66eb6bcb-5177-4ab9-9ae3-eafed33c1ec8
+2025-12-29 16:41:45.345 | INFO     | src.usecase.content_extraction:process_message:278 - Processing content extraction for document ID: e652a070-0083-414f-b7c4-e6e656633dd8
+2025-12-29 16:41:45.345 | INFO     | src.usecase.content_extraction:process_documents_in_folder:193 - Processing documents in folder: e652a070-0083-414f-b7c4-e6e656633dd8
+2025-12-29 16:41:45.802 | INFO     | src.repository.storage:list_files:124 - Listed 5 files for case e652a070-0083-414f-b7c4-e6e656633dd8
+2025-12-29 16:41:45.802 | INFO     | src.usecase.content_extraction:process_documents_in_folder:197 - Found 5 files in folder e652a070-0083-414f-b7c4-e6e656633dd8
+2025-12-29 16:41:45.802 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_1.pdf
+2025-12-29 16:41:46.548 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_1.pdf, request ID: e1a916f3-9bda-404b-8e7e-53147cb03b5d
+2025-12-29 16:42:01.111 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: e1a916f3-9bda-404b-8e7e-53147cb03b5d
+2025-12-29 16:42:01.111 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:42:07.170 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for e1a916f3-9bda-404b-8e7e-53147cb03b5d
+2025-12-29 16:42:07.170 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_1.pdf
+2025-12-29 16:42:07.170 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_2.pdf
+2025-12-29 16:42:08.002 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_2.pdf, request ID: 800d682a-4489-4244-b8f7-415f84b20dfc
+2025-12-29 16:42:58.491 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 800d682a-4489-4244-b8f7-415f84b20dfc
+2025-12-29 16:42:58.491 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:43:03.133 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 800d682a-4489-4244-b8f7-415f84b20dfc
+2025-12-29 16:43:03.133 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_2.pdf
+2025-12-29 16:43:03.134 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_3.pdf
+2025-12-29 16:43:04.065 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_3.pdf, request ID: 3fe39c38-0a6f-44d0-9298-5c8e60303422
+2025-12-29 16:43:11.855 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 3fe39c38-0a6f-44d0-9298-5c8e60303422
+2025-12-29 16:43:11.856 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:43:19.669 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 3fe39c38-0a6f-44d0-9298-5c8e60303422
+2025-12-29 16:43:19.670 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_3.pdf
+2025-12-29 16:43:19.670 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_4.pdf
+2025-12-29 16:43:20.430 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_4.pdf, request ID: f789d4d6-c514-4824-9fce-710ebc0fe444
+2025-12-29 16:43:34.656 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: f789d4d6-c514-4824-9fce-710ebc0fe444
+2025-12-29 16:43:34.656 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:43:38.352 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for f789d4d6-c514-4824-9fce-710ebc0fe444
+2025-12-29 16:43:38.352 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_4.pdf
+2025-12-29 16:43:38.353 | INFO     | src.usecase.content_extraction:process_documents_in_folder:219 - Analyzing document: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_5.pdf
+2025-12-29 16:43:38.882 | INFO     | src.usecase.content_extraction:process_documents_in_folder:234 - Analysis initiated for e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_5.pdf, request ID: 6b75835c-eaab-4f23-a28a-dd31de347381
+2025-12-29 16:43:46.401 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 6b75835c-eaab-4f23-a28a-dd31de347381
+2025-12-29 16:43:46.402 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603485268
+2025-12-29 16:43:47.997 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:161 - Content classification completed for 6b75835c-eaab-4f23-a28a-dd31de347381
+2025-12-29 16:43:47.997 | INFO     | src.usecase.content_extraction:process_documents_in_folder:240 - Successfully analyzed: e652a070-0083-414f-b7c4-e6e656633dd8/7603485268_5.pdf
+2025-12-29 16:43:47.998 | INFO     | src.usecase.content_extraction:process_documents_in_folder:264 - Completed processing 5 documents from folder e652a070-0083-414f-b7c4-e6e656633dd8
+2025-12-29 16:43:47.998 | INFO     | src.usecase.content_extraction:process_message:282 - Successfully processed content extraction for document ID: e652a070-0083-414f-b7c4-e6e656633dd8
+2025-12-29 16:43:51.326 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:43:55.819 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:00.493 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:05.199 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:09.951 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:15.172 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:19.805 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:24.408 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:29.089 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:33.505 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:38.139 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:42.762 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:47.593 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:52.094 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:44:56.543 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:01.000 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:05.729 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:10.338 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:15.099 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:19.737 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:24.531 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:30.415 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:36.006 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:41.341 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:46.790 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:52.041 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:45:57.516 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:02.543 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:07.529 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:12.454 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:17.134 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:21.723 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:26.498 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:31.143 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:35.880 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:40.710 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:45.400 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:50.104 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:54.809 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:46:59.440 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:47:04.220 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:47:08.883 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:47:16.694 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:47:21.411 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:47:25.922 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:47:30.546 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:47:35.015 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:47:39.499 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:47:44.232 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads
+2025-12-29 16:47:49.144 | INFO     | __main__:run_worker:69 - Connected to Service Bus queue: document-uploads

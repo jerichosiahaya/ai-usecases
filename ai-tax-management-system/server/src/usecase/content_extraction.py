@@ -68,10 +68,10 @@ class ContentExtraction:
             content_stripped = content.strip()
             
             # Look for the first sequence of digits
-            match = re.search(r'^(\d{10,})', content_stripped)
+            match = re.search(r'\b\d{10,}\b', content_stripped)
             
             if match:
-                urn = match.group(1)
+                urn = match.group(0)
                 logger.info(f"Extracted URN from content: {urn}")
                 return urn
             
@@ -84,8 +84,8 @@ class ContentExtraction:
 
     async def _wait_for_analysis_result(
         self, 
-        request_id: str, 
-        max_retries: int = 35, 
+        request_id: str,
+        max_retries: int = 35,
         retry_interval: int = 3
     ) -> Dict[str, Any]:
         """
