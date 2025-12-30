@@ -1,0 +1,50 @@
+from pydantic import BaseModel, Field, ConfigDict
+from typing import Optional, List
+
+class GLReconItem(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    item_name: str = Field(..., alias="itemName", description="Name of the reconciliation item")
+    type_of_tax: str = Field(..., alias="typeOfTax", description="Type of tax")
+    tax_base: float = Field(..., alias="taxBase", description="Tax base amount")
+    rate: float = Field(..., description="Tax rate in decimal format (e.g., 0.0265)")
+    wht_normal: float = Field(..., alias="whtNormal", description="Normal withholding tax amount")
+    remarks: str = Field(..., description="Remarks or notes")
+    diff_normal: Optional[float] = Field(None, alias="diffNormal", description="Difference from normal/expected value")
+
+class GLTransaction(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)   
+
+    gl_transaction_id: str = Field(..., alias="glTransactionId", description="Primary G/L transaction ID")
+    cocd: str = Field(..., description="Company Code (CoCd)")
+    gl: str = Field(..., description="G/L account number")
+    year_month: str = Field(..., alias="yearMonth", pattern="^[0-9]{4}/(0[1-9]|1[0-2])$", description="Posting period in YYYY/MM format")
+    type: str = Field(..., description="Transaction type")
+    reference_number: str = Field(..., alias="referenceNumber", description="Reference number")
+    document_number: str = Field(..., alias="documentNumber", description="Document number")
+    po_number: str = Field(..., alias="poNumber", description="Purchase Order number")
+    tax_based: float = Field(..., alias="taxBased", description="Tax base amount")
+    wht: float = Field(..., description="Withholding tax amount")
+    tax_rate: float = Field(..., alias="taxRate", description="Tax rate in decimal format (e.g., 0.0265)")
+    urn: str = Field(..., description="URN / unique reference number")
+    username: str = Field(..., description="User name who posted/created the transaction")
+    text: str = Field(..., description="Description / text")
+    clearing_document: Optional[str] = Field(None, alias="clearingDocument", description="Clearing document reference")
+    document_date: str = Field(..., alias="documentDate", description="Document date (MM/DD/YYYY format)")
+    posting_date: str = Field(..., alias="postingDate", description="Posting date (MM/DD/YYYY format)")
+    gl_recon_item: Optional[List[GLReconItem]] = Field(None, alias="glReconItem", min_length=1, description="List of G/L reconciliation items")
+    document_currency: str = Field(..., alias="documentCurrency", min_length=3, max_length=3, description="Document currency code (ISO 4217)")
+    amount_in_document_currency: float = Field(..., alias="amountInDocumentCurrency", description="Amount in document currency")
+    local_currency: str = Field(..., alias="localCurrency", min_length=3, max_length=3, description="Local currency code (ISO 4217)")
+    amount_in_local_currency: float = Field(..., alias="amountInLocalCurrency", description="Amount in local currency")
+    vendor_id: str = Field(..., alias="vendorId", description="Foreign key reference to Vendor")
+    gl_transaction_status_id: int = Field(..., alias="glTransactionStatusId", description="Foreign key reference to G/L Transaction Status")
+    ref: Optional[str] = Field(None, description="Optional internal reference")
+    first_vouching: Optional[str] = Field(None, alias="firstVouching", description="First vouching (review/approval) user or note")
+    second_reviewer: Optional[str] = Field(None, alias="secondReviewer", description="Second reviewer")
+    wht_normal: Optional[float] = Field(None, alias="whtNormal", description="Normal withholding tax amount")
+    wht_slip_number: Optional[str] = Field(None, alias="whtSlipNumber", description="Withholding tax slip number")
+    diff_normal: Optional[float] = Field(None, alias="diffNormal", description="Difference from normal/expected value")
+
+    tax_invoices: Optional[List[str]] = Field(None, alias="taxInvoices", description="List of associated Tax Invoice IDs")
+    invoices: Optional[List[str]] = Field(None, alias="invoices", description="List of associated Invoice IDs")

@@ -1,3 +1,5 @@
+from src.domain.candidate import Candidate
+
 def _get_cv_extractor_system_prompt():
     return f"""
         You are a professional resume parser designed to extract structured information from resumes or CVs and return the result in JSON format. Your task is to analyze the provided resume content, interpret it accurately regardless of formatting (PDF, plain text, etc.), and extract specific attributes as defined below.
@@ -151,4 +153,195 @@ def _get_predefined_score_system_prompt(criteria: str):
 
     Evaluate candidate score based on this criteria:
     {criteria}
+    """
+
+def _get_kartu_keluarga_document_analysis():
+    return f"""
+    You are an expert document analyzer specialized in extracting structured information from Indonesian Kartu Keluarga (Family Card) documents. Your task is to analyze the provided document content and extract specific attributes as defined below.
+
+    ### Attributes to Extract:
+    The following attributes must be extracted:
+
+    1. **family_head_name**: The name of the head of the family.
+    2. **family_number**: The family card number.
+    3. **address**: The residential address listed on the family card.
+    4. **rt_rw**: The RT/RW (neighborhood unit) information.
+    5. **village**: The village or sub-district name.
+    6. **district**: The district name.
+    7. **city**: The city or regency name.
+    8. **province**: The province name.
+    9. **postal_code**: The postal code.
+    10. **family_members**: A list of family members, each with the following details:
+        - **name**: Full name of the family member.
+        - **nik**: National Identification Number (NIK).
+        - **gender**: Gender of the family member.
+        - **relationship**: Relationship to the head of the family.
+        - **birth_date**: Date of birth in ISO 8601 format (`YYYY-MM-DD`).
+        - **religion**: Religion of the family member.
+        - **education**: Educational background.
+        - **occupation**: Occupation of the family member.
+        - **marital_status**: Marital status of the family member.
+        - **blood_type**: Blood type of the family member.
+
+    ### Guidelines:
+    - Normalize fields such as dates (`YYYY-MM-DD`) and ensure consistency in formatting.
+    - If a field is not explicitly mentioned in the document, return `null` for that attribute.
+    - Use `null` for missing fields and ensure the output is a valid JSON object.
+    - For the `family_members` field, return an array of objects, each representing a family member with their respective details.
+
+    """
+
+def _get_buku_tabungan_document_analysis():
+    return f"""
+    You are an expert document analyzer specialized in extracting structured information from Indonesian Buku Tabungan (Bank Book) documents. Your task is to analyze the provided document content and extract specific attributes as defined below.
+
+    ### Attributes to Extract:
+    The following attributes must be extracted:
+    1. **account_holder_name**: The name of the account holder.
+    2. **account_number**: The bank account number.
+    3. **bank_name**: The name of the bank.
+    4. **branch_name**: The branch name of the bank.
+    5. **account_type**: The type of bank account (e.g., Savings, Current).
+
+    ### Guidelines:
+    - If a field is not explicitly mentioned in the document, return `null` for that attribute.
+    - Use `null` for missing fields and ensure the output is a valid JSON object.
+    - Return only the JSON object without any additional text.
+
+    """
+
+def _get_ktp_document_analysis():
+    return f"""
+    You are an expert document analyzer specialized in extracting structured information from Indonesian KTP (Kartu Tanda Penduduk) documents. Your task is to analyze the provided document content and extract specific attributes as defined below.
+
+    ### Attributes to Extract:
+    The following attributes must be extracted:
+    1. **nik**: National Identification Number.
+    2. **name**: Full name of the individual.
+    3. **birth_place**: Place of birth.
+    4. **birth_date**: Date of birth in ISO 8601 format (`YYYY-MM-DD`).
+    5. **gender**: Gender of the individual.
+    6. **address**: Residential address.
+    7. **rt_rw**: RT/RW (neighborhood unit) information.
+    8. **village**: Village or sub-district name.
+    9. **district**: District name.
+    10. **city**: City or regency name.
+    11. **province**: Province name.
+    12. **postal_code**: Postal code.
+    13. **religion**: Religion of the individual.
+    14. **marital_status**: Marital status of the individual.
+    15. **occupation**: Occupation of the individual.
+    16. **nationality**: Nationality of the individual.
+    
+    ### Guidelines:
+    - Normalize fields such as dates (`YYYY-MM-DD`) and ensure consistency in formatting.
+    - If a field is not explicitly mentioned in the document, return `null` for that attribute.
+    - Use `null` for missing fields and ensure the output is a valid JSON object.
+    - Return only the JSON object without any additional text.
+    """
+
+def _get_legal_documents_classification_prompt():
+    return f"""
+    You are an expert document classifier specialized in identifying and categorizing various types of legal documents. Your task is to analyze the provided document content and classify it into one of the predefined legal document categories.
+
+    # Legal Document Categories:
+    1. **KTP**: Indonesian National Identity
+    2. **KK**: Family Card
+    3. **NPWP**: Tax Identification Number
+    4. **Ijazah**: Academic Diploma
+    5. **Buku Tabungan**: Bank Book
+
+    # Guidelines:
+    - Carefully analyze the content of the document to determine its category.
+    - If the document does not match any of the predefined categories, classify it as "Unknown".
+    - Return only the category name as a single string without any additional text or explanations.
+    - Add a confidence score between 0 and 1 indicating the certainty of your classification.
+
+    # Example Output:
+    {{
+        "category": <str> // One of the predefined categories or "Unknown"
+        "confidence_score": <float> // A confidence score between 0 and 1 indicating the certainty of the classification
+    }}
+
+    Remember:
+    - Be objective and consistent in your classifications.
+    - Base your classifications solely on the evidence provided in the document content.
+    - Ensure the output is a valid JSON object.
+    - Return only the JSON object without any additional text.
+    - Add confidence score between 0 and 1 indicating the certainty of your classification.
+
+    """
+
+def _get_discrepancy_analysis_prompt():
+    return f"""
+    You are an expert discrepancy analyst specialized in identifying and categorizing discrepancies between source and target documents. Your task is to analyze the provided document content and identify any discrepancies based on the defined attributes below.
+
+    ### Attributes to Extract:
+    The following attributes must be extracted for each identified discrepancy:
+
+    1. **category**: The category of the discrepancy (if applicable; use `null` if not applicable).
+    2. **field**: The specific field where the discrepancy was found.
+    3. **severity**: The severity level of the discrepancy ('low', 'medium', 'high').
+    4. **note**: Additional notes or comments about the discrepancy (if applicable; use `null` if not applicable).
+    5. **source**: Details of the source document related to the discrepancy, including:
+        - **type**: The type of source document.
+        - **name**: The name of the source document.
+        - **value**: The value from the source document (if applicable; use `null` if not applicable).
+    6. **target**: Details of the target document related to the discrepancy, including:
+        - **type**: The type of target document.
+        - **name**: The name of the target document.
+        - **value**: The value from the target document (if applicable; use `null` if not applicable).
+
+    ### Example of discrepancy:
+    - A discrepancy in the "date_of_birth" field where the source document states "1990-01-01" and the target document states "1991-01-01" with a severity of "high".
+    - Mismatch in the address field.
+    - Mismatch in the full name field.
+    - Mismatch in the family member details.
+    - Unmatched in zip code.
+    - Etc.
+
+    ### Guidelines:
+    - Analyze the provided documents thoroughly to identify direct conflicting discrepancies.
+    - Skip any discrepancies that are indirect or inferred.
+    - Skip any discrepancies that are based on different formats or representations (e.g., "01 Jan 1990" vs. "1990-01-01").
+    - Skip any discrepancies that are based on different translations or interpretations of names or terms.
+    - Do not include discrepancies that are based on assumptions or incomplete information.
+    - Ensure the output is a valid JSON array of objects.
+    - Be objective and consistent in your evaluations.
+    - For each identified discrepancy, extract and structure the information according to the attributes listed above.
+    - Use `null` for missing fields and ensure the output is a valid JSON array of objects.
+
+    """
+
+def _get_offering_letter_content_analysis_prompt():
+    return f"""
+    You're a helpful assistant. Your task is to analyze the provided offering letter content and extract the content of the offering letter.
+
+    # Data to extract:
+    1. **position**: The job position being offered.
+    2. **start_date**: The start date of the job in ISO 8601 format (`YYYY-MM-DD`).
+    3. **salary**: The salary offered for the position.
+    4. **benefits**: The benefits included in the offering letter (if available; use `null` if not applicable).
+
+    # Guidelines:
+    - Normalize fields such as dates (`YYYY-MM-DD`) and ensure consistency in formatting.
+    - If a field is not explicitly mentioned in the offering letter, return `null` for that attribute.
+    - Use `null` for missing fields and ensure the output is a valid JSON object.
+    - Return only the JSON object without any additional text.
+
+    # Output Format:
+    ```json
+    {{
+        "position": "<str>",
+        "start_date": "<str>",
+        "salary": "<str>",
+        "benefits": ["<str>", "..."] // Array of benefits or null if not applicable
+    }}
+    ```
+
+    # Remember:
+    - Be objective and consistent in your evaluations.
+    - Base your assessments on the evidence provided in the offering letter content.
+    - Ensure the output is a valid JSON object.
+
     """

@@ -1,0 +1,294 @@
+{
+  "info": {
+    "name": "AI-HRIS HR Routes",
+    "description": "Postman collection for HR API endpoints including candidate management, CV parsing, assessment, and recommendations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "item": [
+        {
+          "name": "Ping",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/ping",
+              "host": ["{{base_url}}"],
+              "path": ["ping"]
+            },
+            "description": "Check if the server is running"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Candidate Management",
+      "item": [
+        {
+          "name": "Get Single Candidate",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/hr/candidate/{{candidate_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hr", "candidate", "{{candidate_id}}"]
+            },
+            "description": "Retrieve a single candidate by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "List All Candidates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/hr/candidates?limit=100",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hr", "candidates"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of candidates to retrieve (default: 100)"
+                }
+              ]
+            },
+            "description": "Retrieve all candidates with optional limit"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Candidates by Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/hr/candidates/by-status?status=applied&limit=100",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hr", "candidates", "by-status"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "applied",
+                  "description": "Status to filter by (e.g., applied, reviewing, shortlisted, hired, rejected)"
+                },
+                {
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of candidates to retrieve (default: 100)"
+                }
+              ]
+            },
+            "description": "Retrieve candidates filtered by status"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Candidates by Position",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/hr/candidates/by-position?position=Software Engineer&limit=100",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hr", "candidates", "by-position"],
+              "query": [
+                {
+                  "key": "position",
+                  "value": "Software Engineer",
+                  "description": "Position to filter by"
+                },
+                {
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of candidates to retrieve (default: 100)"
+                }
+              ]
+            },
+            "description": "Retrieve candidates filtered by position"
+          },
+          "response": []
+        },
+        {
+          "name": "Insert Candidate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"candidate\": {\n    \"id\": \"cand-123\",\n    \"candidateId\": \"cand-123\",\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"phone\": \"+1-555-0100\",\n    \"position\": \"Software Engineer\",\n    \"status\": \"applied\",\n    \"appliedDate\": \"2025-11-25T10:00:00Z\",\n    \"experience\": 5,\n    \"skills\": [\"Python\", \"JavaScript\", \"React\"],\n    \"rating\": 4.5,\n    \"notes\": \"Strong technical background with leadership experience\",\n    \"embeddings\": [0.1, 0.2, 0.3]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/hr/candidate/insert",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hr", "candidate", "insert"]
+            },
+            "description": "Insert a new candidate into the system"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "CV Parsing",
+      "item": [
+        {
+          "name": "Parse Resume from File",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "resume",
+                  "type": "file",
+                  "src": "path/to/resume.pdf",
+                  "description": "PDF file of the resume"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/hr/resume-parser/file",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hr", "resume-parser", "file"]
+            },
+            "description": "Parse resume from an uploaded PDF file"
+          },
+          "response": []
+        },
+        {
+          "name": "Parse Resume from Base64",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resume\": \"JVBERi0xLjQKJeLjz9MNCjEgMCBvYmo...\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/hr/resume-parser/base64",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hr", "resume-parser", "base64"]
+            },
+            "description": "Parse resume from base64 encoded PDF data"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Candidate Assessment",
+      "item": [
+        {
+          "name": "Assess Candidate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assessment_type\": \"PredefinedScore\",\n  \"predefined_score\": 85,\n  \"candidate_id\": \"cand-123\",\n  \"candidate_data\": {\n    \"id\": \"cand-123\",\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"phone\": \"+1-555-0100\",\n    \"position\": \"Software Engineer\",\n    \"experience\": 5,\n    \"skills\": [\"Python\", \"JavaScript\", \"React\"],\n    \"education\": \"Bachelor's in Computer Science\",\n    \"workHistory\": \"5 years at Tech Company A, 2 years at Tech Company B\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/hr/candidate/assessment",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hr", "candidate", "assessment"]
+            },
+            "description": "Assess a candidate with a predefined score or background check"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Candidate Recommendation",
+      "item": [
+        {
+          "name": "Recommend Candidates for Job",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job\": {\n    \"id\": \"job-456\",\n    \"title\": \"Senior Software Engineer\",\n    \"description\": \"We are looking for an experienced software engineer with 5+ years of experience\",\n    \"requiredSkills\": [\"Python\", \"JavaScript\", \"React\", \"AWS\"],\n    \"requiredExperience\": 5,\n    \"salary\": \"$120,000 - $150,000\",\n    \"location\": \"San Francisco, CA\",\n    \"jobType\": \"Full-time\",\n    \"department\": \"Engineering\",\n    \"reportingTo\": \"Engineering Manager\",\n    \"qualifications\": \"Bachelor's degree in Computer Science or related field\",\n    \"responsibilities\": \"Design and implement scalable software solutions, lead technical projects\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/hr/candidate/recommend",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "hr", "candidate", "recommend"]
+            },
+            "description": "Get candidate recommendations for a specific job posting"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Document Analysis",
+      "item": [
+        {
+          "name": "Analyze Document",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "document",
+                  "type": "file",
+                  "src": "path/to/document.png",
+                  "description": "Document file to analyze (PDF, PNG, JPG, JPEG, BMP, TIFF)"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/document/analyze",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "document", "analyze"]
+            },
+            "description": "Analyze a document using Azure Document Intelligence to extract text and content"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "candidate_id",
+      "value": "cand-123",
+      "type": "string"
+    }
+  ]
+}

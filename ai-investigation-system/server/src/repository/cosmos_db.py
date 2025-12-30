@@ -7,7 +7,7 @@ from src.models.case import CaseModel
 
 
 class CosmosDBRepository:
-    def __init__(self, connection_string: str, database_id: str = "ai-fraud", container_id: str = "cases"):
+    def __init__(self, connection_string: str, database_id: str, container_id: str):
         try:
             self.client = CosmosClient.from_connection_string(connection_string)
             self.database = self.client.get_database_client(database_id)

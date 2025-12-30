@@ -153,14 +153,9 @@ const positionLabel = computed(() => {
             <CardDescription>Internal notes about the candidate</CardDescription>
           </CardHeader>
           <CardContent>
-            <Textarea
-              v-model="notes"
-              placeholder="Add internal notes..."
-              class="min-h-24"
-              @blur="() => {
-                // Save notes logic here
-              }"
-            />
+            <Textarea v-model="notes" placeholder="Add internal notes..." class="min-h-24" @blur="() => {
+              // Save notes logic here
+            }" />
           </CardContent>
         </Card>
 
