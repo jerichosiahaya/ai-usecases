@@ -19,6 +19,8 @@ from src.domain.gl_transaction import GLTransaction
 class ClassificationResponse(KernelBaseModel):
     classification: str
     confidence_score: float
+    is_document_complete: bool
+    completeness_reason: Optional[str]
 
 class LLMService:
     def __init__(self, service_id: str = "default_service", config: AppConfig = None):

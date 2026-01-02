@@ -196,7 +196,25 @@ class ContentExtraction:
             files = self.azure_blob_storage_repo.list_files(file_id)
             logger.info(f"Found {len(files)} files in folder {file_id}")
             
+            # Sort files numerically by blob_name to ensure consistent processing order (pdf_1, pdf_2, ..., pdf_10, etc.)
+            def natural_sort_key(f):
+                blob_name = f.get("blob_name", "")
+                # Extract numeric part from filename for natural sorting
+                # e.g., "pdf_1" -> extract 1, "pdf_10" -> extract 10
+                import re
+                parts = []
+                for part in re.split(r'(\d+)', blob_name):
+                    if part.isdigit():
+                        parts.append((0, int(part)))  # Numeric parts sort as numbers
+                    else:
+                        parts.append((1, part))  # String parts sort lexicographically
+                return parts
+            
+            files = sorted(files, key=natural_sort_key)
+            logger.info(f"Files sorted numerically: {[f.get('blob_name') for f in files]}")
+            
             analysis_results = []
+            # pending_incomplete_doc = None  # Track incomplete document
             
             # Loop through each file
             for file_info in files:

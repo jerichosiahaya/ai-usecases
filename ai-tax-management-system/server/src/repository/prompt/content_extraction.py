@@ -7,22 +7,53 @@ def get_content_classification_prompt(document_content: str) -> str:
     - Tax Invoice (Faktur Pajak): Documents that include tax-specific information, such as tax identification numbers, tax amounts, and regulatory compliance details.
     - General Ledger: Documents that provide a comprehensive record of all financial transactions, including debits and credits across various accounts.
 
+    # General Instructions:
+    - If the document lacks sufficient information to be classified into any of the above categories, classify it as "Unknown".
+    - Assess whether the document appears to be complete based on the presence of key sections and information typically found in each document type.
+    - Provide a confidence score (between 0 and 1) indicating your certainty about the classification.
+
+    # Document Completeness Guidelines:
+
+    ## Tax Invoice (Faktur Pajak) Completeness Indicators (document is COMPLETE when it has):
+    - Faktur Pajak number/reference
+    - Seller (Pengusaha Kena Pajak) name and NPWP
+    - Buyer (Pembeli Kena Pajak) name and identifying information (NPWP, NIK, or Passport)
+    - Tax invoice date
+    - Line items with descriptions, quantities, and prices
+    - Tax base amount (Dasar Pengenaan Pajak)
+    - PPN amount (VAT/Tax amount)
+    - FINAL TOTAL AMOUNT
+    - **SIGNATURE or AUTHORIZED SIGNATURE area** (critical for Faktur Pajak completeness)
+    - Stamp or official seal from seller
+    - Buyer's acceptance/receipt indication (if applicable)
+
+    # Completeness Assessment Logic:
+    - Document is INCOMPLETE if it ends abruptly or shows obvious truncation (e.g., line items cut off, missing totals, text continues without conclusion)
+    - Document is INCOMPLETE if critical signatures or authorization marks are missing for Faktur Pajak
+    - Document is INCOMPLETE if the final total/closing section is missing or partial
+    - Document is COMPLETE if all major sections and signature areas are present (even if some optional fields are missing)
+    - Look for visual/textual indicators of signature areas: "Signature:", "Authorized by:", "Signed", "TTD" (Tanda Tangan), signature lines, or actual signature marks
+
     Provide the classification result in the following JSON format:
     {{
         "classification": "<Invoice | Tax Invoice (Faktur Pajak) | General Ledger | Unknown>",
-        "confidence_score": <float between 0 and 1>
+        "is_document_complete": <true | false>,
+        "confidence_score": <float between 0 and 1>,
+        "completeness_reason": "<brief explanation of why document is complete or incomplete>"
     }}
 
     Here is the document content to classify:
     \"\"\"{document_content}\"\"\"
 
-    Please analyze the document and provide the classification result as specified.
+    Please analyze the document and provide the classification result as specified. Also, indicate whether the document appears to be complete and provide a confidence score for your classification. Include a brief reason explaining the completeness assessment.
 
     # Remember:
     - Focus on key indicators within the document content to determine its category.
     - If the document does not clearly fit into any of the categories, classify it as "Unknown".
     - Ensure to differentiate between Invoice and Tax Invoice (Faktur Pajak) based on the presence of tax-related information.
-    - Usually Faktu Pajak has "Faktur Pajak" written on the document.
+    - Usually Faktur Pajak has "Faktur Pajak" written on the document.
+    - Look for signature indicators: "TTD", "Signature", "Authorized", signature lines (------), or actual signature marks.
+    - For Faktur Pajak, presence of signature/authorization area is CRITICAL for determining completeness.
 
     """
 
