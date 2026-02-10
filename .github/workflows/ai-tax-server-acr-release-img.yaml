@@ -1,0 +1,35 @@
+name: ai-tax-server-acr-release-image
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g., v0.0.1)'
+        required: true
+        type: string
+
+env:
+  IMAGE_NAME: ai-tax-server
+
+jobs:
+  build-and-push-to-ACR:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Generate timestamp
+      id: timestamp
+      run: echo "TIMESTAMP=$(TZ='Asia/Jakarta' date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
+
+    - name: Login to ACR
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.ACR_LOGIN_SERVER_2 }}
+        username: ${{ secrets.ACR_USERNAME_2 }}
+        password: ${{ secrets.ACR_PASSWORD_2 }}
+
+    - name: Build and push Docker image
+      run: |
+        docker build ./ai-tax-management-system/server -t ${{ secrets.ACR_LOGIN_SERVER_2 }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.version }}-${{ steps.timestamp.outputs.TIMESTAMP }}
+        docker push ${{ secrets.ACR_LOGIN_SERVER_2 }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.version }}-${{ steps.timestamp.outputs.TIMESTAMP }}

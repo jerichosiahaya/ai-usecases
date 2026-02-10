@@ -1,0 +1,39 @@
+import os
+from dataclasses import dataclass
+from dotenv import load_dotenv
+
+load_dotenv()
+
+@dataclass
+class AppConfig:
+    AZURE_OPENAI_DEPLOYMENT_NAME: str = os.getenv('AZURE_OPENAI_DEPLOYMENT_NAME', '')
+    AZURE_OPENAI_API_BASE: str = os.getenv('AZURE_OPENAI_API_BASE', '')
+    AZURE_OPENAI_API_VERSION: str = os.getenv('AZURE_OPENAI_API_VERSION', '2024-02-15-preview')
+    AZURE_OPENAI_API_KEY: str = os.getenv('AZURE_OPENAI_API_KEY', '')
+
+    AZURE_OPENAI_EMBEDDING_DEPLOYMENT_NAME: str = os.getenv('AZURE_OPENAI_EMBEDDING_DEPLOYMENT_NAME', '')
+
+    COSMOSDB_CONTAINER: str = os.getenv('COSMOSDB_CONTAINER', '')
+    COSMOSDB_DATABASE: str = os.getenv('COSMOSDB_DATABASE', '')
+    COSMOSDB_CONNECTION_STRING: str = os.getenv('COSMOSDB_CONNECTION_STRING', '')
+
+    DOCUMENT_INTELLIGENCE_ENDPOINT: str = os.getenv('DOCUMENT_INTELLIGENCE_ENDPOINT', '')
+    DOCUMENT_INTELLIGENCE_KEY: str = os.getenv('DOCUMENT_INTELLIGENCE_KEY', '')
+
+    AZURE_STORAGE_CONNECTION_STRING: str = os.getenv('AZURE_STORAGE_CONNECTION_STRING', '')
+    AZURE_STORAGE_CONTAINER_NAME: str = os.getenv('AZURE_STORAGE_CONTAINER_NAME', 'tax-documents')
+
+    CONTENT_UNDERSTANDING_ENDPOINT: str = os.getenv('CONTENT_UNDERSTANDING_ENDPOINT', '')
+    CONTENT_UNDERSTANDING_API_KEY: str = os.getenv('CONTENT_UNDERSTANDING_API_KEY', '')
+    CONTENT_UNDERSTANDING_API_VERSION: str = os.getenv('CONTENT_UNDERSTANDING_API_VERSION', '2025-11-01')
+
+    MINIO_ROOT_USER: str = os.getenv('MINIO_ROOT_USER', 'minioadmin')
+    MINIO_ROOT_PASSWORD: str = os.getenv('MINIO_ROOT_PASSWORD', 'minioadmin123')
+
+    RABBITMQ_DEFAULT_USER: str = os.getenv('RABBITMQ_DEFAULT_USER', 'admin')
+    RABBITMQ_DEFAULT_PASS: str = os.getenv('RABBITMQ_DEFAULT_PASS', 'admin123')
+
+    AZURE_SERVICE_BUS_CONNECTION_STRING: str = os.getenv('AZURE_SERVICE_BUS_CONNECTION_STRING', '')
+    AZURE_SERVICE_BUS_QUEUE_NAME: str = os.getenv('AZURE_SERVICE_BUS_QUEUE_NAME', 'file-processing-queue')
+
+    ENV: str = os.getenv('ENV', 'development')

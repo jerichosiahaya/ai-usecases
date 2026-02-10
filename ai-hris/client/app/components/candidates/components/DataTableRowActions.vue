@@ -18,11 +18,11 @@ const props = defineProps<DataTableRowActionsProps>()
 const router = useRouter()
 
 const viewDetails = () => {
-  router.push(`/candidates/${props.row.original.id}`)
+  router.push(`/candidates/${props.row.original.candidate_id}`)
 }
 
 const deleteRow = () => {
-  console.log('Delete candidate:', props.row.original.id)
+  console.log('Delete candidate:', props.row.original.candidate_id)
   // Implement delete logic here
 }
 

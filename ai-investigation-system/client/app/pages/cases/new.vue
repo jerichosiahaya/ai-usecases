@@ -51,23 +51,23 @@ const uploadFilesFirst = async (): Promise<string[]> => {
     const entry = uploadedFiles[k]
     return entry && entry.status === 'pending'
   })
-  
+
   const uploadedUrls: string[] = []
-  
+
   // Create a temporary case ID for file upload organization
   const tempCaseId = 'temp-' + Date.now()
-  
+
   for (const fileKey of fileKeys) {
     const fileEntry = uploadedFiles[fileKey]
     if (!fileEntry) continue
-    
+
     fileEntry.status = 'uploading'
-    
+
     try {
       const formData = new FormData()
       formData.append('file', fileEntry.file)
 
-      const response = await $fetch<{ status: string; message: string; data?: any }>(`http://localhost:8000/api/v1/upload/file/${tempCaseId}`, {
+      const response = await $fetch<{ status: string; message: string; data?: any }>(`https://ai-hris-server.azurewebsites.net/api/v1/upload/file/${tempCaseId}`, {
         method: 'POST',
         body: formData
       })
@@ -100,7 +100,7 @@ const uploadFilesFirst = async (): Promise<string[]> => {
       })
     }
   }
-  
+
   console.log('All uploaded URLs:', uploadedUrls)
   return uploadedUrls
 }
@@ -135,7 +135,7 @@ const handleFileSelect = (newFiles: File[]) => {
         status: 'pending'
       }
     })
-    
+
     toast.add({
       title: 'Files Added',
       description: `${validFiles.length} file(s) ready to upload (will be uploaded after case creation)`,
@@ -150,7 +150,7 @@ const handleRemoveFile = (fileKey: string | number) => {
 
 const handleSubmit = async () => {
   const uploadedFileCount = Object.keys(uploadedFiles).length
-  
+
   if (!form.name || !form.description || uploadedFileCount === 0) {
     toast.add({
       title: 'Validation Error',
@@ -186,10 +186,10 @@ const handleSubmit = async () => {
     const filesWithMetadata = fileUrls.map((url, index) => {
       const fileName = url.split('/').pop() || url
       const fileFormat = fileName.split('.').pop()?.toLowerCase() || ''
-      
+
       // Get the original file name from uploadedFiles
       const originalFileName = Object.values(uploadedFiles)[index]?.file.name || fileName
-      
+
       return {
         url: url,
         name: originalFileName,
@@ -248,19 +248,16 @@ const handleSubmit = async () => {
               </UFormField>
 
               <UFormField label="Description" required help="Provide details about the case" class="w-full">
-                <UTextarea v-model="form.description" placeholder="Describe the case details, suspicions, and relevant information..." class="w-full" />
+                <UTextarea v-model="form.description"
+                  placeholder="Describe the case details, suspicions, and relevant information..." class="w-full" />
               </UFormField>
 
-              <UFormField label="Upload Files" required help="Upload documents, evidence, or data files related to this case">
+              <UFormField label="Upload Files" required
+                help="Upload documents, evidence, or data files related to this case">
                 <div class="border-2 border-dashed border-gray-300 rounded-lg p-6">
-                  <input
-                    type="file"
-                    multiple
-                    class="hidden"
-                    id="file-input"
+                  <input type="file" multiple class="hidden" id="file-input"
                     accept=".pdf,.docx,.txt,.jpg,.png,.svg,.jpeg"
-                    @change="(e) => handleFileSelect(Array.from((e.target as HTMLInputElement).files || []))"
-                  />
+                    @change="(e) => handleFileSelect(Array.from((e.target as HTMLInputElement).files || []))" />
                   <label for="file-input" class="cursor-pointer flex flex-col items-center gap-2">
                     <UIcon name="i-lucide-upload" class="w-8 h-8 text-gray-400" />
                     <span class="text-sm font-medium">Click to upload or drag and drop</span>
@@ -268,44 +265,29 @@ const handleSubmit = async () => {
                   </label>
 
                   <div v-if="Object.keys(uploadedFiles).length > 0" class="mt-4 space-y-2">
-                    <div v-for="(entry, fileKey) in uploadedFiles" :key="fileKey" class="flex items-center justify-between bg-info p-3 rounded">
+                    <div v-for="(entry, fileKey) in uploadedFiles" :key="fileKey"
+                      class="flex items-center justify-between bg-info p-3 rounded">
                       <div class="flex items-center gap-2 flex-1 min-w-0">
-                        <UIcon 
+                        <UIcon
                           :name="entry.status === 'completed' ? 'i-lucide-check-circle-2' : entry.status === 'uploading' ? 'i-lucide-loader' : entry.status === 'error' ? 'i-lucide-alert-circle' : 'i-lucide-clock'"
                           :class="[
                             'w-4 h-4 shrink-0',
                             entry.status === 'completed' ? 'text-success' : entry.status === 'uploading' ? 'text-warning animate-spin' : entry.status === 'error' ? 'text-error' : 'text-gray-400'
-                          ]"
-                        />
+                          ]" />
                         <span class="text-sm truncate">{{ entry.file.name }}</span>
-                        <span class="text-xs shrink-0 text-white">({{ (entry.file.size / 1024 / 1024).toFixed(2) }} MB)</span>
+                        <span class="text-xs shrink-0 text-white">({{ (entry.file.size / 1024 / 1024).toFixed(2) }}
+                          MB)</span>
                       </div>
-                      <UButton
-                        icon="i-lucide-x"
-                        color="neutral"
-                        variant="ghost"
-                        size="xs"
-                        :disabled="entry.status === 'uploading'"
-                        @click="handleRemoveFile(fileKey)"
-                      />
+                      <UButton icon="i-lucide-x" color="neutral" variant="ghost" size="xs"
+                        :disabled="entry.status === 'uploading'" @click="handleRemoveFile(fileKey)" />
                     </div>
                   </div>
                 </div>
               </UFormField>
 
               <div class="flex gap-3 pt-4">
-                <UButton
-                  label="Create Case"
-                  color="primary"
-                  :loading="isLoading"
-                  @click="handleSubmit"
-                />
-                <UButton
-                  label="Cancel"
-                  color="neutral"
-                  variant="outline"
-                  @click="router.push('/cases')"
-                />
+                <UButton label="Create Case" color="primary" :loading="isLoading" @click="handleSubmit" />
+                <UButton label="Cancel" color="neutral" variant="outline" @click="router.push('/cases')" />
               </div>
             </div>
           </UPageCard>

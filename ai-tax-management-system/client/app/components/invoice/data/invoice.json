@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "invoiceId": "1d8f6b24-3c7a-4e92-9a51-0f6e2c9b7d48",
+      "invoiceNumber": "129305",
+      "urn": "7603480352",
+      "documentUrl": null,
+      "projectNumber": "",
+      "invoiceDetail": [
+        {
+          "invoiceDetailId": "4c2e9f7a-1d58-4b63-8a90-6e5c3b2f7184",
+          "itemName": "NRC: MSFT GB-200-72 conversion to GB-300-72 period 01 Sep 2025 - 30 Sep 2025",
+          "quantity": 1,
+          "unitPrice": 5714510903,
+          "taxPercentage": 0,
+          "discountPercentage": 0,
+          "extendedPrice": 5714510903
+        }
+      ],
+      "subTotalAmount": 5714510903,
+      "vatPercentage": 0,
+      "vatAmount": 628596199,
+      "discountAmount": 0,
+      "whtPercentage": 0,
+      "whtAmount": 0,
+      "totalAmount": 6343107102,
+      "currency": "IDR",
+      "createdAt": "2025-06-01T09:30:00Z",
+      "updatedAt": "2025-06-01T09:45:00Z"
+    },
+    {
+      "invoiceId": "4b9e7d21-91a6-4f1c-8d3a-2c7f8e6b5a40",
+      "invoiceNumber": "RI25000455",
+      "urn": "7603480352",
+      "documentUrl": null,
+      "projectNumber": "",
+      "invoiceDetail": [
+        {
+          "invoiceDetailId": "9a3f2c18-6e4b-4d91-8f72-b1c4e5a60789",
+          "itemName": "Construction Safety Advisor - JKT02 PO 0416017951 - Period Aug 2025",
+          "quantity": 1,
+          "unitPrice": 36150000,
+          "taxPercentage": 0.11,
+          "discountPercentage": 0,
+          "extendedPrice": 36150000
+        }
+      ],
+      "subTotalAmount": 36150000,
+      "vatPercentage": 0.11,
+      "vatAmount": 3976.5,
+      "discountAmount": 0,
+      "whtPercentage": 0,
+      "whtAmount": 0,
+      "totalAmount": 40126500,
+      "currency": "IDR",
+      "createdAt": "2025-06-01T09:30:00Z",
+      "updatedAt": "2025-06-01T09:45:00Z"
+    }
+  ]
+}

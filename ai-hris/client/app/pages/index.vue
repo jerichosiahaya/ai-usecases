@@ -1,20 +1,38 @@
 <script setup lang="ts">
 import NumberFlow from '@number-flow/vue'
-import { TrendingDown, TrendingUp, TrendingUpIcon } from 'lucide-vue-next'
+import { TrendingDown, TrendingUp, Users, Briefcase, UserCheck, Percent } from 'lucide-vue-next'
+import jobsData from '@/components/jobs/data/jobs.json'
+import candidatesData from '@/components/candidates/data/candidates.json'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const dataCard = ref({
-  totalRevenue: 0,
-  newCustomers: 0,
-  activeAccount: 0,
-  growthRate: 0,
+  totalApplicants: 0,
+  openPositions: 0,
+  activeCandidates: 0,
+  placementRate: 0,
+})
+
+const openJobs = computed(() => {
+  return (jobsData as any).data.filter((job: any) => job.status === 'Open').slice(0, 5)
+})
+
+const ongoingCandidates = computed(() => {
+  return (candidatesData as any).data.filter((candidate: any) => !['Hired', 'Rejected'].includes(candidate.status)).slice(0, 5)
 })
 
 onMounted(() => {
+  const jobs = (jobsData as any).data
+  const candidates = (candidatesData as any).data
+
+  const totalApplicants = jobs.reduce((acc: number, job: any) => acc + job.applicants, 0)
+  const openPositions = jobs.filter((job: any) => job.status === 'Open').length
+  const activeCandidates = candidates.length
+
   dataCard.value = {
-    totalRevenue: 1250.44,
-    newCustomers: 1234,
-    activeAccount: 45678,
-    growthRate: 4.5,
+    totalApplicants,
+    openPositions,
+    activeCandidates,
+    placementRate: 85,
   }
 })
 
@@ -43,158 +61,158 @@ watch(isDesktop, () => {
       </div>
     </div>
     <main class="@container/main flex flex-1 flex-col gap-4 md:gap-8">
-      <div class="grid grid-cols-1 gap-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
+      <div class="grid grid-cols-1 gap-4 *:data-[slot=card]:bg-linear-to-t *:data-[slot=card]:shadow-xs @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
         <Card class="@container/card">
           <CardHeader>
-            <CardDescription>Total Revenue</CardDescription>
+            <CardDescription>Total Applicants</CardDescription>
             <CardTitle class="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
               <NumberFlow
-                :value="dataCard.totalRevenue"
-                :format="{ style: 'currency', currency: 'USD', trailingZeroDisplay: 'stripIfInteger' }"
+                :value="dataCard.totalApplicants"
               />
             </CardTitle>
             <CardAction>
               <Badge variant="outline">
-                <TrendingUpIcon />
+                <TrendingUp class="h-4 w-4 mr-1" />
                 +12.5%
               </Badge>
             </CardAction>
           </CardHeader>
           <CardFooter class="flex-col items-start gap-1.5 text-sm">
             <div class="line-clamp-1 flex gap-2 font-medium">
-              Trending up this month <TrendingUp class="size-4" />
+              Trending up this month <Users class="size-4" />
             </div>
             <div class="text-muted-foreground">
-              Visitors for the last 6 months
+              Across all open positions
             </div>
           </CardFooter>
         </Card>
         <Card class="@container/card">
           <CardHeader>
-            <CardDescription>New Customers</CardDescription>
+            <CardDescription>Open Positions</CardDescription>
             <CardTitle class="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
               <NumberFlow
-                :value="dataCard.newCustomers"
+                :value="dataCard.openPositions"
               />
             </CardTitle>
             <CardAction>
               <Badge variant="outline">
-                <TrendingDown />
-                -20%
+                <TrendingUp class="h-4 w-4 mr-1" />
+                +2
               </Badge>
             </CardAction>
           </CardHeader>
           <CardFooter class="flex-col items-start gap-1.5 text-sm">
             <div class="line-clamp-1 flex gap-2 font-medium">
-              Down 20% this period <TrendingDown class="size-4" />
+              Actively hiring <Briefcase class="size-4" />
             </div>
             <div class="text-muted-foreground">
-              Acquisition needs attention
+              In various departments
             </div>
           </CardFooter>
         </Card>
         <Card class="@container/card">
           <CardHeader>
-            <CardDescription>Active Accounts</CardDescription>
+            <CardDescription>Active Candidates</CardDescription>
             <CardTitle class="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
               <NumberFlow
-                :value="dataCard.activeAccount"
+                :value="dataCard.activeCandidates"
               />
             </CardTitle>
             <CardAction>
               <Badge variant="outline">
-                <TrendingUp />
-                +12.5%
+                <TrendingUp class="h-4 w-4 mr-1" />
+                +5
               </Badge>
             </CardAction>
           </CardHeader>
           <CardFooter class="flex-col items-start gap-1.5 text-sm">
             <div class="line-clamp-1 flex gap-2 font-medium">
-              Strong user retention <TrendingUp class="size-4" />
+              Currently in pipeline <UserCheck class="size-4" />
             </div>
             <div class="text-muted-foreground">
-              Engagement exceed targets
+              Reviewing and interviewing
             </div>
           </CardFooter>
         </Card>
         <Card class="@container/card">
           <CardHeader>
-            <CardDescription>Growth Rate</CardDescription>
+            <CardDescription>Placement Rate</CardDescription>
             <CardTitle class="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
               <NumberFlow
-                :value="dataCard.growthRate"
+                :value="dataCard.placementRate"
                 suffix="%"
               />
             </CardTitle>
             <CardAction>
               <Badge variant="outline">
-                <TrendingUp />
+                <TrendingUp class="h-4 w-4 mr-1" />
                 +4.5%
               </Badge>
             </CardAction>
           </CardHeader>
           <CardFooter class="flex-col items-start gap-1.5 text-sm">
             <div class="line-clamp-1 flex gap-2 font-medium">
-              Steady performance increase <TrendingUp class="size-4" />
+              Successful hires <Percent class="size-4" />
             </div>
             <div class="text-muted-foreground">
-              Meets growth projections
+              Meeting hiring targets
             </div>
           </CardFooter>
         </Card>
       </div>
-      <Card class="@container/card">
-        <CardHeader>
-          <CardTitle>Total Visitors</CardTitle>
-          <CardDescription>
-            <span className="hidden @[540px]/card:block">
-              Total for the last 3 months
-            </span>
-            <span className="@[540px]/card:hidden">Last 3 months</span>
-          </CardDescription>
-          <CardAction>
-            <ToggleGroup
-              v-model="timeRange"
-              type="single"
-              variant="outline"
-              class="hidden *:data-[slot=toggle-group-item]:!px-4 @[767px]/card:flex"
-            >
-              <ToggleGroupItem value="90d">
-                Last 3 months
-              </ToggleGroupItem>
-              <ToggleGroupItem value="30d">
-                Last 30 days
-              </ToggleGroupItem>
-              <ToggleGroupItem value="7d">
-                Last 7 days
-              </ToggleGroupItem>
-            </ToggleGroup>
-            <Select v-model="timeRange">
-              <SelectTrigger
-                class="flex w-40 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden"
-                size="sm"
-                aria-label="Select a value"
-              >
-                <SelectValue placeholder="Last 3 months" />
-              </SelectTrigger>
-              <SelectContent class="rounded-xl">
-                <SelectItem value="90d" class="rounded-lg">
-                  Last 3 months
-                </SelectItem>
-                <SelectItem value="30d" class="rounded-lg">
-                  Last 30 days
-                </SelectItem>
-                <SelectItem value="7d" class="rounded-lg">
-                  Last 7 days
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </CardAction>
-        </CardHeader>
-        <CardContent>
-          <DashboardTotalVisitors :time-range="timeRange" />
-        </CardContent>
-      </Card>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Current Job Openings -->
+        <Card>
+          <CardHeader>
+            <CardTitle>Current Job Openings</CardTitle>
+            <CardDescription>Positions currently accepting applications</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div class="space-y-4">
+              <div v-for="job in openJobs" :key="job.id" class="flex items-center justify-between">
+                <div class="space-y-1">
+                  <p class="text-sm font-medium leading-none">{{ job.title }}</p>
+                  <p class="text-xs text-muted-foreground">{{ job.department }} • {{ job.location }}</p>
+                </div>
+                <Badge variant="secondary">{{ job.type }}</Badge>
+              </div>
+              <div v-if="openJobs.length === 0" class="text-sm text-muted-foreground">
+                No open positions at the moment.
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <!-- Ongoing Candidates -->
+        <Card>
+          <CardHeader>
+            <CardTitle>Active Candidates</CardTitle>
+            <CardDescription>Candidates currently in the hiring pipeline</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div class="space-y-4">
+              <div v-for="candidate in ongoingCandidates" :key="candidate.id" class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <Avatar class="h-9 w-9">
+                    <AvatarImage :src="`https://api.dicebear.com/7.x/avataaars/svg?seed=${candidate.name}`" />
+                    <AvatarFallback>{{ candidate.name.charAt(0) }}</AvatarFallback>
+                  </Avatar>
+                  <div class="space-y-1">
+                    <p class="text-sm font-medium leading-none">{{ candidate.name }}</p>
+                    <p class="text-xs text-muted-foreground capitalize">{{ candidate.position.replace('-', ' ') }}</p>
+                  </div>
+                </div>
+                <Badge :variant="candidate.status === 'shortlisted' ? 'default' : 'secondary'">
+                  {{ candidate.status }}
+                </Badge>
+              </div>
+              <div v-if="ongoingCandidates.length === 0" class="text-sm text-muted-foreground">
+                No active candidates at the moment.
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </main>
   </div>
 </template>
